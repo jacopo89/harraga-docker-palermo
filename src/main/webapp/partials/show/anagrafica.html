@@ -1,0 +1,354 @@
+<div class="section-wrapper" id="anagrafica">
+
+	<div class="section">
+		<h3>{{ 'Anagrafica' | translate}}</h3>
+		<table class="table">
+			<!-- 			{{ 'ANAGRAFICA' | translate}} -->
+			<tbody>
+				<tr >
+					<th class="col-sm-3">{{ 'nome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.nome}}</td>
+					<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.cognome}}</td>
+				</tr>
+				<tr >
+					<th class="col-sm-3">{{ 'altronome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.altronome}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'numeroDelega' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.numeroTutela}}</td>
+					<th class="col-sm-3">{{ 'italiano' | translate}}</th>
+					<td class="col-sm-3">  {{socialCard.anagrafica.italiano == "S" ? "N":"S"}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'alias' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.alias}}</td>
+					<th class="col-sm-3">{{ 'sesso' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.sesso}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'paese' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.paese}}</td>
+					<th class="col-sm-3">{{ 'cittadinanza' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.cittadinanza}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'dataNascitaDichiarata' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.dataNascitaDichiarata | date:'dd-MM-yyyy'}}</td>
+					<th class="col-sm-3">{{ 'dataNascitaCorretta' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.dataNascitaCorretta | date:'dd-MM-yyyy'}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'linguaMadre' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.linguaMadre}}</td>
+					<th class="col-sm-3">{{ 'altreLingue' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.altreLingue}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'gruppoEtnico' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.gruppoEtnico}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'dataArrivo' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.dataArrivo | date:'dd-MM-yyyy' }}</td>
+					<th class="col-sm-3">{{ 'luogoArrivo' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.luogoArrivo}}</td>
+				</tr>
+				</tbody>
+				</table>
+				
+				<h3>Contatti del minore</h3>
+				<table class="table">
+				<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'email' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.email}}</td>
+					<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.telefono}}</td>
+				</tr>
+				</tbody>
+				</table>
+				
+				<h3>UO</h3>
+				<table class="table">
+				<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'UONome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.UONome}}</td>
+					<th class="col-sm-3">{{ 'UOData' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.UOData | date:'dd-MM-yyyy'}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<div class="section">
+
+		<h3>{{ 'Mediatore' | translate}}</h3>
+
+		<table class="table" ng-if="socialCard.anagrafica.mediatore">
+			<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'nome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.mediatore.nome}}</td>
+					<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.mediatore.cognome}}</td>
+				</tr>
+				
+				<tr>
+					<th class="col-sm-3">{{ 'email' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.mediatore.email}}</td>
+					<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.mediatore.telefono}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<div class="section">
+
+		<h3>{{ 'ElencoDomicilio' | translate}}</h3>
+		<div ng-repeat="item in socialCard.anagrafica.domicilio" class="sub-section">
+			<!-- 			<h4>{{item.tipo}}</h4> -->
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'Tipologia' | translate}}</th>
+						<td class="col-sm-3">{{item.tipo}}</td>
+						<th class="col-sm-3">{{ 'nome' | translate}}</th>
+						<td class="col-sm-3">{{item.nome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'tipoInserimento' | translate}}</th>
+						<td class="col-sm-3">{{item.tipoInserimento}}</td>
+						<th class="col-sm-3">{{ 'responsabile' | translate}}</th>
+						<td class="col-sm-3">{{item.responsabile}}</td>
+					</tr>
+					
+					<tr>
+						<th class="col-sm-3">{{ 'email' | translate}}</th>
+						<td class="col-sm-3">{{item.email}}</td>
+						<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+						<td class="col-sm-3">{{item.telefono}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'tempoPermanenza' | translate}}</th>
+						<td class="col-sm-3">{{item.tempoPermanenza | date:'dd-MM-yyyy'}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'ElencoDocumenti' | translate}}</h3>
+		<div ng-repeat="item in socialCard.anagrafica.documenti" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'tipologia' | translate}}</th>
+						<td class="col-sm-3">{{item.tipologia}}</td>
+						<th class="col-sm-3">{{ 'descrizione' | translate}}</th>
+						<td class="col-sm-3">{{item.descrizione}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<table>
+				<tbody>
+					<tr>
+						
+						<th class="col-sm-3">{{ 'allegato' | translate}}</th>
+						<td class="col-sm-6">{{item.allegato.nome}}</td>
+						<td class="col-sm-3"><a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></td>
+					</tr>
+					</tbody>
+			</table>
+			<table>
+				<tbody>
+					<tr>	
+						<th class="col-sm-12">{{ 'note' | translate}}</th>
+					</tr>
+				</tbody>
+				
+			</table>
+			<textarea class="col-sm-12" readonly>{{item.note}}</textarea>
+			
+		</div>
+	</div>
+
+
+
+	<div class="section">
+		<h3>{{ 'AssistenteSociale' | translate}}</h3>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'nome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.assistenteSociale.nome}}</td>
+					<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.assistenteSociale.cognome}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'email' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.assistenteSociale.email}}</td>
+					<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.assistenteSociale.telefono}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+	<div class="section">
+		<h3>{{ 'Tutore' | translate}}</h3>
+
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'nome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.contatto.nome}}</td>
+					<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.contatto.cognome}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'email' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.contatto.email}}</td>
+					<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.contatto.telefono}}</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'numeroDelega' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.numeroTutela}}</td>
+					<th class="col-sm-3">{{ 'dataAssegnazione' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.dataAssegnazione | date:'dd-MM-yyyy' }}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'luogoAssegnazione' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.luogoAssegnazione}}</td>
+					<th class="col-sm-3">{{ 'motivoTutela' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.motivoTutela}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'tribunaleMinori' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.tribunaleMinori}}</td>
+					<th class="col-sm-3">{{ 'giudiceTutelare' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.giudiceTutelare}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'rettificaTutelare' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.rettificaTutelare}}</td>
+					<th class="col-sm-3">{{ 'Decreto Tribunale' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.tutore.decretoTribunale.nome}}</td>
+					<td><a ng-if="socialCard.anagrafica.tutore.decretoTribunale.link" ng-click="getFile(socialCard.anagrafica.tutore.decretoTribunale.nome, socialCard.anagrafica.tutore.decretoTribunale.link)"> <i
+							class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+
+
+
+	<div class="section">
+		<h3>{{ 'Assicurazione' | translate}}</h3>
+
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'tipologia' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.assicurazione.tipo}}</td>
+					<th class="col-sm-3">{{ 'Numero' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.assicurazione.numero}}</td>
+				</tr>
+				<tr>
+					<th class="col-sm-3">{{ 'dataInizio' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.assicurazione.dataInizio | date:'dd-MM-yyyy' }}</td>
+					<th class="col-sm-3">{{ 'dataFine' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.anagrafica.assicurazione.dataFine | date:'dd-MM-yyyy' }}</td>
+				</tr>
+				<tr>
+					<th>{{ 'allegato' | translate}}</th>
+					<td>{{socialCard.anagrafica.assicurazione.allegato.nome}}</td>
+					<td><a ng-show="socialCard.anagrafica.assicurazione.allegato.link" ng-click="getFile(socialCard.anagrafica.assicurazione.allegato.nome, socialCard.anagrafica.assicurazione.allegato.link)"> <i
+							class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 		{{socialCard.anagrafica.assicurazione.allegato}} -->
+	</div>
+
+	<div class="section">
+		<h3>{{ 'documentiAllArrivo' | translate}}</h3>
+
+		<table class="table">
+
+			<tbody>
+			<tr>
+				<th class="col-sm-3">{{ 'tipologia' | translate}}</th>
+				<td class="col-sm-3">{{socialCard.anagrafica.documentiAllArrivo.tipologia}}</td>
+			</tr>
+			<tr>
+				<th>{{ 'allegato' | translate}}</th>
+				<td>{{socialCard.anagrafica.documentiAllArrivo.allegato.nome}}</td>
+				<td><a ng-show="socialCard.anagrafica.documentiAllArrivo.allegato.link" ng-click="getFile(socialCard.anagrafica.documentiAllArrivo.allegato.nome, socialCard.anagrafica.documentiAllArrivo.allegato.link)"> <i
+						class="fa fa-file-pdf-o" aria-hidden="true"></i>
+				</a></td>
+			</tr>
+			</tbody>
+		</table>
+		<!-- 		{{socialCard.anagrafica.assicurazione.allegato}} -->
+	</div>
+
+	<div class="section" ng-if="!anaHistInfo">
+<!-- 		<a ng-click="exportJson(socialCard.anagrafica, 'anagrafica.json' )">{{ 'export' | translate}}</a> -->
+		<button class="btn btn-primary" onclick="generatePDF('#anagrafica', 'anagrafica')"><i class="fa fa-save"></i> {{ 'exportPDF' | translate}}</button>		
+		
+		<button class="btn btn-primary" ng-click="downloadFolder('anagrafica' )"><i class="fa fa-save"></i>{{ 'exportFolder' | translate}}</button>
+	</div>
+	
+	<div class="section" ng-if="anaHistInfo">
+		<div  class="col-xs-12">
+			<!-- 	{{desHistInfo}} -->
+			{{ 'HISTORY_DATE' | translate}} {{anaHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{anaHistInfo.username}} | <a ng-click="showAnagraficaCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<!-- 		{{socialCard.desideriHist}}		 -->
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.anagraficaHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}} </th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}} </th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getAnagraficaHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</div>

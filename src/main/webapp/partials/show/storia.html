@@ -1,0 +1,432 @@
+<div class="section-wrapper" id="storia">
+	<!-- 		{{socialCard.storia}} -->
+
+
+	<div class="section">
+
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'etnia' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.storia.etnia}}</td>
+					<th class="col-sm-3">{{ 'religione' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.storia.religione}}</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<div class="section">
+
+		<h3>{{ 'familiari' | translate}}</h3>
+		<div ng-repeat="item in socialCard.storia.familiari" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'relazione' | translate}}</th>
+						<td class="col-sm-3">{{item.relazione}}</td>
+						<th class="col-sm-3">{{ 'nome' | translate}}</th>
+						<td class="col-sm-3">{{item.contatto.nome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+						<td class="col-sm-3">{{item.contatto.cognome}}</td>
+						<th class="col-sm-3">{{ 'email' | translate}}</th>
+						<td class="col-sm-3">{{item.contatto.email}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+						<td class="col-sm-3">{{item.contatto.telefono}}</td>
+						<th class="col-sm-3">{{ 'paeseOrigine' | translate}}</th>
+						<td class="col-sm-3">{{item.paeseOrigine}}</td>
+					</tr>
+
+					<tr>
+						<th class="col-sm-3">{{ 'inVita' | translate}}</th>
+						<td class="col-sm-3" translate>{{item.inVita}}</td>
+						<th class="col-sm-3">{{ 'paese' | translate}}</th>
+						<td class="col-sm-3">{{item.paese}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'inUE' | translate}}</th>
+						<td class="col-sm-3" translate>{{item.inUE}}</td>
+						<th class="col-sm-3">{{ 'statusGiuridico' | translate}}</th>
+						<td class="col-sm-3">{{item.statusGiuridico}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'note' | translate}}</th>
+						<td>{{item.note}}</td>
+					</tr>
+
+
+
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{item.allegato.nome}}</td>
+						<td><a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+
+	<div class="section">
+
+		<h3>{{ 'percorsoMigratorio' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'annoPartenza' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.percorsoMigratorio.annoPartenza}}</td>
+						<th class="col-sm-3">{{ 'luogoPartenza' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.percorsoMigratorio.luogoPartenza}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-12">{{ 'motiviEspatrio' | translate}}</th>
+						<textarea class="col-sm-12" readonly>{{socialCard.storia.percorsoMigratorio.motiviEspatrio}}</textarea>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4>{{ 'paesiAttraversati' | translate}}</h4>
+			<div ng-repeat="item in socialCard.storia.percorsoMigratorio.paesiAttraversati" class="sub-section">
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="col-sm-3">{{ 'nome' | translate}}</th>
+							<td class="col-sm-3">{{item.nome}}</td>
+						
+						<th class="col-sm-3">{{ 'traumatico' | translate}}</th>
+						<td class="col-sm-3" translate>{{item.traumatico}}</td>
+						
+						<tr>
+							<th class="col-sm-3">{{ 'dataArrivo' | translate}}</th>
+							<td class="col-sm-3">{{item.dataArrivo | date:'dd-MM-yyyy'}}</td>
+						
+							<th class="col-sm-3">{{ 'dataPartenza' | translate}}</th>
+							<td class="col-sm-3">{{item.dataPartenza | date:'dd-MM-yyyy'}}</td>
+						</tr>
+						<tr>
+							<th>{{ 'visto' | translate}}</th>
+							<td>{{item.visto.nome}}</td>
+							<td><a ng-if="item.visto.link" ng-click="getFile(item.visto.nome, item.visto.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+
+			<tr>
+				<th class="col-sm-12">{{ 'timoriManifestati' | translate}}</th>
+				<textarea class="col-sm-12" readonly>{{socialCard.storia.percorsoMigratorio.timoriManifestati}}</textarea>
+			</tr>
+		</div>
+	</div>
+
+
+
+
+	<div class="section">
+
+		<h3>{{ 'accoglienza' | translate}}</h3>
+		<div class="sub-section">
+			<h4>{{ 'hotSpot' | translate}}</h4>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'hotSpot' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.hotSpot}}</td>
+					
+						<th class="col-sm-3">{{ 'hotSpotDataIngresso' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.hotSpotDataIngresso | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'hotSpotDataUscita' | translate}}</th>
+						<td>{{socialCard.storia.accoglienza.hotSpotDataUscita | date:'dd-MM-yyyy'}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>{{ 'CPA' | translate}}</h4>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'CpaNome' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.cpaNome}}</td>
+				
+						<th class="col-sm-3">{{ 'CpaDataIngresso' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.cpaDataIngresso | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'CpaDataUscita' | translate}}</th>
+						<td>{{socialCard.storia.accoglienza.cpaDataUscita | date:'dd-MM-yyyy'}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<h4>{{ 'secondaAccoglienza' | translate}}</h4>
+			<table class="table">
+					<tr>
+						<th class="col-sm-3">{{ 'secondaAccoglienza' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.secondaAccoglienza}}</td>
+						<th class="col-sm-3">{{ 'secondaAccoglienzaTipo' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.secondaAccoglienzaTipo}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'nomeResponsabileRespSecAcc' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.nomeResponsabileRespSecAcc}}</td>
+						<th class="col-sm-3">{{ 'cognomeResponsabileRespSecAcc' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.cognomeResponsabileRespSecAcc}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'mailResponsabileRespSecAcc' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.mailResponsabileRespSecAcc}}</td>
+						<th class="col-sm-3">{{ 'telefonoResponsabileRespSecAcc' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.telefonoResponsabileRespSecAcc}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'secondaAccoglienzaDataIngresso' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.secondaAccoglienzaDataIngresso | date:'dd-MM-yyyy'}}</td>
+						<th class="col-sm-3">{{ 'secondaAccoglienzaDataUscita' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.storia.accoglienza.secondaAccoglienzaDataUscita | date:'dd-MM-yyyy'}}</td>
+					</tr>
+						</tbody>
+			</table>
+			<h4>{{ 'allontanamentiRitrovamenti' | translate}}</h4>
+			<!-- 			{{socialCard.storia.accoglienza.allontanamentiRitrovamenti}} -->
+			<div ng-repeat="item in socialCard.storia.accoglienza.allontanamentiRitrovamenti">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="col-sm-3">{{ 'tipo' | translate}}</th>
+							<td class="col-sm-3">{{item.tipo}}</td>
+						
+							<th class="col-sm-3">{{ 'data' | translate}}</th>
+							<td class="col-sm-3">{{item.data | date:'dd-MM-yyyy'}}</td>
+						</tr>
+						<tr>
+							<th class="col-sm-3">{{ 'luogo' | translate}}</th>
+							<td class="col-sm-3">{{item.luogo}}</td>
+							
+							<th class="col-sm-3">{{ 'comunicazione' | translate}}</th>
+							<td class="col-sm-3">{{item.comunicazione.nome}}</td>
+							<td><a ng-if="item.comunicazione.link" ng-click="getFile(item.comunicazione.nome, item.comunicazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<h4>{{ 'elencoPEI' | translate}}</h4>
+
+			<div ng-repeat="peiItem in socialCard.storia.accoglienza.pei">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>{{ 'descrizione' | translate}}</th>
+							<td>{{peiItem.descrizione}}</td>
+						</tr>
+						<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{peiItem.allegato.nome}}</td>
+						<td><a ng-if="peiItem.allegato.link" ng-click="getFile(peiItem.allegato.nome, peiItem.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<h4>{{ 'relazioneAssistenteSociale' | translate}}</h4>
+			<div ng-repeat="relazione in socialCard.storia.accoglienza.relazioniAssistenteSociale">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>{{ 'descrizione' | translate}}</th>
+							<td>{{relazione.descrizione}}</td>
+						</tr>
+						<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{relazione.allegato.nome}}</td>
+						<td><a ng-if="relazione.allegato.link" ng-click="getFile(relazione.allegato.nome, relazione.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>	
+			<h4>{{ 'affido' | translate}}</h4>
+
+			<div ng-repeat="affido in socialCard.storia.accoglienza.affidi">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="col-sm-3">{{ 'data' | translate}}</th>
+							<td class="col-sm-3">{{affido.dataAffido |date:'dd-MM-yyyy'}}</td>
+						
+							<th class="col-sm-3">{{ 'enteAffido' | translate}}</th>
+							<td class="col-sm-3">{{affido.enteAffido}}</td>
+						</tr>
+						<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{affido.allegatoAffido.nome}}</td>
+						<td><a ng-if="affido.allegato.link" ng-click="getFile(affido.allegato.nome, affido.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			<h4>{{ 'adozione' | translate}}</h4>
+			
+			<div ng-repeat="adozione in socialCard.storia.accoglienza.adozioni">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="col-sm-3">{{ 'dataAdozione' | translate}}</th>
+							<td class="col-sm-3">{{adozione.dataAdozione | date:'dd-MM-yyyy' }}</td>
+						
+							<th class="col-sm-3">{{ 'enteAdozione' | translate}}</th>
+							<td class="col-sm-3">{{adozione.enteAdozione}}</td>
+						</tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{adozione.allegatoAdozione.nome}}</td>
+						<td><a ng-if="adozione.allegato.link" ng-click="getFile(adozione.allegato.nome, adozione.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+			
+				
+						<th>{{ 'relazioneAssistenteSociale' | translate}}</th>
+						<td>{{socialCard.storia.accoglienza.relazioneAssistenteSociale.nome}}</td>
+						<td><a ng-if="socialCard.storia.accoglienza.relazioneAssistenteSociale.link"
+							ng-click="getFile(socialCard.storia.accoglienza.relazioneAssistenteSociale.nome, socialCard.storia.accoglienza.relazioneAssistenteSociale.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+
+
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<div class="section">
+
+		<h3>{{ 'valutazioneMultidisciplinare' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tr>
+					<th class="col-sm-3">{{ 'tipologia' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.storia.valutazioneMultidisciplinare.tipologia}}</td>
+				</tr>
+			</table>
+
+			<h4>{{ 'valutazione' | translate}}</h4>
+			<textarea  class="col-sm-12" readonly>{{socialCard.storia.valutazioneMultidisciplinare.valutazione}}</textarea>
+		</div>
+	</div>
+
+
+	<div class="section">
+
+		<h3>{{ 'storiaPersonale' | translate}}</h3>
+		<div class="sub-section">
+			<h4>{{ 'vitaMinore' | translate}}</h4>
+			<textarea  class="col-sm-12" readonly>{{socialCard.storia.storiaPersonale.vitaMinore}}</textarea>
+
+			<h4>{{ 'scuola' | translate}}</h4>
+			<textarea  class="col-sm-12" readonly>{{socialCard.storia.storiaPersonale.scuola}}</textarea>
+
+			<h4 class="col-sm-12">{{ 'hobbies' | translate}}</h4>
+			<textarea class="col-sm-12" readonly>{{socialCard.storia.storiaPersonale.hobbies}}</textarea>
+
+			<h4 class="col-sm-12">{{ 'informazioniViaggio' | translate}}</h4>
+			<textarea class="col-sm-12" readonly>{{socialCard.storia.storiaPersonale.informazioniViaggio}}</textarea>
+
+			<h4 class="col-sm-12">{{ 'ragioniEspatrio' | translate}}</h4>
+			<textarea class="col-sm-12" readonly>{{socialCard.storia.storiaPersonale.ragioniEspatrio}}</textarea>
+
+			<h4 class="col-sm-12">{{ 'eventualiTimori' | translate}}</h4>
+			<textarea class="col-sm-12" readonly>{{socialCard.storia.storiaPersonale.eventualiTimori}}</textarea>
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'osservazioni' | translate}}</h3>
+		<div class="sub-section">
+			<textarea class="col-sm-12" readonly>{{socialCard.storia.osservazioni}}</textarea>
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'pianificazioneInterventi' | translate}}</h3>
+		<div class="sub-section">
+			<textarea class="col-sm-12" readonly>{{socialCard.storia.pianificazioneInterventi}}</textarea>
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'diario' | translate}}</h3>
+		<div class="sub-section">
+			<textarea class="col-sm-12" readonly>{{socialCard.storia.diario}}</textarea>
+		</div>
+	</div>
+
+
+
+	<div class="section" ng-if="!stoHistInfo">
+<!-- 		<a ng-click="exportJson(socialCard.storia, 'storia.json' )">{{ 'export' | translate}}</a>  -->
+		<button class="btn btn-primary" onclick="generatePDF('#storia', 'storia')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+		<button class="btn btn-primary" ng-click="downloadFolder('storia' )">
+			<i class="fa fa-save"></i>{{ 'exportFolder' | translate}}
+		</button>
+	</div>
+
+	<div class="section" ng-if="stoHistInfo">
+		<div class="col-xs-12">
+			{{ 'HISTORY_DATE' | translate}} {{stoHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{stoHistInfo.username}} | <a ng-click="showStoriaCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.storiaHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}}</th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}}</th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getStoriaHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
+
+
+
+</div>

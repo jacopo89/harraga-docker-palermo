@@ -1,0 +1,198 @@
+<div class="container">
+
+	<div ng-show="loading==true" class="loading-overlay">
+		<div class="loading-row">
+			<div layout="row" layout-sm="column" layout-align="space-around" class="laodingRow">
+				<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-12 ">
+
+		<div class="col-xs-12 col-sm-6 ">
+			<a ng-click="back()" class="btn btn-small btn-info">{{ 'Home' | translate}}</a>
+		</div>
+		<div class="col-xs-12 col-sm-6 ">
+			<div class="float-right">
+				{{ 'ciao' | translate}} {{userSession.username}} ({{userSession.type}}) <a ng-click="logout()" class="btn btn-small btn-warning">{{ 'logout' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12 ">
+			<h1>
+				{{ 'cartella_sociale' | translate}} - {{socialCard.anagrafica.nome}} {{socialCard.anagrafica.cognome}}		
+				<a ng-if="canEdit()" ng-click="editSocialCard(socialCard.id)" class="btn btn-small btn-primary">{{ 'edit' | translate}}</a>
+			</h1>
+		</div>
+
+
+		<!-- 	{{socialCard}} -->
+		<div class="col-xs-12">
+
+			<div class="control-group">
+				<div class="controls">
+					<a ng-click="showTab('ANAGRAFICA')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'ANAGRAFICA'}">{{ 'ANAGRAFICA'|translate}}</a> 
+					<a ng-if="canRead('AMMINISTRATIVA') || canRead('PERMESSO_SOGGIORNO')" ng-click="showTab('AMMINISTRATIVA')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'AMMINISTRATIVA'}">{{'AMMINISTRATIVA' | translate}}</a> 
+					<a ng-if="canRead('STORIA')" ng-click="showTab('STORIA')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'STORIA'}">{{ 'STORIA' | translate}}</a> 
+					<a ng-if="canRead('SANITARIA') || canRead('DISABILITA')" ng-click="showTab('SANITARIA')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'SANITARIA'}">{{'SANITARIA' | translate}}</a> 
+					<a ng-if="canRead('ISTRUZIONE')" ng-click="showTab('ISTRUZIONE')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'ISTRUZIONE'}">{{ 'ISTRUZIONE' | translate}}</a> 
+					<a ng-if="canRead('LAVORO')" ng-click="showTab('LAVORO')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'LAVORO'}">{{ 'LAVORO' |translate}}</a> 
+					<a ng-if="canRead('SOCIALE')" ng-click="showTab('SOCIALE')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'SOCIALE'}">{{ 'SOCIALE' | translate}}</a> 
+					<a ng-if="canRead('COMPETENZE')" ng-click="showTab('COMPETENZE')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'COMPETENZE'}">{{'COMPETENZE'
+						| translate}}</a> 
+						<a ng-if="canRead('DESIDERI')" ng-click="showTab('DESIDERI')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'DESIDERI'}">{{'DESIDERI' | translate}}</a> <a ng-if="canRead('PENALE')"
+						ng-click="showTab('PENALE')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'PENALE'}">{{ 'PENALE' | translate}}</a>
+
+
+				</div>
+			</div>
+
+
+
+			<!-- ANAGRAFICA START ========================================================================= -->
+			<div ng-show="tab=='ANAGRAFICA'">
+
+				<div ng-if="canRead('ANAGRAFICA')" ng-include="'partials/show/anagrafica.html'"></div>
+				<div ng-if="!canRead('ANAGRAFICA')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+			</div>
+
+
+			<!-- ANAGRAFICA END ========================================================================= -->
+
+			<!-- AMMINISTRATIVA START ========================================================================= -->
+			<div ng-show="tab=='AMMINISTRATIVA'">
+
+				<div ng-if="canRead('AMMINISTRATIVA')|| canRead('PERMESSO_SOGGIORNO')" ng-include="'partials/show/amministrativa.html'"></div>
+				<div ng-if="!canRead('AMMINISTRATIVA')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+
+			</div>
+			<!-- AMMINISTRATIVA END ========================================================================= -->
+
+			<!-- STORIA START ========================================================================= -->
+			<div ng-show="tab=='STORIA'">
+
+				<div ng-if="canRead('STORIA')" ng-include="'partials/show/storia.html'"></div>
+				<div ng-if="!canRead('STORIA')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+
+			</div>
+			<!-- STORIA END ========================================================================= -->
+
+
+
+			<!-- SANITARIA START ========================================================================= -->
+			<div ng-show="tab=='SANITARIA'">
+
+				<div ng-include="'partials/show/sanitaria.html'"></div>
+
+
+			</div>
+			<!-- SANITARIA END ========================================================================= -->
+
+
+
+			<!-- ISTRUZIONE START ========================================================================= -->
+			<div ng-show="tab=='ISTRUZIONE'">
+
+				<div ng-if="canRead('ISTRUZIONE')" ng-include="'partials/show/istruzione.html'"></div>
+				<div ng-if="!canRead('ISTRUZIONE')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+
+
+			</div>
+			<!-- ISTRUZIONE END ========================================================================= -->
+
+
+
+			<!-- LAVORO START ========================================================================= -->
+			<div ng-show="tab=='LAVORO'">
+
+				<div ng-if="canRead('LAVORO')" ng-include="'partials/show/lavoro.html'"></div>
+				<div ng-if="!canRead('LAVORO')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+
+
+			</div>
+			<!-- LAVORO END ========================================================================= -->
+
+
+
+			<!-- SOCIALE START ========================================================================= -->
+			<div ng-show="tab=='SOCIALE'">
+
+				<div ng-if="canRead('SOCIALE')" ng-include="'partials/show/sociale.html'"></div>
+				<div ng-if="!canRead('SOCIALE')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+
+
+			</div>
+
+			<!-- SOCIALE END ========================================================================= -->
+
+
+
+			<!-- COMPETENZE START ========================================================================= -->
+			<div ng-show="tab=='COMPETENZE'">
+
+				<div ng-if="canRead('COMPETENZE')" ng-include="'partials/show/competenze.html'"></div>
+				<div ng-if="!canRead('COMPETENZE')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+
+			</div>
+			<!-- COMPETENZE END ========================================================================= -->
+
+
+			<!-- DESIDERI START ========================================================================= -->
+			<div ng-show="tab=='DESIDERI'">
+
+				<div ng-if="canRead('DESIDERI')" ng-include="'partials/show/desideri.html'"></div>
+				<div ng-if="!canRead('DESIDERI')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+
+			</div>
+			<!-- DESIDERI END ========================================================================= -->
+
+
+			<!-- PENALE START ========================================================================= -->
+			<div ng-show="tab=='PENALE'">
+
+				<div ng-if="canRead('PENALE')" ng-include="'partials/show/penale.html'"></div>
+				<div ng-if="!canRead('PENALE')">
+					<h2>{{ 'SezioneNonAutorizzata' | translate}}</h2>
+				</div>
+
+			</div>
+			<!-- PENALE END ========================================================================= -->
+
+
+<!-- 			<div class="control-group"> -->
+<!-- 				<div class="controls"> -->
+<!-- 					<a ng-if="canEdit()" ng-click="editSocialCard(socialCard.id)" class="btn btn-small btn-primary">{{ 'edit' | translate}}</a> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+		</div>
+	</div>
+</div>
+
+
+<script>
+var generatePDF = function(sectionId, sectionName) {
+//   kendo.drawing.drawDOM($("#section-wrapper")).then(function(group) {
+//     kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
+//   });
+	 kendo.drawing.drawDOM($(sectionId)).then(function(group) {
+		    kendo.drawing.pdf.saveAs(group, sectionName+".pdf");
+		  });
+}
+</script>

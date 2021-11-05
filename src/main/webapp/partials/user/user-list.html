@@ -1,0 +1,82 @@
+<div class="container">
+
+	<div class="col-xs-12 ">
+	
+		<div class="col-xs-12 col-sm-6 ">
+			<a ng-click="back()" class="btn btn-small btn-info">{{ 'Home' | translate}}</a>
+		</div>
+		<div class="col-xs-12 col-sm-6 ">
+			<div class="float-right">
+				{{ 'ciao' | translate}} {{userSession.username}} ({{userSession.type}}) <a ng-click="logout()" class="btn btn-small btn-warning">{{ 'logout' | translate}}</a>
+			</div>
+		</div>
+
+		
+	
+		<h1> {{ 'Gestione utenti' | translate}}  </h1>
+	
+		<div class="control-group">
+			<div class="controls">
+				<a ng-click="showTab('IN_ATTESA')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'IN_ATTESA'}">{{ 'In attesa' |translate}}</a> 
+				<a ng-click="showTab('RIFIUTATI')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'RIFIUTATI'}">{{ 'Rifiutati' | translate}}</a> 
+				<a ng-click="showTab('ABILITATI')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'ABILITATI'}">{{ 'Abilitati' | translate}}</a>			
+			</div>
+		</div>
+	
+	<br>
+	
+	<br>
+<!-- 	 {{getTabStatus()}} -->
+		
+	    <table class="table table-striped table-condensed">
+	        <thead>
+	        <tr>
+	            <th style="min-width: 80px;">{{ 'username' | translate}}</th>
+	            <th style="min-width: 80px;">{{ 'tipologia' | translate}}</th>	
+	            <th style="min-width: 80px;">{{ 'nome' | translate}}</th>
+	            <th style="min-width: 80px;">{{ 'cognome' | translate}}</th>
+<!-- 	            <th style="min-width: 80px;">{{ 'email' | translate}}</th> -->
+<!-- 	            <th style="min-width: 80px;">{{ 'telefono' | translate}}</th> -->
+	            <th style="min-width: 80px;">{{ 'matricola' | translate}}</th>
+	           	<th style="min-width: 80px;">{{ 'Posti disponibili' | translate}}</th>
+<!-- 	            <th style="min-width: 80px;">{{ 'stato' | translate}}</th> -->
+<!-- 				<th ng-show="tab='IN_ATTESA'" style="width:20px;">&nbsp;</th> -->
+<!-- 	            <th style="width:20px;">&nbsp;</th> -->
+	        </tr>
+	        </thead>
+	        <tbody>
+			
+	        <tr ng-repeat="user in users| filter: { stato: getTabStatus() }">
+			
+	            <td>{{ user.username }}</td>
+	            <td>{{ user.type }}</td>
+	            <td>{{ user.nome }}</td>
+	            <td>{{ user.cognome }}</td>
+<!-- 	            <td>{{ user.email }}</td> -->
+<!-- 	            <td>{{ user.telefono }}</td> -->
+
+			   	<td ng-show="tab=='IN_ATTESA'"> <input type="text" ng-model="user.matricola"/></td>
+			   	<td ng-show="tab!='IN_ATTESA'">{{ user.matricola }}</td>
+			   	
+				<td><span ng-show="user.type=='CPIA'"> {{ user.postiDisponibili }}</span></td>
+<!-- 	            <td> <input type="text" id="inputLastName" ng-model="user.stato"/></td>				 -->
+				<td ng-show="tab!='ABILITATI'"><a ng-click="cambiaStato(user,1)" class="btn btn-small btn-success">{{ 'abilita' | translate}}</a></td>
+				<td ng-show="tab!='RIFIUTATI'"><a ng-click="cambiaStato(user,2)" class="btn btn-small btn-danger">{{ 'rifiuta' | translate}}</a></td>
+				<td><a ng-click="showUserProfile(user)" class="btn btn-small btn-info">{{ 'mostra' | translate}}</a></td>
+	        </tr>
+	        </tbody>
+	    </table>
+	</div>
+
+
+<br>
+<br>
+
+<!-- <div class="control-group"> -->
+<!-- 		<div class="controls"> -->
+<!-- 			<a ng-click="back()" class="btn btn-small btn-info">{{ 'socialCardList' | -->
+<!-- 				translate}}</a>			 -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+
+</div>

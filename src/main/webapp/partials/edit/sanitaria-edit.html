@@ -1,0 +1,308 @@
+<!-- {{socialCard.sanitaria}} -->
+
+<form name="SANITARIA_FORM" class="form-horizontal">
+	<div class="section">
+	<h3>{{ 'specificheDisabilita' | translate}}</h3>
+	<label>SI: <input type="checkbox" ng-model="socialCard.sanitaria.disabilitaYes"></label><br />
+	<div ng-show="socialCard.sanitaria.disabilitaYes">
+<!-- 		{{socialCard.sanitaria.specificheDisabilita}} -->
+			<div ng-repeat="disabilita in socialCard.sanitaria.specificheDisabilita" class="sub-section col-xs-12">
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'nomeDisabilita' | translate}}</label>
+	
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="disabilita.nome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'allegato' | translate}}</label>
+	
+					<div ng-if="disabilita.allegato && !disabilita.allegato.isNew && disabilita.allegato.link!=''">
+						{{disabilita.allegato.nome}} - <a ng-click="getFile(disabilita.allegato.nome, disabilita.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="disabilita.allegato.isNew=true" ng-show="disabilita.allegato && !disabilita.allegato.isNew && disabilita.allegato.link!=''" /> <input
+						ng-show="!disabilita.allegato || disabilita.allegato.isNew || disabilita.allegato.link==''" type="file" name="file" fileread="disabilita.allegato">
+	
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<a ng-click="deleteDisabilita(disabilita)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+				</div>
+			</div>
+	
+			<div class="col-xs-12">
+				<a ng-click="addDisabilita()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="section">
+	<h3>{{ 'patologieAllergiche' | translate}}</h3>
+	<label>SI: <input type="checkbox" ng-model="socialCard.sanitaria.patologiaYes"></label><br />
+		<div ng-show="socialCard.sanitaria.patologiaYes">
+	
+			<div ng-repeat="allergia in socialCard.sanitaria.patologieAllergiche" class="sub-section col-xs-12">
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'nomePatologia' | translate}}</label>
+	
+					<div class="controls">
+						<input  type="text" class="form-control" ng-model="allergia.nome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'allegato' | translate}}</label>
+	
+					<div ng-if="allergia.allegato && !allergia.allegato.isNew && allergia.allegato.link!=''">
+						{{allergia.allegato.nome}} - <a ng-click="getFile(allergia.allegato.nome, allergia.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="allergia.allegato.isNew=true" ng-show="allergia.allegato && !allergia.allegato.isNew && allergia.allegato.link!=''" /> <input
+						ng-show="!allergia.allegato || allergia.allegato.isNew || allergia.allegato.link==''" type="file" name="file" fileread="allergia.allegato">
+	
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<a ng-click="deleteAllergia(allergia)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+				</div>
+			</div>
+	
+			<div class="col-xs-12">
+				<a ng-click="addAllergia()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="section">
+<!-- 	{{socialCard.sanitaria.medicoCurante}} -->
+		<h3>{{ 'medicoCurante' | translate}}</h3>
+		<label>SI: <input type="checkbox" ng-model="socialCard.sanitaria.medicoYes"></label><br />
+		<div ng-show="socialCard.sanitaria.medicoYes">
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nome' | translate}}</label>
+				<div class="controls" ng-class="{'has-error': !socialCard.sanitaria.medicoCurante.contatto.nome }">
+					<input type="text" class="form-control" ng-model="socialCard.sanitaria.medicoCurante.contatto.nome" ng-required="socialCard.sanitaria.medicoYes" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'cognome' | translate}}</label>
+				<div class="controls" ng-class="{'has-error': !socialCard.sanitaria.medicoCurante.contatto.cognome }">
+					<input type="text" class="form-control" ng-model="socialCard.sanitaria.medicoCurante.contatto.cognome" ng-required="socialCard.sanitaria.medicoYes"/>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'email' | translate}}</label>
+				<div class="controls" ng-class="{'has-error': !socialCard.sanitaria.medicoCurante.contatto.email }">
+					<input type="email" class="form-control" ng-model="socialCard.sanitaria.medicoCurante.contatto.email" ng-required="socialCard.sanitaria.medicoYes"/>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'telefono' | translate}}</label>
+				<div class="controls" ng-class="{'has-error': !socialCard.sanitaria.medicoCurante.contatto.telefono }">
+					<input type="text" class="form-control" ng-model="socialCard.sanitaria.medicoCurante.contatto.telefono" ng-required="socialCard.sanitaria.medicoYes"/>
+				</div>
+			</div>
+	
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+	
+				<div ng-if="socialCard.sanitaria.medicoCurante.allegato && !socialCard.sanitaria.medicoCurante.allegato.isNew && socialCard.sanitaria.medicoCurante.allegato.link!=''">
+					{{socialCard.sanitaria.medicoCurante.allegato.nome}} - <a ng-click="getFile(socialCard.sanitaria.medicoCurante.allegato.nome, socialCard.sanitaria.medicoCurante.allegato.link)"> <i class="fa fa-file-pdf-o"
+						aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="socialCard.sanitaria.medicoCurante.allegato.isNew=true" ng-show="socialCard.sanitaria.medicoCurante.allegato && !socialCard.sanitaria.medicoCurante.allegato.isNew && socialCard.sanitaria.medicoCurante.allegato.link!=''" /> 
+				<input ng-show="!socialCard.sanitaria.medicoCurante.allegato || socialCard.sanitaria.medicoCurante.allegato.isNew || socialCard.sanitaria.medicoCurante.allegato.link==''" type="file" name="file" fileread="socialCard.sanitaria.medicoCurante.allegato">
+	
+			</div>
+	</div>
+	</div>
+
+
+	<div class="section">
+<!-- 	{{socialCard.sanitaria.presoInCarico}} -->
+		<h3>{{ 'presoInCarico' | translate}}</h3>
+		<label>SI: <input type="checkbox" ng-model="socialCard.sanitaria.inCaricoYes"></label><br />
+		<div ng-show="socialCard.sanitaria.inCaricoYes">
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'nome' | translate}}</label>
+
+			<div class="controls" ng-class="{'has-error': !socialCard.sanitaria.presoInCarico.contatto.nome }">
+				<input type="text" class="form-control" ng-model="socialCard.sanitaria.presoInCarico.contatto.nome" ng-required="socialCard.sanitaria.inCaricoYes" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'cognome' | translate}}</label>
+
+			<div class="controls" ng-class="{'has-error': !socialCard.sanitaria.presoInCarico.contatto.cognome }">
+				<input type="text" class="form-control" ng-model="socialCard.sanitaria.presoInCarico.contatto.cognome" ng-required="socialCard.sanitaria.inCaricoYes" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'email' | translate}}</label>
+
+			<div class="controls" ng-class="{'has-error': !socialCard.sanitaria.presoInCarico.contatto.email }">
+				<input type="email" class="form-control" ng-model="socialCard.sanitaria.presoInCarico.contatto.email" ng-required="socialCard.sanitaria.inCaricoYes" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'telefono' | translate}}</label>
+
+			<div class="controls" ng-class="{'has-error': !socialCard.sanitaria.presoInCarico.contatto.telefono }">
+				<input type="text" class="form-control" ng-model="socialCard.sanitaria.presoInCarico.contatto.telefono" ng-required="socialCard.sanitaria.inCaricoYes" />
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'allegato' | translate}}</label>
+
+			<div ng-if="socialCard.sanitaria.presoInCarico.allegato && !socialCard.sanitaria.presoInCarico.allegato.isNew && socialCard.sanitaria.presoInCarico.allegato.link!=''">
+				{{socialCard.sanitaria.presoInCarico.allegato.nome}} - <a ng-click="getFile(socialCard.sanitaria.presoInCarico.allegato.nome, socialCard.sanitaria.presoInCarico.allegato.link)"> <i class="fa fa-file-pdf-o"
+					aria-hidden="true"></i>
+				</a>
+			</div>
+			<input type="button" value="Cambia" ng-click="socialCard.sanitaria.presoInCarico.allegato.isNew=true" ng-show="socialCard.sanitaria.presoInCarico.allegato && !socialCard.sanitaria.presoInCarico.allegato.isNew && socialCard.sanitaria.presoInCarico.allegato.link!=''" /> 
+			<input ng-show="!socialCard.sanitaria.presoInCarico.allegato || socialCard.sanitaria.presoInCarico.allegato.isNew || socialCard.sanitaria.presoInCarico.allegato.link==''" type="file" name="file" fileread="socialCard.sanitaria.presoInCarico.allegato">
+
+		</div>
+	</div>
+	</div>
+
+	<div class="section">
+	<h3>{{ 'vaccini' | translate}}</h3>
+	<label>SI: <input type="checkbox" ng-model="socialCard.sanitaria.vaccinoYes"></label><br />
+		<div ng-show="socialCard.sanitaria.vaccinoYes">
+	
+			<div ng-repeat="vaccino in socialCard.sanitaria.vaccini" class="sub-section col-xs-12">
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'vaccino' | translate}}</label>
+	
+					<div class="controls">
+						<input  type="text" class="form-control" ng-model="vaccino.vaccino" />
+					</div>
+				</div>
+				
+				<div class="control-group col-xs-12 col-sm-6">
+					<a ng-click="deleteVaccino(vaccino)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+				</div>
+			</div>
+	
+			<div class="col-xs-12">
+				<a ng-click="addVaccino()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="section">
+<!-- 		{{socialCard.sanitaria.eventiMedici}} -->
+		<h3>{{ 'eventiMedici' | translate}}</h3>
+
+		
+		<div ng-repeat="eventoMedico in socialCard.sanitaria.eventiMedici" class="sub-section col-xs-12">
+		
+				
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="eventoMedico.tipo" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'presidioOspedaliero' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="eventoMedico.presidioOspedaliero" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'unitaOperativa' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="eventoMedico.unitaOperativa" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'data' | translate}}</label>
+				<div class="controls">
+				<md-datepicker ng-model="eventoMedico.data" md-placeholder="Enter date"></md-datepicker>
+				<!-- 		                <input type="date" ng-model="eventoMedico"/> -->
+			</div>
+<!-- 					            {{eventoMedico.data}} -->
+			</div>
+					
+			
+			<div class="contatto col-xs-12">
+				<h3>{{ 'medicoRiferimento' | translate}}</h3>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'nome' | translate}}</label>
+		
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="eventoMedico.medicoRiferimento.nome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'cognome' | translate}}</label>
+		
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="eventoMedico.medicoRiferimento.cognome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'email' | translate}}</label>
+		
+					<div class="controls">
+						<input type="email" class="form-control" ng-model="eventoMedico.medicoRiferimento.email" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'telefono' | translate}}</label>
+		
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="eventoMedico.medicoRiferimento.telefono" />
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+	
+				<div ng-if="eventoMedico.allegato && !eventoMedico.allegato.isNew && eventoMedico.allegato.link!=''">
+					{{eventoMedico.allegato.nome}} - <a ng-click="getFile(eventoMedico.allegato.nome, eventoMedico.allegato.link)"> <i class="fa fa-file-pdf-o"
+						aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="eventoMedico.allegato.isNew=true" ng-show="eventoMedico.allegato && !eventoMedico.allegato.isNew && eventoMedico.allegato.link!=''" /> 
+				<input ng-show="!eventoMedico.allegato || eventoMedico.allegato.isNew || eventoMedico.allegato.link==''" type="file" name="file" fileread="eventoMedico.allegato">
+
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteEventoMedico(eventoMedico)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addEventoMedico()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>			
+
+
+	</div>
+
+
+
+	<br>
+	<div class="control-group col-xs-12 col-sm-6">
+		<div class="controls">
+			<button ng-disabled="SANITARIA_FORM.$invalid" ng-click="updateSanitaria()" class="btn btn-small btn-success">{{ 'apply' | translate}}</button>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,652 @@
+<form novalidate="novalidate" class="form-horizontal">
+
+
+
+	<div class="section">
+		<!-- 		{{socialCard.storia}} -->
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'etnia' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.storia.etnia" required />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'religione' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.storia.religione" required />
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="section">
+		<h3>{{ 'familiari' | translate}}</h3>
+
+		<div ng-repeat="familiare in socialCard.storia.familiari" class="sub-section col-xs-12">
+			<!-- 			{{familiare}} -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'relazione' | translate}}</label>
+				<!-- 				<div class="controls"> -->
+				<!-- 					<input type="text" class="form-control" ng-model="familiare.relazione" /> -->
+				<!-- 				</div> -->
+				<div class="controls">
+					<select class="form-control" ng-model="familiare.relazione" ng-options="option for option in familiareOp track by option">
+					</select>
+				</div>
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nome' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="familiare.contatto.nome" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'cognome' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="familiare.contatto.cognome" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'email' | translate}}</label>
+				<div class="controls">
+					<input type="email" class="form-control" ng-model="familiare.contatto.email" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'telefono' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="familiare.contatto.telefono" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'paeseOrigine' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="familiare.paeseOrigine" />
+				</div>
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'inVita' | translate}}</label>
+				<div class="controls">
+					<!-- 					<input type="text" class="form-control" ng-model="familiare.inVita" /> -->
+					<input type="checkbox" class="h-45" ng-model="familiare.inVita">
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'inUE' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" class="form-control" ng-model="familiare.inUE" />  -->
+					<input type="checkbox" class="h-45" ng-model="familiare.inUE">
+
+				</div>
+			</div>
+			<div ng-show="familiare.inUE" class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'Quale paese' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="familiare.paese" />
+				</div>
+			</div>
+			<div ng-show="familiare.inUE" class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'statusGiuridico' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="familiare.statusGiuridico" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'note' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="familiare.note" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+
+				<div ng-if="familiare.allegato && !familiare.allegato.isNew && familiare.allegato.link!=''">
+					{{familiare.allegato.nome}} - <a ng-click="getFile(familiare.allegato.nome, familiare.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="familiare.allegato.isNew=true" ng-show="familiare.allegato && !familiare.allegato.isNew && familiare.allegato.link!=''" /> <input
+					ng-show="!familiare.allegato || familiare.allegato.isNew || familiare.allegato.link==''" type="file" name="file" fileread="familiare.allegato">
+
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteFamiliare(familiare)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addFamiliare()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+
+
+
+
+	<div class="section">
+		<h2>{{ 'percorsoMigratorio' | translate}}</h2>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'annoPartenza' | translate}}</label>
+			<div class="controls">
+				<input type="number" class="form-control" ng-model="socialCard.storia.percorsoMigratorio.annoPartenza" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'luogoPartenza' | translate}}</label>
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.storia.percorsoMigratorio.luogoPartenza" />
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'motiviEspatrio' | translate}}</label>
+
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.percorsoMigratorio.motiviEspatrio" />
+			</div>
+		</div>
+
+		<h3>{{ 'paesiAttraversati' | translate}}</h3>
+		<div ng-repeat="paeseAttraversato in socialCard.storia.percorsoMigratorio.paesiAttraversati" class="sub-section col-xs-12">
+
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nomePaese' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="paeseAttraversato.nome" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'traumatico' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" class="form-control" ng-model="paeseAttraversato.traumatico" /> -->
+						<div class="control-group col-xs-12 col-sm-6">
+						<input type="checkbox" class="h-45" ng-model="paeseAttraversato.traumatico">
+						</div>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'hotSpotDataIngresso' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="paeseAttraversato.dataArrivo" md-placeholder="Enter date"></md-datepicker>
+					<!-- 				<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.hotSpotDataIngresso" /> -->
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'hotSpotDataUscita' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="paeseAttraversato.dataPartenza" md-placeholder="Enter date"></md-datepicker>
+					<!-- 				<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.hotSpotDataIngresso" /> -->
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'visto' | translate}}</label>
+				<div ng-if="paeseAttraversato.visto && !paeseAttraversato.visto.isNew && paeseAttraversato.visto.link!=''">
+					{{paeseAttraversato.visto.nome}} - <a ng-click="getFile(paeseAttraversato.visto.nome, paeseAttraversato.visto.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="paeseAttraversato.visto.isNew=true" ng-show="paeseAttraversato.visto && !paeseAttraversato.visto.isNew && paeseAttraversato.visto.link!=''" /> <input
+					ng-show="!paeseAttraversato.visto || paeseAttraversato.visto.isNew || paeseAttraversato.visto.link==''" type="file" name="file" fileread="paeseAttraversato.visto">
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deletePaeseAttraversato(paeseAttraversato)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addPaeseAttraversato()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'timoriManifestati' | translate}}</label>
+
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.percorsoMigratorio.timoriManifestati" />
+			</div>
+		</div>
+	</div>
+
+
+	
+	<div class="section ">
+		<h2>{{ 'accoglienza' | translate}}</h2>
+		<div class="col-xs-12 sub-section">
+		<h3>{{'hotSpot' | translate}}</h3>
+		<label>SI: <input type="checkbox" ng-model="socialCard.storia.accoglienzaYes"></label><br /> 
+		<div ng-show="socialCard.storia.accoglienzaYes">
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'Nome hotspot' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.hotSpot" />
+				</div>
+			</div>
+	
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'hotSpotDataIngresso' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="socialCard.storia.accoglienza.hotSpotDataIngresso" md-placeholder="Enter date"></md-datepicker>
+					<!-- 				<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.hotSpotDataIngresso" /> -->
+				</div>
+			</div>
+	
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'hotSpotDataUscita' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="socialCard.storia.accoglienza.hotSpotDataUscita" md-placeholder="Enter date"></md-datepicker>
+					<!-- 				<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.hotSpotDataUscita" /> -->
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="col-xs-12 sub-section">
+			<h3>{{ 'cpa' | translate}}</h3>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'cpaNome' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.cpaNome" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'cpaDataIngresso' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="socialCard.storia.accoglienza.cpaDataIngresso" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'cpaDataUscita' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="socialCard.storia.accoglienza.cpaDataUscita" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 sub-section">
+			<h3>{{ 'secondaAccoglienza' | translate}}</h3>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'secondaAccoglienza' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.secondaAccoglienza" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'secondaAccoglienzaTipo' | translate}}</label>
+				<div class="controls">
+					<select class="form-control" ng-model="socialCard.storia.accoglienza.secondaAccoglienzaTipo" ng-options="option for option in secAccOp track by option">
+					</select>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nomeResponsabileRespSecAcc' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.nomeResponsabileRespSecAcc" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'cognomeResponsabileRespSecAcc' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.cognomeResponsabileRespSecAcc" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'mailResponsabileRespSecAcc' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.mailResponsabileRespSecAcc" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'telefonoResponsabileRespSecAcc' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.storia.accoglienza.telefonoResponsabileRespSecAcc" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'secondaAccoglienzaDataIngresso' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="socialCard.storia.accoglienza.secondaAccoglienzaDataIngresso" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'secondaAccoglienzaDataUscita' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="socialCard.storia.accoglienza.secondaAccoglienzaDataUscita" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-xs-12 sub-section">
+			<!-- 			{{socialCard.storia.accoglienza.allontanamentiRitrovamenti}} -->
+			<h3>{{ 'allontanamentiRitrovamenti' | translate}}</h3>
+			<div ng-repeat="item in socialCard.storia.accoglienza.allontanamentiRitrovamenti" class="sub-sub-section col-xs-12">
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'tipo' | translate}}</label>
+					<!-- 					<div class="controls"> -->
+					<!-- 						<input type="text" class="form-control" ng-model="item.tipo" /> -->
+					<!-- 					</div> -->
+
+					<div class="controls">
+						<select class="form-control" ng-model="item.tipo" ng-options="option for option in allRitOp track by option">
+						</select>
+					</div>
+
+				</div>
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'data' | translate}}</label>
+					<div class="controls">
+						<md-datepicker ng-model="item.data" md-placeholder="Enter date"></md-datepicker>
+					</div>
+				</div>
+
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'luogo' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="item.luogo" />
+					</div>
+				</div>
+		
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'comunicazione' | translate}}</label>
+					<div ng-if="item.comunicazione && !item.comunicazione.isNew && item.comunicazione.link!=''">
+						{{item.comunicazione.nome}} - <a ng-click="getFile(item.comunicazione.nome, item.comunicazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="item.comunicazione.isNew=true" ng-show="item.comunicazione && !item.comunicazione.isNew && item.comunicazione.link!=''" /> <input
+						ng-show="!item.comunicazione || item.comunicazione.isNew || item.comunicazione.link==''" type="file" name="file" fileread="item.comunicazione">
+				</div>
+				<div class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'note' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="item.note" />
+				</div>
+			</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<a ng-click="deleteAllRit(item)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+				</div>
+				
+				
+			</div>
+
+			<div class="col-xs-12">
+				<a ng-click="addAllRit()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+			</div>
+		</div>
+		
+		
+		<!-- PEI -->
+		<div class="col-xs-12 sub-section">
+			<h3>{{ 'pei' | translate}}</h3>
+			<!-- 			{{socialCard.storia.accoglienza.pei}} -->
+
+			<div ng-repeat="peiItem in socialCard.storia.accoglienza.pei" class="sub-section col-xs-12">
+
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'descrizione' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="peiItem.descrizione" />
+					</div>
+				</div>
+
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'comunicazione' | translate}}</label>
+					<div ng-if="peiItem.allegato && !peiItem.allegato.isNew && peiItem.allegato.link!=''">
+						{{peiItem.allegato.nome}} - <a ng-click="getFile(peiItem.allegato.nome, peiItem.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="peiItem.allegato.isNew=true" ng-show="peiItem.allegato && !peiItem.allegato.isNew && peiItem.allegato.link!=''" /> <input
+						ng-show="!peiItem.allegato || peiItem.allegato.isNew || peiItem.allegato.link==''" type="file" name="file" fileread="peiItem.allegato">
+				</div>
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<a ng-click="deleteAccPei(peiItem)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<a ng-click="addAccPei()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+			</div>
+
+		</div>
+		<!-- RELAZIONE ASSISTENTE SOCIALE -->
+		<div class="col-xs-12 sub-section">
+			<h3>{{ 'relazioneAssistenteSociale' | translate}}</h3>
+			<div ng-repeat="relazione in socialCard.storia.accoglienza.relazioniAssistenteSociale" class="sub-section col-xs-12">
+				
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'descrizione' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="relazione.descrizione" />
+					</div>
+				</div>
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'relazioneAssistente' | translate}}</label>
+					<div ng-if="relazione.allegato && !relazione.allegato.isNew && relazione.allegato.link!=''">
+						{{relazione.allegato.nome}} - <a ng-click="getFile(relazione.allegato.nome, relazione.allegato.link)"> <i
+							class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="relazione.allegato.isNew=true"
+						ng-show="relazione.allegato && !relazione.allegato.isNew && relazione.allegato.link!=''" /> <input
+						ng-show="!relazione.allegato || relazione.allegato.isNew || relazione.allegato.link==''" type="file" name="file"
+						fileread="relazione.allegato">
+				</div>
+
+				
+				<div class="control-group col-xs-12 col-sm-6">
+						<a ng-click="deleteRelazione(relazione)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+					</div>
+				</div>
+				
+				<div class="col-xs-12">
+					<a ng-click="addRelazione()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+				</div>
+		</div>
+		<!-- AFFIDO -->
+		<div class="col-xs-12 sub-section">
+			<h3>{{ 'affido' | translate}}</h3>
+			<div ng-repeat="affido in socialCard.storia.accoglienza.affidi" class="sub-section col-xs-12">
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'dataAffido' | translate}}</label>
+					<div class="controls">
+						<md-datepicker ng-model="affido.dataAffido" md-placeholder="Enter date"></md-datepicker>
+					</div>
+				</div>
+
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'enteAffido' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="affido.enteAffido" />
+					</div>
+				</div>
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'allegatoAffido' | translate}}</label>
+					<div ng-if="affido.allegatoAffido && !affido.allegatoAffido.isNew && affido.allegatoAffido.link!=''">
+						{{affido.allegatoAffido.nome}} - <a ng-click="getFile(affido.allegatoAffido.nome, affido.allegatoAffido.link)"> <i
+							class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="affido.allegatoAffido.isNew=true"
+						ng-show="affido.allegatoAffido && !affido.allegatoAffido.isNew && affido.allegatoAffido.link!=''" /> <input
+						ng-show="!affido.allegatoAffido || affido.allegatoAffido.isNew || affido.allegatoAffido.link==''" type="file" name="file"
+						fileread="affido.allegatoAffido">
+				</div>
+
+				
+				<div class="control-group col-xs-12 col-sm-6">
+						<a ng-click="deleteAffido(affido)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+					</div>
+				</div>
+				
+				<div class="col-xs-12">
+					<a ng-click="addAffido()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+				</div>
+		</div>
+		
+		<!--  ADOZIONE -->
+		<div class="col-xs-12 sub-section">
+			<h3>{{ 'adozione' | translate}}</h3>
+			<div ng-repeat="adozione in socialCard.storia.accoglienza.adozioni" class="sub-section col-xs-12">
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'dataAdozione' | translate}}</label>
+					<div class="controls">
+						<md-datepicker ng-model="adozione.dataAdozione" md-placeholder="Enter date"></md-datepicker>
+					</div>
+				</div>
+
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'enteAdozione' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="adozione.enteAdozione" />
+					</div>
+				</div>
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'allegatoAdozione' | translate}}</label>
+					<div ng-if="adozione.allegatoAdozione && !adozione.allegatoAdozione.isNew && adozione.allegatoAdozione.link!=''">
+						{{adozione.allegatoAdozione.nome}} - <a ng-click="getFile(adozione.allegatoAdozione.nome, adozione.allegatoAdozione.link)"> <i
+							class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="adozione.allegatoAdozione.isNew=true"
+						ng-show="adozione.allegatoAdozione && !adozione.allegatoAdozione.isNew && adozione.allegatoAdozione.link!=''" /> <input
+						ng-show="!adozione.allegatoAdozione || adozione.allegatoAdozione.isNew || adozione.allegatoAdozione.link==''" type="file" name="file"
+						fileread="adozione.allegatoAdozione">
+				</div>
+
+				
+				<div class="control-group col-xs-12 col-sm-6">
+						<a ng-click="deleteAdozione(adozione)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+					</div>
+				</div>
+				
+				<div class="col-xs-12">
+					<a ng-click="addAdozione()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+				</div>
+		</div>
+		
+		
+
+
+
+	
+
+	<br>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'valutazioneMultidisciplinare' | translate}}</h3>
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'tipologia' | translate}}</label>
+			<div class="controls">
+				<select class="form-control" ng-model="socialCard.storia.valutazioneMultidisciplinare.tipologia" ng-options="option for option in tipologiaValutazioneOp track by option">
+				</select>
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'valutazione' | translate}}</label>
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.valutazioneMultidisciplinare.valutazione" />
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="section">
+
+		<h3>{{ 'storiaPersonale' | translate}}</h3>
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'vitaMinore' | translate}}</label>
+
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.storiaPersonale.vitaMinore" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'scuola' | translate}}</label>
+
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.storiaPersonale.scuola" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'hobbies' | translate}}</label>
+
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.storiaPersonale.hobbies" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'ragioniEspatrio' | translate}}</label>
+
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.storiaPersonale.ragioniEspatrio" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'timoriManifestati' | translate}}</label>
+
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.storiaPersonale.eventualiTimori" />
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'informazioniViaggio' | translate}}</label>
+
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.storiaPersonale.informazioniViaggio" />
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'osservazioni' | translate}}</h3>
+		<div class="control-group col-xs-12 col-sm-12">
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.osservazioni" />
+			</div>
+		</div>
+
+	</div>
+
+	<div class="section">
+		<h3>{{ 'pianificazioneInterventi' | translate}}</h3>
+		<div class="control-group col-xs-12 col-sm-12">
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.pianificazioneInterventi" />
+			</div>
+		</div>
+
+	</div>
+
+	<div class="section">
+		<h3>{{ 'diario' | translate}}</h3>
+		<div class="control-group col-xs-12 col-sm-12">
+			<div class="controls">
+				<textarea class="form-control" rows="5" ng-model="socialCard.storia.diario" />
+			</div>
+		</div>
+
+	</div>
+
+	<div class="control-group col-xs-12">
+		<div class="controls">
+			<a ng-click="updateStoria()" class="btn btn-small btn-success">{{ 'apply' | translate}}</a>
+		</div>
+	</div>
+</form>

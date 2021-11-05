@@ -1,0 +1,293 @@
+<!-- {{socialCard.competenze}} -->
+
+
+<form novalidate="novalidate" class="form-horizontal">
+
+	<h2>{{'lingueParlate' | translate}}</h2>
+	<div class="section">
+		<h3>{{ 'lingueDichiarate' | translate}}</h3>
+
+		<div ng-repeat="lingua in socialCard.competenze.lingueDichiarate" class="sub-section col-xs-12">
+			<!-- 			{{compDig}} -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nomeLingua' | translate}}</label>
+				<div class="controls">
+					<input class="form-control"  type="text" ng-model="lingua.nome" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'livelloScritto' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" ng-model="lingua.livelloScritto" /> -->
+					  <select class="form-control" ng-model="lingua.livelloScritto"  ng-options="option for option in linguaOp track by option" >
+				      </select>
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'livelloOrale' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" ng-model="lingua.livelloOrale" /> -->
+				      <select class="form-control" ng-model="lingua.livelloOrale"  ng-options="option for option in linguaOp track by option" >
+				      </select>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteLinguaDichiarata(lingua)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addLinguaDichiarata()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<h3>{{ 'lingueAttestate' | translate}}</h3>
+
+		<div ng-repeat="lingua in socialCard.competenze.lingueAttestate" class="sub-section col-xs-12">
+			<!-- 			{{lingua}} -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nome' | translate}}</label>
+				<div class="controls">
+					<input class="form-control"  type="text" ng-model="lingua.nome" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'livelloScritto' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" ng-model="lingua.livelloScritto" /> -->
+					  <select class="form-control" ng-model="lingua.livelloScritto"  ng-options="option for option in livelloLinguaOp track by option" >
+				      </select>
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'livelloOrale' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" ng-model="lingua.livelloOrale" /> -->
+				      <select class="form-control" ng-model="lingua.livelloOrale"  ng-options="option for option in livelloLinguaOp track by option" >
+				      </select>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegatoLingua' | translate}}</label>
+			
+				
+				<div ng-if="lingua.allegatoLingua && !lingua.allegatoLingua.isNew && lingua.allegatoLingua.link!=''">
+					{{lingua.allegatoLingua.nome}} - <a ng-click="getFile(lingua.allegatoLingua.nome, lingua.allegatoLingua.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="lingua.allegatoLingua.isNew=true" ng-show="lingua.allegatoLingua && !lingua.allegatoLingua.isNew && lingua.allegatoLingua.link!=''" /> 
+				<input ng-show="!lingua.allegatoLingua || lingua.allegatoLingua.isNew || lingua.allegatoLingua.link==''" type="file" name="file" fileread="lingua.allegatoLingua">
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteLinguaAttestata(lingua)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addLinguaAttestata()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+	
+		<div class="section">
+		<h3>{{ 'lingueCertificate' | translate}}</h3>
+
+		<div ng-repeat="lingua in socialCard.competenze.lingueCertificate" class="sub-section col-xs-12">
+			<!-- 			{{lingua}} -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nome' | translate}}</label>
+				<div class="controls">
+					<input class="form-control"  type="text" ng-model="lingua.nome" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'livelloScritto' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" ng-model="lingua.livelloScritto" /> -->
+					  <select class="form-control" ng-model="lingua.livelloScritto"  ng-options="option for option in livelloLinguaOp track by option" >
+				      </select>
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'livelloOrale' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" ng-model="lingua.livelloOrale" /> -->
+				      <select class="form-control" ng-model="lingua.livelloOrale"  ng-options="option for option in livelloLinguaOp track by option" >
+				      </select>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegatoLingua' | translate}}</label>
+			
+				
+				<div ng-if="lingua.allegatoLingua && !lingua.allegatoLingua.isNew && lingua.allegatoLingua.link!=''">
+					{{lingua.allegatoLingua.nome}} - <a ng-click="getFile(lingua.allegatoLingua.nome, lingua.allegatoLingua.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="lingua.allegatoLingua.isNew=true" ng-show="lingua.allegatoLingua && !lingua.allegatoLingua.isNew && lingua.allegatoLingua.link!=''" /> 
+				<input ng-show="!lingua.allegatoLingua || lingua.allegatoLingua.isNew || lingua.allegatoLingua.link==''" type="file" name="file" fileread="lingua.allegatoLingua">
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteLinguaCertificata(lingua)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addLinguaCertificata()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+
+
+
+	<div class="section">
+		<h3>{{ 'CompetenzeDigitali' | translate}}</h3>
+
+		<div ng-repeat="compDig in socialCard.competenze.competenzeDigitali" class="sub-section col-xs-12">
+			<!-- 			{{compDig}} -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" ng-model="compDig.tipo" /> -->
+					<select class="form-control" ng-model="compDig.tipo"  ng-options="option for option in formTriFormOp track by option" >
+					</select>
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'descrizione' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="compDig.descrizione" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'livello' | translate}}</label>
+				<div class="controls">
+					<select  class="form-control" type="text" ng-model="compDig.livello" ng-options="option for option in livelloOp track by option"></select> 
+				</div>
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'certificazione' | translate}}</label>
+				<div ng-if="compDig.certificazione && !compDig.certificazione.isNew && compDig.certificazione.link!=''">
+					{{compDig.certificazione.nome}} - <a ng-click="getFile(compDig.certificazione.nome, compDig.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="compDig.certificazione.isNew=true" ng-show="compDig.certificazione && !compDig.certificazione.isNew && compDig.certificazione.link!=''" /> <input
+					ng-show="!compDig.certificazione || compDig.certificazione.isNew || compDig.certificazione.link==''" type="file" name="file" fileread="compDig.certificazione">
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteCompDig(compDig)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addCompDig()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+	
+	<div class="section">
+		<h3>{{ 'AltreCompetenze' | translate}}</h3>
+
+		<div ng-repeat="compDig in socialCard.competenze.altreCompetenze" class="sub-section col-xs-12">
+			<!-- 			{{compDig}} -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+<!-- 					<input type="text" ng-model="compDig.tipo" /> -->
+					<select class="form-control" ng-model="compDig.tipo"  ng-options="option for option in formTriFormOp track by option" >
+					</select>
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'descrizione' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="compDig.descrizione" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'livello' | translate}}</label>
+				<div class="controls">
+					<select  class="form-control" type="text" ng-model="compDig.livello" ng-options="option for option in livelloOp track by option"></select> 
+				</div>
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'certificazione' | translate}}</label>
+				<div ng-if="compDig.certificazione && !compDig.certificazione.isNew && compDig.certificazione.link!=''">
+					{{compDig.certificazione.nome}} - <a ng-click="getFile(compDig.certificazione.nome, compDig.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="compDig.certificazione.isNew=true" ng-show="compDig.certificazione && !compDig.certificazione.isNew && compDig.certificazione.link!=''" /> <input
+					ng-show="!compDig.certificazione || compDig.certificazione.isNew || compDig.certificazione.link==''" type="file" name="file" fileread="compDig.certificazione">
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteCompBase(compDig)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addCompBase()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+
+
+	
+
+
+	<div class="section">
+		<h3>{{ 'Patenti' | translate}}</h3>
+		<div ng-repeat="patente in socialCard.competenze.patenti" class="sub-section col-xs-12">
+			<!-- 			{{patente}} -->
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'descrizione' | translate}}</label>
+				<div class="controls">
+					<input class="form-control"  type="text" ng-model="patente.descrizione" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'Allegato' | translate}}</label>
+				<div ng-if="patente.allegato && !patente.allegato.isNew && patente.allegato.link!=''">
+					{{patente.allegato.nome}} - <a ng-click="getFile(patente.allegato.nome, patente.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="patente.allegato.isNew=true" ng-show="patente.allegato && !patente.allegato.isNew && patente.allegato.link!=''" /> <input
+					ng-show="!patente.allegato || patente.allegato.isNew || patente.allegato.link==''" type="file" name="file" fileread="patente.allegato">
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deletePatente(patente)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addPatente()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+
+
+	<br>
+	<div class="control-group col-xs-12 col-sm-6">
+		<div class="controls">
+			<a ng-click="updateCompetenze()" class="btn btn-small btn-success">{{ 'apply' | translate}}</a>
+		</div>
+	</div>
+</form>

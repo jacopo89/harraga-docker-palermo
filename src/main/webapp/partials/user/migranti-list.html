@@ -1,0 +1,94 @@
+<div class="container">
+
+	<div class="col-xs-12 ">
+		<div class="col-xs-12 col-sm-6 ">
+			<a ng-click="moveToSocialCardList()" class="btn btn-small btn-info">{{ 'Home' | translate}}</a>
+			<a ng-if="canCreate()" ng-click="createNewSocialCard()" class="btn btn-small btn-info">{{ 'create' | translate}}</a> 
+			<a ng-click="gestisciUtenti()" ng-if="userSession.type=='COMUNE_PALERMO'" class="btn btn-small btn-info">{{ 'gestisciUtenti' | translate}}</a>
+			
+		</div>
+		<div class="col-xs-12 col-sm-6 ">
+			<div class="float-right">
+				{{ 'ciao' | translate}} {{userSession.username}} ({{userSession.type}}) <a ng-click="profilo(userSession.username)" class="btn btn-small btn-info">{{ 'profilo' | translate}}</a> <a ng-click="logout()"
+					class="btn btn-small btn-warning">{{ 'logout' | translate}}</a>
+			</div>
+		</div>
+		<h1>{{ 'socialCardListStranieri' | translate}} </h1>
+		<h2>{{'Criteri di ricerca'| translate}} - Risultati trovati: {{trueNum.length}} </h2>
+		<p ng-show="userSession.type=='COMUNE_PALERMO'">Numero cartelle totali: {{socialCards.length}}</p>
+		
+		<div class="col-xs-12 col-sm-6 ">
+		<div class="input-group">
+  			<span class="input-group-addon"></span>
+  			<select ng-model="searchCriteria" class="form-control">
+  				<option value="nome" selected>Nome</option>
+  				<option value="cognome">Cognome</option>
+  			</select>
+  			<span class="input-group-addon" style="border-left: 0; border-right: 0;"></span>
+ 			 <input type="text" ng-change="updateCurrentPage()" class="form-control" ng-model="searchInput" placeholder="Inserisci un valore di ricerca" />
+		</div>
+		</div>
+		<div ng-repeat="socialCard in socialCards | filter: myFilter | orderBy : sortRule : sortReverse as trueNum">{{}}</div>
+		<table class="table table-striped table-condensed">
+			<thead>
+				<tr>
+					<th style="min-width: 80px;">{{ 'nome' | translate}}</th>
+					<th style="min-width: 80px;">{{ 'cognome' | translate}}</th>
+					<th style="min-width: 80px;">{{ 'alias' | translate}}</th>
+					<th style="min-width: 80px;">{{ 'sesso' | translate}}</th>
+					<th style="min-width: 80px;">{{ 'paeseList' | translate}}</th>
+					<th style="min-width: 80px;">{{ 'cittadinanzaList' | translate}}</th>
+<!-- 					<th style="min-width: 80px;">{{ 'dataNascita' | translate}}</th> -->
+					<th style="min-width: 80px;">{{ 'linguaMadreList' | translate}}</th>
+					<th style="width: 20px;">&nbsp;</th>
+					<th style="width: 20px;">&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+				<tr ng-repeat="socialCard in socialCards | filter: myFilter | orderBy : sortRule : sortReverse | limitTo:pageSize:currentPage*pageSize as filtered">
+
+					<td class="col-xs-2">{{ socialCard.anagrafica.nome }}</td>
+					<td class="col-xs-2">{{ socialCard.anagrafica.cognome }}</td>
+					<td class="col-xs-1">{{ socialCard.anagrafica.alias }}</td>
+					<td class="col-xs-1">{{ socialCard.anagrafica.sesso }}</td>
+					<td class="col-xs-1">{{ socialCard.anagrafica.paese }}</td>
+					<td class="col-xs-1">{{ socialCard.anagrafica.cittadinanza }}</td>
+<!-- 					<td>{{ socialCard.anagrafica.dataNascita | date:'dd-MM-yyyy' }}</td> -->
+					<td class="col-xs-1">{{ socialCard.anagrafica.linguaMadre }}</td>
+
+					<td><a ng-click="detailSocialCard(socialCard.id)" class="btn btn-small btn-success">{{ 'show' | translate}}</a></td>
+					<td><a ng-click="editSocialCard(socialCard.id)" class="btn btn-small btn-primary">{{ 'edit' | translate}}</a></td>
+					<td><a ng-if="canCreate()" ng-click="deleteSocialCard(socialCard.id)" class="btn btn-small btn-danger">{{ 'delete' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+<!-- 		<a  ng-if="userSession.type=='COMUNE_PALERMO'">{{ 'export' | translate}}</a> -->
+		
+		<button ng-if="userSession.type=='COMUNE_PALERMO'" class="btn btn-primary" ng-click="exportJson(socialCards)">
+			<i class="fa fa-save"></i> {{ 'exportJSON' | translate}}
+		</button>
+		
+		<button ng-if="userSession.type=='COMUNE_PALERMO'" class="btn btn-primary" ng-click="importSocialCard()">
+			<i class="fa fa-save"></i> {{ 'importSocialCard' | translate}}
+		</button>
+		<!--  JACOPO : aggiunto bottone -->
+			<!-- <a ng-click="moveToSocialCardList()" ng-if="userSession.type=='COMUNE_PALERMO'" class="btn btn-primary">{{ 'mostraTuttiMinori' | translate}}</a> -->
+		<div class="float-right">
+		<button class="btn btn-small btn-info" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Precedente
+    	</button>
+    	{{currentPage+1}}/{{(trueNum.length/pageSize) | number:0}}
+    	<button class="btn btn-small btn-info" ng-disabled="currentPage >= trueNum.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+       	Prossima
+    	</button>
+		</div>
+		{{socialCardImportList}}
+		
+	</div>
+
+
+	<br>
+
+</div>

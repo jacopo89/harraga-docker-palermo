@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+
+    <!--<package name="basicstruts2" extends="struts-default, json-default">
+        <action name="index">
+            <result>/index.html</result>
+        </action>
+    </package>-->
+
+    <package name="basicstruts2" extends="json-default">
+
+        <!--  <default-action-ref name="index" />
+
+          <action name="index" class="org.example.IndexAction">
+              <result>/WEB-INF/jsp/index.jsp</result>
+          </action>
+
+          <action name="helloWorld" class="helloWorldAction">
+              <result name="input">/WEB-INF/jsp/index.jsp</result>
+              <result>/WEB-INF/jsp/helloWorld.jsp</result>
+          </action>
+           -->
+
+        <action name="index">
+            <result>/index.html</result>
+        </action>
+
+        <action name="deleteSocialCard"
+                class="it.altran.harraga.rest.socialCard.DeleteSocialCard">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <action name="getSocialCard" class="it.altran.harraga.rest.socialCard.GetSocialCard">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getAnagrafica" class="it.altran.harraga.rest.socialCard.GetAnagrafica">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getAmministrativa"
+                class="it.altran.harraga.rest.socialCard.GetAmministrativa">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getStoria" class="it.altran.harraga.rest.socialCard.GetStoria">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getSanitaria" class="it.altran.harraga.rest.socialCard.GetSanitaria">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getIstruzione" class="it.altran.harraga.rest.socialCard.GetIstruzione">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getLavoro" class="it.altran.harraga.rest.socialCard.GetLavoro">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getCompetenze" class="it.altran.harraga.rest.socialCard.GetCompetenze">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+
+        <action name="getSociale" class="it.altran.harraga.rest.socialCard.GetSociale">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+
+        <action name="getPenale" class="it.altran.harraga.rest.socialCard.GetPenale">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getDesideri" class="it.altran.harraga.rest.socialCard.GetDesideri">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getAnagraficaHist"
+                class="it.altran.harraga.rest.socialCard.history.GetAnagraficaHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getAmministrativaHist"
+                class="it.altran.harraga.rest.socialCard.history.GetAmministrativaHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getLavoroHist"
+                class="it.altran.harraga.rest.socialCard.history.GetLavoroHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getCompetenzeHist"
+                class="it.altran.harraga.rest.socialCard.history.GetCompetenzeHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+        <action name="getStoriaHist"
+                class="it.altran.harraga.rest.socialCard.history.GetStoriaHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+        <action name="getIstruzioneHist"
+                class="it.altran.harraga.rest.socialCard.history.GetIstruzioneHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+        <action name="getPenaleHist"
+                class="it.altran.harraga.rest.socialCard.history.GetPenaleHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+        <action name="getSocialeHist"
+                class="it.altran.harraga.rest.socialCard.history.GetSocialeHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+        <action name="getSanitariaHist"
+                class="it.altran.harraga.rest.socialCard.history.GetSanitariaHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getDesideriHist"
+                class="it.altran.harraga.rest.socialCard.history.GetDesideriHistory">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="getSocialCardList"
+                class="it.altran.harraga.rest.socialCard.GetSocialCardList">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <!-- JACOPO : aggiunta action e le proprietà della chiamata REST (sarà aggiunto file) -->
+        <action name="getItalianiList"
+                class="it.altran.harraga.rest.socialCard.GetItalianiList">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+        <!-- JACOPO : aggiunta action e proprietà della chiamata REST per i maggiorenni (viene aggiunto il file) -->
+        <action name="getMaggiorenniList"
+                class="it.altran.harraga.rest.socialCard.GetMaggiorenniList">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+
+        <action name="createSocialCard" class="it.altran.harraga.rest.socialCard.CreateSocialCard">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+            <result name="errorUserNotEnabled" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">451</param>
+            </result>
+        </action>
+
+        <action name="importSocialCardList"
+                class="it.altran.harraga.rest.socialCard.ImportSocialCardList">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <action name="updateAnagrafica"
+                class="it.altran.harraga.rest.socialCard.UpdateAnagrafica">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <action name="updateAmministrativa"
+                class="it.altran.harraga.rest.socialCard.UpdateAmministrativa">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <action name="updateStoria" class="it.altran.harraga.rest.socialCard.UpdateStoria">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <action name="updateSanitaria"
+                class="it.altran.harraga.rest.socialCard.UpdateSanitaria">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+
+        <action name="updateIstruzione"
+                class="it.altran.harraga.rest.socialCard.UpdateIstruzione">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <action name="updateLavoro" class="it.altran.harraga.rest.socialCard.UpdateLavoro">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <action name="updateSociale" class="it.altran.harraga.rest.socialCard.UpdateSociale">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+        <action name="updateCompetenze"
+                class="it.altran.harraga.rest.socialCard.UpdateCompetenze">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+        <action name="updateDesideri" class="it.altran.harraga.rest.socialCard.UpdateDesideri">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+
+        <action name="updatePenale" class="it.altran.harraga.rest.socialCard.UpdatePenale">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+        <action name="login" class="it.altran.harraga.rest.user.LoginAPI">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+            <result name="errorUserNotEnabled" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">451</param>
+            </result>
+        </action>
+
+
+        <action name="register" class="it.altran.harraga.rest.user.Register">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="errorAlreadyExist" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">419</param>
+            </result>
+
+        </action>
+
+        <action name="updateUser" class="it.altran.harraga.rest.user.UpdateUser">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">419</param>
+            </result>
+        </action>
+
+        <action name="associaUser" class="it.altran.harraga.rest.user.AssociaUser">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">419</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+        <action name="deassociaUser" class="it.altran.harraga.rest.user.DeassociaUser">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">419</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+        </action>
+
+
+        <action name="getUserList" class="it.altran.harraga.rest.user.UserList">
+            <interceptor-ref name="json">
+                <param name="enableSMD">true</param>
+            </interceptor-ref>
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+        </action>
+
+
+        <action name="getUser" class="it.altran.harraga.rest.user.GetUser">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">500</param>
+            </result>
+        </action>
+
+        <action name="getPermessi" class="it.altran.harraga.rest.user.GetPermessi">
+            <result type="json">
+                <param name="noCache">true</param>
+                <param name="excludeNullProperties">true</param>
+                <param name="root">jsonString</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">500</param>
+            </result>
+        </action>
+
+        <action name="download" class="it.altran.harraga.rest.TestDownload">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename=%{fileName}</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">404</param>
+            </result>
+        </action>
+
+        <action name="downloadFolder" class="it.altran.harraga.rest.DownloadFolder">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename=%{fileName}</param>
+                <param name="bufferSize">1024</param>
+            </result>
+            <result name="error401" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">401</param>
+            </result>
+            <result name="error" type="json">
+                <param name="noCache">true</param>
+                <param name="statusCode">404</param>
+            </result>
+        </action>
+
+
+
+    </package>
+
+</struts>
