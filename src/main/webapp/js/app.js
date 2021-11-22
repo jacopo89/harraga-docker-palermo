@@ -33,6 +33,7 @@ config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/user-profile/:username', {templateUrl: 'partials/user/user-profile.html', controller: 'UserCtrl'});
         // JACOPO : aggiunta la route
         $routeProvider.when('/filtri-list', {templateUrl: 'partials/user/migranti-list.html', controller: 'ItalianiListCtrl'});
+        $routeProvider.when('/maggiorenni-list', {templateUrl: 'partials/user/maggiorenni-list.html', controller: 'MaggiorenniListCtrl'});
         $routeProvider.otherwise({redirectTo: '/login'});
     }])
 	.config(function ($translateProvider) {
