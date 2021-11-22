@@ -356,7 +356,7 @@ config(['$routeProvider', function ($routeProvider) {
 	get_social_card_list_service_url : 'getSocialCardList',
 
 	//JACOPO : aggiunta URL per chiamata REST italiani e maggiorenni (STRUTS attenzione)
-	get_italiani_list_service_url : 'getItalianiList',
+	get_italiani_list_service_url : 'getMigrantiList',
 	get_maggiorenni_list_service_url : 'getMaggiorenniList',
 
 	delete_social_Card_service_url : 'deleteSocialCard',

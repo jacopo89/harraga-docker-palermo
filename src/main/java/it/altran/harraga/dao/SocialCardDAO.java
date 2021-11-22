@@ -417,7 +417,7 @@ public class SocialCardDAO {
 //			return DummySocialCardDB.getSocialCardListByUser(user);
 	}
 // JACOPO : INSERITO METODO PER TROVARE LISTA DI ITALIANI
-public ArrayList<SocialCard> getItalianSocialCards() {
+public ArrayList<SocialCard> GetMigrantiSocialCards() {
 
 
 		if(JSON) {
@@ -435,78 +435,20 @@ public ArrayList<SocialCard> getItalianSocialCards() {
 			// start transaction
 			session.beginTransaction();
 
-			String sql = "SELECT ANA_DES_JSON, AMM_DES_JSON, COM_DES_JSON, DES_DES_JSON, IST_DES_JSON, LAV_DES_JSON, PEN_DES_JSON, SAN_DES_JSON, SOC_DES_JSON, STO_DES_JSON FROM HAR_ANAGRAFICA " +
-                "LEFT JOIN HAR_AMMINISTRATIVA ON ANA_COD_ID = AMM_COD_ID " +
-                "LEFT JOIN HAR_COMPETENZE ON ANA_COD_ID = COM_COD_ID " +
-                "LEFT JOIN HAR_DESIDERI ON ANA_COD_ID = DES_COD_ID " +
-                "LEFT JOIN HAR_ISTRUZIONE ON ANA_COD_ID = IST_COD_ID " +
-                "LEFT JOIN HAR_LAVORO ON ANA_COD_ID = LAV_COD_ID " +
-                "LEFT JOIN HAR_PENALE ON ANA_COD_ID = PEN_COD_ID " +
-                "LEFT JOIN HAR_SANITARIA ON ANA_COD_ID = SAN_COD_ID " +
-                "LEFT JOIN HAR_SOCIALE ON ANA_COD_ID = SOC_COD_ID " +
-                "LEFT JOIN HAR_STORIA ON ANA_COD_ID = STO_COD_ID " +
-                "WHERE " +
-                "(ANA_DES_TYPE = 'C' OR ANA_DES_TYPE IS NULL) AND " +
-                "(AMM_DES_TYPE = 'C' OR AMM_DES_TYPE IS NULL) AND " +
-                "(COM_DES_TYPE = 'C' OR COM_DES_TYPE IS NULL) AND " +
-                "(DES_DES_TYPE = 'C' OR DES_DES_TYPE IS NULL) AND " +
-                "(IST_DES_TYPE = 'C' OR IST_DES_TYPE IS NULL) AND " +
-                "(LAV_DES_TYPE = 'C' OR LAV_DES_TYPE IS NULL) AND " +
-                "(PEN_DES_TYPE = 'C' OR PEN_DES_TYPE IS NULL) AND " +
-                "(SAN_DES_TYPE = 'C' OR SAN_DES_TYPE IS NULL) AND " +
-                "(SOC_DES_TYPE = 'C' OR SOC_DES_TYPE IS NULL) AND " +
-                "(STO_DES_TYPE = 'C' OR STO_DES_TYPE IS NULL)";
+			String sql = "SELECT ANA_DES_JSON FROM HAR_ANAGRAFICA WHERE ((ANA_DES_TYPE = 'C' OR ANA_DES_TYPE IS NULL) && ANA_ITALIANO = 'N' ) " ;
+
 			SQLQuery query = session.createSQLQuery(sql);
             List<Object[]> results = (List<Object[]>) query.list();
             System.out.println("La dimensione della lista e' "+ results.size());
-            for(Object[] result: results){
-                for(int i=0; i < result.length; i++ ){
-                    if(result[i] == null){
-                        result[i] = "{}";
-                    }
-                }
 
-                System.out.println("Sto per creare le varie classi");
-                Gson gson = new Gson();
-                System.out.println("Anagrafica "+result[0].toString());
-                Anagrafica anag = gson.fromJson(result[0].toString(), Anagrafica.class);
-                Gson gsonAmm = new Gson();
-                System.out.println("Amministrativa "+result[1].toString());
-                Amministrativa amministrativa = gsonAmm.fromJson(result[1].toString(), Amministrativa.class);
-                Gson gsonCom = new Gson();
-                System.out.println("Competenze "+result[2].toString());
-                Competenze competenze = gsonCom.fromJson(result[2].toString(), Competenze.class);
-                Gson gsonDes = new Gson();
-                System.out.println("Desideri "+result[3].toString());
-                Desideri desideri = gsonDes.fromJson(result[3].toString(), Desideri.class);
-                Gson gsonIst = new Gson();
-                System.out.println("Istruzione "+result[4].toString());
-                Istruzione istruzione = gsonIst.fromJson(result[4].toString(), Istruzione.class);
-                Gson gsonLav = new Gson();
-                System.out.println("Lavori "+result[5].toString());
-
-                String lavorostring = result[5].toString();
-                if(lavorostring == "{}"){
-                    lavorostring = "[]";
-                }
-                Lavoro[] lavori = gsonLav.fromJson(lavorostring, Lavoro[].class);
-                Gson gsonPen = new Gson();
-                System.out.println("Penale "+result[6].toString());
-                Penale penale = gsonPen.fromJson(result[6].toString(), Penale.class);
-                Gson gsonSan = new Gson();
-                System.out.println("Sanitaria "+result[7].toString());
-                Sanitaria sanitaria = gsonSan.fromJson(result[7].toString(), Sanitaria.class);
-                Gson gsonSoc = new Gson();
-                System.out.println("Sociale "+result[8].toString());
-                Sociale sociale = gsonSoc.fromJson(result[8].toString(), Sociale.class);
-                Gson gsonSto = new Gson();
-                Storia storia = gsonSto.fromJson(result[9].toString(), Storia.class);
-                System.out.println("Storia "+result[9].toString());
-
-                ArrayList<Lavoro> listArray = new ArrayList<Lavoro>(Arrays.asList(lavori));
-                socialCardList.add(new SocialCard(anag.getId(),anag, amministrativa, competenze, desideri, istruzione, listArray, penale, sanitaria, sociale, storia));
-
-            }
+			if (results != null && results.size() > 0) {
+				for (int i = 0; i < results.size(); i++) {
+					Object res = results.get(i);
+					Gson gson = new Gson();
+					Anagrafica anag = gson.fromJson(res.toString(), Anagrafica.class);
+					socialCardList.add(new SocialCard(anag.getId(),anag));
+				}
+			}
 
 			return socialCardList;
 		}

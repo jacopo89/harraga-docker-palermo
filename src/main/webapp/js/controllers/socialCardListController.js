@@ -376,7 +376,7 @@ app.controller('ItalianiListCtrl', [
                               				a.click();
                               			};
                               			// JACOPO : cambiata la chiamata REST
-                              			socialCardService.getItalianiList().then(function(temp) {
+                              			socialCardService.getMigrantiList().then(function(temp) {
                               				$scope.socialCards = temp;
                               				console.log("SUCCESS");
                               			}, function() {

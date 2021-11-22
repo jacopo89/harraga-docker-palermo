@@ -310,8 +310,8 @@
         </action>
 
         <!-- JACOPO : aggiunta action e le proprietà della chiamata REST (sarà aggiunto file) -->
-        <action name="getItalianiList"
-                class="it.altran.harraga.rest.socialCard.GetItalianiList">
+        <action name="getMigrantiList"
+                class="it.altran.harraga.rest.socialCard.GetMigrantiList">
             <result type="json">
                 <param name="noCache">true</param>
                 <param name="excludeNullProperties">true</param>

@@ -1522,11 +1522,11 @@ services
 								/**
 								 * Recupera lista di tutte le cartelle sociali di italiani
 								 * 
-								 * @function getItalianiList
+								 * @function getMigrantiList
 								 * @memberof socialCardService
 								 * @return {Array[Object]}
 								 */
-								getItalianiList : function() {
+								getMigrantiList : function() {
 
 									var userSession = $localStorage.userSession;
 

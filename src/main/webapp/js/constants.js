@@ -13,10 +13,10 @@ var sessoOpzioni = [ {
 // JACOPO : aggiunte opzioni per italiano
 var italOpzioni = [ {
 	name : 'Sì',
-	code : 'N'
+	code : 'S'
 }, {
 	name : 'No',
-	code : 'S'
+	code : 'N'
 } ];
 
 var tipoDomicOp = ['Famiglia affidataria','CPA' , 'Comunità','Sprar'];

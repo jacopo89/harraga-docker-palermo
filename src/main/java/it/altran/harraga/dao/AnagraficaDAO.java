@@ -222,10 +222,12 @@ public class AnagraficaDAO {
 			String jsonValue = gson.toJson(anagrafica);
 
 			Query query = session
-					.createSQLQuery("INSERT INTO HAR_ANAGRAFICA " + "(ANA_COD_ID, ANA_NUM_TIMESTAMP, ANA_DES_USERNAME, ANA_DES_TYPE, ANA_DES_JSON) " + "VALUES (:socialCardId, :timestamp, :username, :type, :json )");
+					.createSQLQuery("INSERT INTO HAR_ANAGRAFICA " + "(ANA_COD_ID, ANA_NUM_TIMESTAMP, ANA_DES_USERNAME, ANA_DES_TYPE, ANA_DES_JSON, ANA_ITALIANO, ANA_NUM_TUTELA) " + "VALUES (:socialCardId, :timestamp, :username, :type, :json, :italiano, :numTutela )");
 			query.setParameter("socialCardId", socialCardId);
 			query.setParameter("timestamp", System.currentTimeMillis());
 			query.setParameter("username", user.getUsername());
+			query.setParameter("italiano", anagrafica.getItaliano());
+			query.setParameter("numTutela", anagrafica.getNumeroTutela());
 			query.setParameter("type", "C");
 			query.setParameter("json", jsonValue);
 

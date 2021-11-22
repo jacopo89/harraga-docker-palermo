@@ -11,7 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
-public class GetItalianiList {
+public class GetMigrantiList {
 	  /**
 		 * 
 		 */
@@ -37,7 +37,7 @@ public class GetItalianiList {
 			
 			if(user!=null) {
 				if(PermissionMap.getInstance().isIstitutional(user.getType())) {
-					socialCardList = SocialCardDAO.getInstance().getItalianSocialCards();
+					socialCardList = SocialCardDAO.getInstance().GetMigrantiSocialCards();
 				}else {
 					socialCardList = SocialCardDAO.getInstance().getSocialCardListByUser(user);
 				}				
