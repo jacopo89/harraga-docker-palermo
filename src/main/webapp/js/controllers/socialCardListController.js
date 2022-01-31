@@ -178,13 +178,13 @@ app.controller('SocialCardListCtrl', [
 				var criterio = $scope.searchCriteria;
 				switch(criterio){
 				case "nome":
-					if(item.anagrafica.nome.includes($scope.searchInput)){
+					if(item.anagrafica.nome.toLowerCase().includes($scope.searchInput.toLowerCase())){
 						numeroSchede = numeroSchede +1;
 						return item;
 					}
 					break;
 				case "cognome":
-					if(item.anagrafica.cognome.includes($scope.searchInput)){
+					if(item.anagrafica.cognome.toLowerCase().includes($scope.searchInput.toLowerCase())){
 						return item;
 						numeroSchede = numeroSchede +1;
 					}
@@ -395,22 +395,18 @@ app.controller('ItalianiListCtrl', [
                             				var criterio = $scope.searchCriteria;
                             				switch(criterio){
                             				case "nome":
-                            					if(item.anagrafica.nome.includes($scope.searchInput)){
-
-
-
-                            						return item;
-                            					}
-                            					break;
-                            				case "cognome":
-                            					if(item.anagrafica.cognome.includes($scope.searchInput)){
-
-
-                            						return item;
-                            					}
-                            					break;
-                            				}
-
+                                                if(item.anagrafica.nome.toLowerCase().includes($scope.searchInput.toLowerCase())){
+                                                    numeroSchede = numeroSchede +1;
+                                                    return item;
+                                                }
+                                                break;
+                                            case "cognome":
+                                                if(item.anagrafica.cognome.toLowerCase().includes($scope.searchInput.toLowerCase())){
+                                                    return item;
+                                                    numeroSchede = numeroSchede +1;
+                                                }
+                                                break;
+                                            }
                             			}
 
                               			/*$scope.importSocialCard = function(ev) {
@@ -610,21 +606,18 @@ app.controller('MaggiorenniListCtrl', [
                             				var criterio = $scope.searchCriteria;
                             				switch(criterio){
                             				case "nome":
-                            					if(item.anagrafica.nome.includes($scope.searchInput)){
-
-
-
-                            						return item;
-                            					}
-                            					break;
-                            				case "cognome":
-                            					if(item.anagrafica.cognome.includes($scope.searchInput)){
-
-
-                            						return item;
-                            					}
-                            					break;
-                            				}
+                                                if(item.anagrafica.nome.toLowerCase().includes($scope.searchInput.toLowerCase())){
+                                                    numeroSchede = numeroSchede +1;
+                                                    return item;
+                                                }
+                                                break;
+                                            case "cognome":
+                                                if(item.anagrafica.cognome.toLowerCase().includes($scope.searchInput.toLowerCase())){
+                                                    return item;
+                                                    numeroSchede = numeroSchede +1;
+                                                }
+                                                break;
+                                            }
 
                             			}
 

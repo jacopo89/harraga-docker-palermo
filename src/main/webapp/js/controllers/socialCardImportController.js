@@ -49,31 +49,43 @@ app.controller('SocialCardImportCtrl', [
 				
 //				var jsonObject = JSON.parse($scope.socialCardImportList);
 //				console.log(jsonObject );
-				
-				var jsonObject = csvJSON($scope.fileContent);
-				
-				console.log(jsonObject );
-				
-				
-				socialCardService.importSocialCardList(jsonObject).then(function(temp) {				
-					
-					$mdDialog.show(
-						      $mdDialog.alert()
-						        .parent(angular.element(document.querySelector('#popupContainer')))
-						        .clickOutsideToClose(true)
-						        .title('Import avvenuto con successo!')
-						        .textContent("Import avvenuto con successo")
-						        .ariaLabel('Alert Dialog Demo')
-						        .ok('OK!')
-						        .targetEvent(ev)
-						    );
-					
-					
-					
-					console.log("SUCCESS");
-				}, function() {
-					console.log("ERROR");
-				});
+
+			    try{
+			        var jsonObject = csvJSON($scope.fileContent);
+			        socialCardService.importSocialCardList(jsonObject).then(function(temp) {
+
+                    					$mdDialog.show(
+                    						      $mdDialog.alert()
+                    						        .parent(angular.element(document.querySelector('#popupContainer')))
+                    						        .clickOutsideToClose(true)
+                    						        .title('Import avvenuto con successo!')
+                    						        .textContent("Import avvenuto con successo")
+                    						        .ariaLabel('Alert Dialog Demo')
+                    						        .ok('OK!')
+                    						        .targetEvent(ev)
+                    						    );
+
+
+
+                    					console.log("SUCCESS");
+                    				}, function() {
+                    					console.log("ERROR");
+                    				});
+				}catch(error){
+                            $mdDialog.show(
+                                  $mdDialog.alert()
+                                    .parent(angular.element(document.querySelector('#popupContainer')))
+                                    .clickOutsideToClose(true)
+                                    .title('Errore')
+                                    .textContent(error)
+                                    .ariaLabel('Alert Dialog Demo')
+                                    .ok('OK!')
+                                    .targetEvent(ev)
+                                );
+				}
+
+
+
 				
 				
 			};
@@ -102,16 +114,20 @@ app.controller('SocialCardImportCtrl', [
 			//var csv is the CSV file with headers
 			function csvJSON(csv){
 
+              var correctHeaders = ["cognome", "nome", "dataNascitaCorretta", "cittadinanza", "italiano"]
 			  var lines=csv.split("\n");
 
 			  var result = [];
 
-			  var headers=lines[0].split(";");
+			  var headers=lines[0].split(",");
+
+              var missingHeaders = correctHeaders.filter(header => !headers.includes(header))
+			  if(missingHeaders.length != 0 ) throw "Inserire i seguenti campi nel csv: " + missingHeaders.join(", ")
 
 			  for(var i=1;i<lines.length;i++){
 
 				  var obj = {};
-				  var currentline=lines[i].split(";");
+				  var currentline=lines[i].split(",");
 
 				  if(currentline.length == headers.length ){
 					  for(var j=0;j<headers.length;j++){

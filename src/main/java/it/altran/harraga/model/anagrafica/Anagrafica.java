@@ -1,5 +1,6 @@
 package it.altran.harraga.model.anagrafica;
 
+import com.google.gson.annotations.SerializedName;
 import it.altran.harraga.model.Contatto;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class Anagrafica implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+
 	private String nome;
 	private String cognome;
 	private String othername;
@@ -378,5 +380,10 @@ public class Anagrafica implements Serializable{
 
 	public DocumentiAllArrivo getDocumentiAllArrivo() {
 		return documentiAllArrivo;
+	}
+
+	@Override
+	public String toString(){
+		return String.format("Name %s, Surname %s", this.nome, this.cognome);
 	}
 }

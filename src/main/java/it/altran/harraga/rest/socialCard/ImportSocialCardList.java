@@ -14,14 +14,14 @@ import java.util.ArrayList;
 
 public class ImportSocialCardList extends ActionSupport {
 
-	private  ArrayList<Anagrafica> socialCardList;
+	private  ArrayList<Object> socialCardList;
 	
 
-	public ArrayList<Anagrafica> getSocialCardList() {
+	public ArrayList<Object> getSocialCardList() {
 		return socialCardList;
 	}
 
-	public void setSocialCardList(ArrayList<Anagrafica> socialCardList) {
+	public void setSocialCardList(ArrayList<Object> socialCardList) {
 		this.socialCardList = socialCardList;
 	}
 

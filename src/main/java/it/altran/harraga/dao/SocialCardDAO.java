@@ -141,7 +141,7 @@ public class SocialCardDAO {
 			String jsonAnagrafica = gson.toJson(socialCard.getAnagrafica());
 
 			Query query = session
-					.createSQLQuery("INSERT INTO HAR_ANAGRAFICA  (ANA_COD_ID, ANA_NUM_TIMESTAMP, ANA_DES_USERNAME,ANA_DES_TYPE,ANA_DES_JSON,ANA_NUM_TUTELA, ANA_ITALIANO)  VALUES (:socialCardId, :timestamp, :username, :type, :json,:numeroTutela, :italiano)");
+					.createSQLQuery("INSERT INTO HAR_ANAGRAFICA  (ANA_COD_ID, ANA_NUM_TIMESTAMP, ANA_DES_USERNAME,ANA_DES_TYPE,ANA_DES_JSON,ANA_NUM_TUTELA, ANA_ITALIANO, ANA_DATA_NASCITA_LONG)  VALUES (:socialCardId, :timestamp, :username, :type, :json,:numeroTutela, :italiano, :data_nascita)");
 			query.setParameter("socialCardId", newId);
 
 
@@ -151,6 +151,7 @@ public class SocialCardDAO {
 			query.setParameter("json", jsonAnagrafica);
 			query.setParameter("numeroTutela", socialCard.getAnagrafica().getNumeroTutela());
 			query.setParameter("italiano", socialCard.getAnagrafica().getItaliano());
+			query.setParameter("data_nascita", socialCard.getAnagrafica().getDataNascitaCorretta());
 			//query.setParameter("dataNascitaCorretta", socialCard.getAnagrafica().getDataNascitaCorretta());
 
 			query.executeUpdate();
@@ -192,11 +193,14 @@ public class SocialCardDAO {
 	}
 
 
-	public boolean importSocialCardList(ArrayList<Anagrafica> anagraficaList, User user) {
+	public boolean importSocialCardList(ArrayList<Object> anagraficaList, User user) {
 		if(anagraficaList!=null && anagraficaList.size()>0) {
-			for(Anagrafica anagrafica : anagraficaList) {
-
-				createSocialCard(new SocialCard(null, anagrafica) , user);
+			for(Object anagrafica : anagraficaList) {
+				System.out.println(anagrafica);
+				Gson gson = new Gson();
+				Anagrafica anag = gson.fromJson(anagrafica.toString(), Anagrafica.class);
+				//System.out.println(anagrafica.getNome());
+				createSocialCard(new SocialCard(null, anag) , user);
 			}
 			return true;
 		}
