@@ -16,7 +16,7 @@
 
 		<h1>{{ 'profilo_utente' | translate}} - {{user.username}}</h1>
 
-		<div class="control-group" ng-if="userSession.type=='COMUNE_PALERMO' && user.type!='COMUNE_PALERMO'">
+		<div class="control-group" ng-if="userSession.type=='COMUNE_MARSALA' && user.type!='COMUNE_MARSALA'">
 			<div class="controls">
 				<a ng-click="showTab('PROFILO')" class="btn btn-small" ng-class="{ 'btn-info' : tab == 'PROFILO'}">{{ 'PROFILO' |translate}}</a> <a ng-if="!isInstitutional()" ng-click="showTab('CARTELLE_ASSOCIATE')"
 					class="btn btn-small" ng-class="{ 'btn-info' : tab == 'CARTELLE_ASSOCIATE'}">{{ 'CARTELLE_ASSOCIATE' | translate}}</a>
@@ -33,11 +33,11 @@
 					<label class="control-label" for="user_type">{{ 'user_type' | translate}}</label> 
 					
 					
-					<select ng-if="userSession.type=='COMUNE_PALERMO'" class="form-control" ng-model="user.type" ng-options="option for option in data.availableOptions track by option">
+					<select ng-if="userSession.type=='COMUNE_MARSALA'" class="form-control" ng-model="user.type" ng-options="option for option in data.availableOptions track by option">
 
 					</select> 
 					
-					<span ng-if="userSession.type!='COMUNE_PALERMO'">{{user.type}}</span>
+					<span ng-if="userSession.type!='COMUNE_MARSALA'">{{user.type}}</span>
 
 				</div>
 				<div class="control-group">
@@ -197,7 +197,7 @@
 
 	<br> <br>
 
-	<div class="control-group" ng-if="userSession.type=='COMUNE_PALERMO'">
+	<div class="control-group" ng-if="userSession.type=='COMUNE_MARSALA'">
 		<div class="controls">
 			<a ng-click="back()" class="btn btn-small btn-info">{{ 'userList' | translate}}</a>
 		</div>

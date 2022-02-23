@@ -46,7 +46,7 @@ public class AssociaUser extends ActionSupport {
 			return "error401";
 		User user = UserDAO.getInstance().getUserByToken(authToken);
 
-		if (user != null && user.getType() == User.Ruolo.COMUNE_PALERMO) {
+		if (user != null && user.getType() == User.Ruolo.COMUNE_MARSALA) {
 
 			if (username != null && socialCardId > 0) {
 				if (UserDAO.getInstance().associaUser(username, socialCardId))
