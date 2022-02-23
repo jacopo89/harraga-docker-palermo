@@ -350,7 +350,7 @@ config(['$routeProvider', function ($routeProvider) {
 
 }).constant('SERVER_INFO', {
 
-	base_url: 'http://30.10.203.5:8080/harraga/',
+	base_url: 'http://localhost:8080/harraga/',
 
 
 //	SOCIAL CARD
