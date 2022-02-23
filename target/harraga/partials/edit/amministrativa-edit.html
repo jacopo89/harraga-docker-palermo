@@ -1,0 +1,751 @@
+<!-- {{socialCard.amministrativa}} -->
+
+<form novalidate="novalidate" class="form-horizontal col-xs-12">
+	
+	<!-- PERMESSO DI SOGGIORNO -->
+	<div class="section">
+<!-- 		{{socialCard.amministrativa.permessoSoggiorno}} -->
+		<h3>{{ 'permessoSoggiorno' | translate}}</h3>
+
+		<div ng-repeat="item in socialCard.amministrativa.permessoSoggiorno" class="sub-section col-xs-12">
+			<!-- 			{{item}}						 -->
+			<div class="control-group col-xs-12">
+				<label class="control-label">{{ 'stato' | translate}}</label>
+				<div class="controls">
+					<select class="form-control" ng-model="item.stato" ng-options="option for option in permSoggStatoOp track by option">
+					</select> 
+					<div ng-show="item.stato=='Altro'">
+					<label class="control-label">{{'altro' | translate}}</label>
+					<input type="text" class="form-control" ng-model="item.altroStato" />
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataRichiesta' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.dataRichiesta" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataRilascio' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.dataRilascio" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'rilasciatoDa' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.rilasciatoDa" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataScadenza' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.dataScadenza" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipologia' | translate}}</label>
+				<div class="controls">
+					<select class="form-control" ng-model="item.tipologia" ng-options="option for option in perSoggTipoOp track by option">
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+				<div ng-if="item.allegato && !item.allegato.isNew && item.allegato.link!=''">
+					{{item.allegato.nome}} - <a ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="item.allegato.isNew=true" ng-show="item.allegato && !item.allegato.isNew && item.allegato.link!=''" /> <input
+					ng-show="!item.allegato || item.allegato.isNew || item.allegato.link==''" type="file" name="file" fileread="item.allegato">
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deletePermSogg(item)" class="btn btn-small btn-danger top10">{{ 'eliminaPermesso' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addPermSogg()" class="btn btn-small btn-info">{{ 'aggiungiPermesso' | translate}}</a>
+		</div>
+	</div>
+	
+	<!-- PROCEDURE LEGALI -->
+	<div class="section">
+		<!-- 		{{socialCard.amministrativa.procedureLegali}} -->
+		<h3>{{ 'procedureLegali' | translate}}</h3>
+
+		<div ng-repeat="procedura in socialCard.amministrativa.procedureLegali" class="sub-section col-xs-12">
+<!-- 			{{procedura}} -->
+			<div class="col-xs-12 box">
+			<h4>{{ 'Dublino' | translate}}</h4>
+			<label>SI: <input type="checkbox" ng-model="procedura.dublinoYes"></label><br /> 
+			
+			<div ng-show="procedura.dublinoYes" class="col-xs-12">
+			<!-- JACOPO : AGGIUNTI CAMPI A DUBLINO -->
+				<div class="control-group col-xs-12">
+					<label class="control-label">{{ 'Da quale paese' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="procedura.dublino.paesefrom" ng-disabled="procedura.dublino.paeseto" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12">
+					<label class="control-label">{{ 'Verso quale paese' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="procedura.dublino.paeseto" ng-disabled="procedura.dublino.paesefrom"/>
+					</div>
+				</div>
+				<div class="control-group col-xs-12">
+					<label class="control-label">{{ 'data' | translate}}</label>
+					<div class="controls">
+					<md-datepicker ng-model="procedura.dublino.data" md-placeholder="Enter date"></md-datepicker>
+						
+					</div>
+				</div>
+				<div class="control-group col-xs-12">
+					<label class="control-label">{{ 'statoProcedura' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="procedura.dublino.statoProcedura" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+				<div ng-if="procedura.dublino.allegato && !procedura.dublino.allegato.isNew && procedura.dublino.allegato.link!=''">
+					{{procedura.dublino.allegato.nome}} - <a ng-click="getFile(procedura.dublino.allegato.nome, procedura.dublino.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="procedura.dublino.allegato.isNew=true" ng-show="procedura.dublino.allegato && !procedura.dublino.allegato.isNew && procedura.dublino.allegato.link!=''" /> <input
+					ng-show="!procedura.dublino.allegato || procedura.dublino.allegato.isNew || procedura.dublino.allegato.link==''" type="file" name="file" fileread="procedura.dublino.allegato">
+			</div>
+			</div>
+			</div>
+			
+			<div class="col-xs-12 box">
+			<h4>{{ 'Appuntamenti' | translate}}</h4>
+				<div ng-repeat="appuntamento in procedura.appuntamenti" class="sub-section col-xs-12 ">
+					<!-- 			{{item}}						 -->
+					<div class="control-group col-xs-12">
+						<label class="control-label">{{ 'luogo' | translate}}</label>
+						<div class="controls">
+								<select class="form-control" ng-model="appuntamento.luogo" ng-options="option for option in luogoOp track by option">
+					</select>
+					<input ng-show="appuntamento.luogo=='Altro'" type="text" class="form-control" ng-model="appuntamento.altroLuogo" />
+						</div>
+					</div>
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<label class="control-label">{{ 'data' | translate}}</label>
+						<div class="controls">
+							<md-datepicker md-date-locale="formatDate()" ng-model="appuntamento.data" md-placeholder="Enter date"></md-datepicker>
+						</div>
+					</div>
+
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<label class="control-label">{{ 'motivo' | translate}}</label>
+						<div class="controls">
+							<input type="text" class="form-control" ng-model="appuntamento.motivo" />
+<!-- 							<select class="form-control" ng-model="appuntamento.motivo" ng-options="option for option in perSoggTipoOp track by option"> -->
+							</select>
+						</div>
+					</div>
+
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<label class="control-label">{{ 'esito' | translate}}</label>
+						<div class="controls">
+							<input type="text" class="form-control" ng-model="appuntamento.esito" />						
+<!-- 							<select class="form-control" ng-model="appuntamento.esito" ng-options="option for option in perSoggTipoOp track by option"> -->
+							</select>
+						</div>
+					</div>
+
+					<div class="col-xs-12">
+						<h4>{{ 'allegatiAppuntamenti' | translate}}</h4>
+						<div ng-repeat="allegatoAppunt in appuntamento.allegati" class="sub-section col-xs-12">
+							<!-- 			{{allegatoAppunt}}						 -->
+
+							<div class="control-group col-xs-12 col-sm-6">
+								<label class="control-label">{{ 'allegato' | translate}}</label>
+								<div ng-if="allegatoAppunt.allegato && !allegatoAppunt.allegato.isNew && allegatoAppunt.allegato.link!=''">
+									{{allegatoAppunt.allegato.nome}} - <a ng-click="getFile(allegatoAppunt.allegato.nome, allegatoAppunt.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+									</a>
+								</div>
+								<input type="button" value="Cambia" ng-click="allegatoAppunt.allegato.isNew=true" ng-show="allegatoAppunt.allegato && !allegatoAppunt.allegato.isNew && allegatoAppunt.allegato.link!=''" /> <input
+									ng-show="!allegatoAppunt.allegato || allegatoAppunt.allegato.isNew || allegatoAppunt.allegato.link==''" type="file" name="file" fileread="allegatoAppunt.allegato">
+							</div>
+
+
+							<div class="control-group col-xs-12 col-sm-6">
+								<a ng-click="deleteAllegatoAppunt(appuntamento,allegatoAppunt)" class="btn btn-small btn-danger top10">{{ 'eliminaAllegatoAppuntamento' | translate}}</a>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<a ng-click="addAllegatoAppunt(appuntamento)" class="btn btn-small btn-info">{{ 'aggiungiAllegatoAppuntamento' | translate}}</a>
+						</div>
+
+					</div>
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<a ng-click="deleteAppuntamento(procedura,appuntamento)" class="btn btn-small btn-danger top10">{{ 'eliminaAppuntamento' | translate}}</a>
+					</div>
+				</div>
+
+				<div class="col-xs-12">
+					<a ng-click="addAppuntamento(procedura)" class="btn btn-small btn-info">{{ 'aggiungiAppuntamento' | translate}}</a>
+				</div>
+			</div>
+
+
+
+
+			
+			<div class="col-xs-12 box">
+			<h4>{{ 'ricorsiAmministrativi' | translate}}</h4>	
+				<div ng-repeat="ricorso in procedura.ricorsiAmministrativi" class="sub-section col-xs-12 ">
+					<!-- 			{{item}}						 -->
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<label class="control-label">{{ 'dataRicorsi' | translate}}</label>
+						<div class="controls">
+							<md-datepicker ng-model="ricorso.data" md-placeholder="Enter date"></md-datepicker>
+						</div>
+					</div>
+
+					
+					
+					<div class="control-group col-xs-12">
+						<label class="control-label">{{ 'note' | translate}}</label>
+						<div class="controls">
+							<textarea class="form-control" rows="5" ng-model="ricorso.note" />
+						</div>
+					</div>
+					
+					<div class="control-group col-xs-12 col-sm-6">
+						<label class="control-label">{{ 'avvocato' | translate}}</label>
+						<div class="controls">
+							<input type="text" class="form-control" ng-model="ricorso.avvocato" />
+						</div>
+					</div>
+					<div class="control-group col-xs-12 col-sm-6">
+						<label class="control-label">{{ 'gratuito' | translate}}</label>
+						<div class="controls">
+							<select class="form-control" ng-model="ricorso.gratuito" ng-options="option for option in booleanOp track by option">
+				</select>
+						</div>
+					</div>
+
+
+
+					
+					<div class="control-group col-xs-12 ">
+					<label class="control-label">{{ 'dataUdienze' | translate}}</label>
+					<div ng-repeat="udienza in ricorso.udienze" class="sub-section col-xs-12">
+						<!-- 			{{allegatoRicorso}}						 -->
+
+						<div class="control-group col-xs-12 col-sm-8">
+							<label class="control-label">{{ 'udienza' | translate}}</label>
+							<md-datepicker md-placeholder="Enter date" ng-model="udienza.dataUdienza"></md-datepicker>
+						</div>
+
+
+						<div class="control-group col-xs-12 col-sm-8">
+							<a ng-click="deleteUdienzaRicorso(ricorso,udienza)" class="btn btn-small btn-danger top10">{{ 'eliminaUdienza' | translate}}</a>
+						</div>
+					</div>
+					<div class="col-xs-12">
+						<a ng-click="addUdienzaRicorso(ricorso)" class="btn btn-small btn-info">{{ 'aggiungiUdienzaRicorso' | translate}}</a>
+					</div>
+
+				</div>
+
+					<div class="col-xs-12">
+						<h4>{{ 'allegatiRicorso' | translate}}</h4>
+						<div ng-repeat="allegatoRicorso in ricorso.allegati" class="sub-section col-xs-12">
+							<!-- 			{{allegatoRicorso}}						 -->
+
+							<div class="control-group col-xs-12 col-sm-6">
+								<label class="control-label">{{ 'allegato' | translate}}</label>
+								<div ng-if="allegatoRicorso.allegato && !allegatoRicorso.allegato.isNew && allegatoRicorso.allegato.link!=''">
+									{{allegatoRicorso.allegato.nome}} - <a ng-click="getFile(allegatoRicorso.allegato.nome, allegatoRicorso.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+									</a>
+								</div>
+								<input type="button" value="Cambia" ng-click="allegatoRicorso.allegato.isNew=true" ng-show="allegatoRicorso.allegato && !allegatoRicorso.allegato.isNew && allegatoRicorso.allegato.link!=''" /> <input
+									ng-show="!allegatoRicorso.allegato || allegatoRicorso.allegato.isNew || allegatoRicorso.allegato.link==''" type="file" name="file" fileread="allegatoRicorso.allegato">
+							</div>
+
+
+							<div class="control-group col-xs-12 col-sm-6">
+								<a ng-click="deleteAllegatoRicorso(ricorso,allegatoRicorso)" class="btn btn-small btn-danger top10">{{ 'eliminaAllegatoRicorso' | translate}}</a>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<a ng-click="addAllegatoRicorso(ricorso)" class="btn btn-small btn-info">{{ 'aggiungiAllegatoRicorso' | translate}}</a>
+						</div>
+
+					</div>
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<a ng-click="deleteRicorso(procedura, ricorso)" class="btn btn-small btn-danger top10">{{ 'eliminaRicorso' | translate}}</a>
+					</div>
+				</div>
+
+				<div class="col-xs-12">
+					<a ng-click="addRicorso(procedura)" class="btn btn-small btn-info">{{ 'aggiungiRicorso' | translate}}</a>
+				</div>
+			</div>
+
+
+
+
+
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteProcLeg(procedura)" class="btn btn-small btn-danger top10">{{ 'eliminaProceduraLegale' | translate}}</a>
+			</div>
+
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addProcLeg()" class="btn btn-small btn-info">{{ 'aggiungiProceduraLegale' | translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+		<h3>{{ 'provvedimentiGiudiziari' | translate}}</h3>
+		<div ng-repeat="provvedimento in socialCard.amministrativa.provvedimentiGiudiziari" class="sub-section col-xs-12 ">
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'data' | translate}}</label>
+				<div class="controls">
+					<md-datepicker md-placeholder="Enter date" ng-model="provvedimento.data"></md-datepicker>
+				</div>
+			</div>
+	
+	
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+	
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="provvedimento.tipo" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'istituzioneEmittente' | translate}}</label>
+	
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="provvedimento.istituzioneEmittente" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'avvocato' | translate}}</label>
+	
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="provvedimento.avvocato"/>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+
+				<!-- 			        	 <input type="file" name="file"  fileread="documento.allegato"> -->
+
+				<!-- 							{{documento.allegato}} -->
+
+				<div ng-if="provvedimento.allegato && !provvedimento.allegato.isNew && provvedimento.allegato.link!=''">
+					{{provvedimento.allegato.nome}} - <a ng-click="getFile(provvedimento.allegato.nome, provvedimento.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="provvedimento.allegato.isNew=true" ng-show="provvedimento.allegato && !provvedimento.allegato.isNew && provvedimento.allegato.link!=''" /> 
+				<input ng-show="!provvedimento.allegato || provvedimento.allegato.isNew || provvedimento.allegato.link==''" type="file" name="file" fileread="provvedimento.allegato">
+
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteProvvedimento(provvedimento)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<a ng-click="addProvvedimento()" class="btn btn-small btn-info">{{ 'aggiungiProvvedimentoGiudiziario' | translate}}</a>
+		</div>
+			
+	</div>
+	
+	<div class="section">
+
+		<h3>{{ 'riferimentoLegale' | translate}}</h3>
+
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'tipo' | translate}}</label>
+			<div class="controls">
+				<select class="form-control" ng-model="socialCard.amministrativa.riferimentoLegale.tipo" ng-options="option for option in rifLegOp track by option">
+				</select>
+			</div>
+		</div>
+
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'nome' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.amministrativa.riferimentoLegale.contatto.nome" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'cognome' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.amministrativa.riferimentoLegale.contatto.cognome" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'email' | translate}}</label>
+
+			<div class="controls">
+				<input type="email" class="form-control" ng-model="socialCard.amministrativa.riferimentoLegale.contatto.email" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'telefono' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.amministrativa.riferimentoLegale.contatto.telefono" />
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+
+		<h3>{{ 'delegaAmministrativa' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'protocollo' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.amministrativa.delegaAmministrativa.protocollo" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'richiestaUONI' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.amministrativa.delegaAmministrativa.richiestaUONI" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'data' | translate}}</label>
+
+			<div class="controls">
+				<md-datepicker ng-model="socialCard.amministrativa.delegaAmministrativa.data" md-placeholder="Enter date"></md-datepicker>
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'altro' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.amministrativa.delegaAmministrativa.altro" />
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<h4>{{ 'allegatiDelega' | translate}}</h4>
+			<div ng-repeat="allegatoDelega in socialCard.amministrativa.delegaAmministrativa.allegati" class="sub-section col-xs-12">
+				<!-- 			{{allegatoDelega}}						 -->
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'allegato' | translate}}</label>
+					<div ng-if="allegatoDelega.allegato && !allegatoDelega.allegato.isNew && allegatoDelega.allegato.link!=''">
+						{{allegatoDelega.allegato.nome}} - <a ng-click="getFile(allegatoDelega.allegato.nome, allegatoDelega.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="allegatoDelega.allegato.isNew=true" ng-show="allegatoDelega.allegato && !allegatoDelega.allegato.isNew && allegatoDelega.allegato.link!=''" /> <input
+						ng-show="!allegatoDelega.allegato || allegatoDelega.allegato.isNew || allegatoDelega.allegato.link==''" type="file" name="file" fileread="allegatoDelega.allegato">
+				</div>
+
+
+				<div class="control-group col-xs-12 col-sm-6">
+					<a ng-click="deleteAllegatoDelega(allegatoDelega)" class="btn btn-small btn-danger top10">{{ 'eliminaAllegatoDelega' | translate}}</a>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<a ng-click="addAllegatoDelega()" class="btn btn-small btn-info">{{ 'aggiungiAllegatoDelega' | translate}}</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+
+		<h3>{{ 'revocaTutela' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'motivazione' | translate}}</label>
+
+			<div class="controls">
+			<select class="form-control" ng-model="socialCard.amministrativa.revocaTutela.motivazione" ng-options="option for option in motivazioneOp track by option">
+				</select>
+			</div>
+		</div>
+
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'allegato' | translate}}</label>
+			<div ng-if="socialCard.amministrativa.revocaTutela.provvedimento && !socialCard.amministrativa.revocaTutela.provvedimento.isNew && socialCard.amministrativa.revocaTutela.provvedimento.link!=''">
+				{{socialCard.amministrativa.revocaTutela.provvedimento.nome}} - <a ng-click="getFile(socialCard.amministrativa.revocaTutela.provvedimento.nome, socialCard.amministrativa.revocaTutela.provvedimento.link)"> <i
+					class="fa fa-file-pdf-o" aria-hidden="true"></i>
+				</a>
+			</div>
+			<input type="button" value="Cambia" ng-click="socialCard.amministrativa.revocaTutela.provvedimento.isNew=true"
+				ng-show="socialCard.amministrativa.revocaTutela.provvedimento && !socialCard.amministrativa.revocaTutela.provvedimento.isNew && socialCard.amministrativa.revocaTutela.provvedimento.link!=''" /> <input
+				ng-show="!socialCard.amministrativa.revocaTutela.provvedimento || socialCard.amministrativa.revocaTutela.provvedimento.isNew || socialCard.amministrativa.revocaTutela.provvedimento.link==''" type="file" name="file"
+				fileread="socialCard.amministrativa.revocaTutela.provvedimento">
+		</div>
+
+
+	</div>
+
+	<div class="section">
+		<h3>{{ 'pattoAccoglienza' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'allegato' | translate}}</label>
+			<input type="button" value="Cambia" ng-click="socialCard.amministrativa.pattoAccoglienza.patto.isNew=true"
+				   ng-show="socialCard.amministrativa.pattoAccoglienza.patto && !socialCard.amministrativa.pattoAccoglienza.patto.isNew && socialCard.amministrativa.pattoAccoglienza.patto.link!=''" /> <input
+				ng-show="!socialCard.amministrativa.pattoAccoglienza.patto || socialCard.amministrativa.pattoAccoglienza.patto.isNew || socialCard.amministrativa.pattoAccoglienza.patto.link==''" type="file" name="file"
+				fileread="socialCard.amministrativa.pattoAccoglienza.patto">
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'tesseraSanitaria' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'allegato' | translate}}</label>
+			<input type="button" value="Cambia" ng-click="socialCard.amministrativa.tesseraSanitaria.allegato.isNew=true"
+				   ng-show="socialCard.amministrativa.tesseraSanitaria.allegato && !socialCard.amministrativa.tesseraSanitaria.patto.isNew && socialCard.amministrativa.tesseraSanitaria.allegato.link!=''" /> <input
+				ng-show="!socialCard.amministrativa.tesseraSanitaria.allegato || socialCard.amministrativa.tesseraSanitaria.patto.isNew || socialCard.amministrativa.tesseraSanitaria.allegato.link==''" type="file" name="file"
+				fileread="socialCard.amministrativa.tesseraSanitaria.allegato">
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'STP' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'allegato' | translate}}</label>
+			<input type="button" value="Cambia" ng-click="socialCard.amministrativa.STP.allegato.isNew=true"
+				   ng-show="socialCard.amministrativa.stp.allegato && !socialCard.amministrativa.stp.allegato.isNew && socialCard.amministrativa.stp.allegato.link!=''" /> <input
+				ng-show="!socialCard.amministrativa.stp.allegato || socialCard.amministrativa.stp.allegato.isNew || socialCard.amministrativa.stp.allegato.link==''" type="file" name="file"
+				fileread="socialCard.amministrativa.stp.allegato">
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'codiceFiscale' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'allegato' | translate}}</label>
+			<input type="button" value="Cambia" ng-click="socialCard.amministrativa.codiceFiscale.allegato.isNew=true"
+				   ng-show="socialCard.amministrativa.codiceFiscale.allegato && !socialCard.amministrativa.codiceFiscale.patto.isNew && socialCard.amministrativa.codiceFiscale.allegato.link!=''" /> <input
+				ng-show="!socialCard.amministrativa.codiceFiscale.allegato || socialCard.amministrativa.codiceFiscale.patto.isNew || socialCard.amministrativa.codiceFiscale.allegato.link==''" type="file" name="file"
+				fileread="socialCard.amministrativa.codiceFiscale.allegato">
+		</div>
+	</div>
+
+	<!-- Documenti ideintità -->
+	<div class="section">
+		<!-- 		{{socialCard.amministrativa.permessoSoggiorno}} -->
+		<h3>{{ 'documentiIdentita' | translate}}</h3>
+
+		<div ng-repeat="item in socialCard.amministrativa.documentiIdentita" class="sub-section col-xs-12">
+			<!-- 			{{item}}						 -->
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+				<div ng-if="item.allegato && !item.allegato.isNew && item.allegato.link!=''">
+					{{item.allegato.nome}} - <a ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+				</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="item.allegato.isNew=true" ng-show="item.allegato && !item.allegato.isNew && item.allegato.link!=''" /> <input
+					ng-show="!item.allegato || item.allegato.isNew || item.allegato.link==''" type="file" name="file" fileread="item.allegato">
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteDocIdent(item)" class="btn btn-small btn-danger top10">{{ 'eliminaPermesso' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addDocumIdent()" class="btn btn-small btn-info">{{ 'aggiungiPermesso' | translate}}</a>
+		</div>
+	</div>
+
+
+	<!-- FOTO SEGNALAMENTO -->
+	<div class="section">
+
+		<h3>{{ 'fotoSegnalazione' | translate}}</h3>
+
+		<div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'data' | translate}}</label>
+
+				<div class="controls">
+					<md-datepicker ng-model="socialCard.amministrativa.fotoSegnalazione.data" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'ufficioCompetente' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.amministrativa.fotoSegnalazione.ufficioCompetente" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+				<div ng-if="socialCard.amministrativa.fotoSegnalazione.provvedimento && !socialCard.amministrativa.fotoSegnalazione.allegato.isNew && socialCard.amministrativa.fotoSegnalazione.allegato.link!=''">
+					{{socialCard.amministrativa.fotoSegnalazione.allegato.nome}} - <a ng-click="getFile(socialCard.amministrativa.fotoSegnalazione.allegato.nome, socialCard.amministrativa.fotoSegnalazione.allegato.link)"> <i
+						class="fa fa-file-pdf-o" aria-hidden="true"></i>
+				</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="socialCard.amministrativa.fotoSegnalazione.provvedimento.isNew=true"
+					   ng-show="socialCard.amministrativa.fotoSegnalazione.allegato && !socialCard.amministrativa.fotoSegnalazione.allegato.isNew && socialCard.amministrativa.fotoSegnalazione.allegato.link!=''" /> <input
+					ng-show="!socialCard.amministrativa.fotoSegnalazione.allegato || socialCard.amministrativa.fotoSegnalazione.allegato.isNew || socialCard.amministrativa.fotoSegnalazione.allegato.link==''" type="file" name="file"
+					fileread="socialCard.amministrativa.fotoSegnalazione.allegato">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="section">
+
+		<h3>{{ 'proseguo21' | translate}}</h3>
+			<label>SI: <input type="checkbox" ng-model="socialCard.amministrativa.proseguoYes"></label><br /> 
+			
+			<div ng-show="socialCard.amministrativa.proseguoYes">
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'dataAttribuzione' | translate}}</label>
+		
+					<div class="controls">
+						<md-datepicker ng-model="socialCard.amministrativa.proseguo21.dataAttribuzione" md-placeholder="Enter date"></md-datepicker>
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'dataFinale' | translate}}</label>
+		
+					<div class="controls">
+						<md-datepicker ng-model="socialCard.amministrativa.proseguo21.dataFinale" md-placeholder="Enter date"></md-datepicker>
+					</div>
+				</div>
+				
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'note' | translate}}</label>
+		
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="socialCard.amministrativa.proseguo21.note" />
+					</div>
+				</div>
+		
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'allegato' | translate}}</label>
+					<div ng-if="socialCard.amministrativa.proseguo21.provvedimento && !socialCard.amministrativa.proseguo21.provvedimento.isNew && socialCard.amministrativa.proseguo21.provvedimento.link!=''">
+						{{socialCard.amministrativa.proseguo21.provvedimento.nome}} - <a ng-click="getFile(socialCard.amministrativa.proseguo21.provvedimento.nome, socialCard.amministrativa.proseguo21.provvedimento.link)"> <i
+							class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="socialCard.amministrativa.proseguo21.provvedimento.isNew=true"
+						ng-show="socialCard.amministrativa.proseguo21.provvedimento && !socialCard.amministrativa.proseguo21.provvedimento.isNew && socialCard.amministrativa.proseguo21.provvedimento.link!=''" /> <input
+						ng-show="!socialCard.amministrativa.proseguo21.provvedimento || socialCard.amministrativa.proseguo21.provvedimento.isNew || socialCard.amministrativa.proseguo21.provvedimento.link==''" type="file" name="file"
+						fileread="socialCard.amministrativa.proseguo21.provvedimento">
+				</div>
+				</div>
+	</div>
+
+
+	<!-- AFFIDO  -->
+	<div class="section">
+
+		<h3>{{ 'affidoAmministrativo' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'dataVerbaleAffidamento' | translate}}</label>
+
+			<div class="controls">
+				<md-datepicker ng-model="socialCard.amministrativa.affidoAmministrativo.dataVerbaleAffidamento" md-placeholder="Enter date"></md-datepicker>
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'enteVerbaleAffidamento' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.amministrativa.affidoAmministrativo.enteVerbaleAffidamento" />
+			</div>
+		</div>
+
+
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'verbaleAffidamento' | translate}}</label>
+			<div ng-if="socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento && !socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.isNew && socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.link!=''">
+				{{socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.nome}} - <a ng-click="getFile(socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.nome, socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.link)"> <i
+					class="fa fa-file-pdf-o" aria-hidden="true"></i>
+			</a>
+			</div>
+			<input type="button" value="Cambia" ng-click="socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.isNew=true"
+				   ng-show="socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento && !socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.isNew && socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.link!=''" /> <input
+				ng-show="!socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento || socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.isNew || socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.link==''" type="file" name="file"
+				fileread="socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento">
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'dataProvvedimentoAffidamento' | translate}}</label>
+
+			<div class="controls">
+				<md-datepicker ng-model="socialCard.amministrativa.affidoAmministrativo.dataProvvedimentoAffidamento" md-placeholder="Enter date"></md-datepicker>
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'enteProvvedimentoAffidamento' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.amministrativa.affidoAmministrativo.enteProvvedimentoAffidamento" />
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'provvedimentoAffidamento' | translate}}</label>
+			<div ng-if="socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento && !socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.isNew && socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.link!=''">
+				{{socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.nome}} - <a ng-click="getFile(socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.nome, socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.link)"> <i
+					class="fa fa-file-pdf-o" aria-hidden="true"></i>
+			</a>
+			</div>
+			<input type="button" value="Cambia" ng-click="socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.isNew=true"
+				   ng-show="socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento && !socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.isNew && socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.link!=''" /> <input
+				ng-show="!socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento || socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.isNew || socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.link==''" type="file" name="file"
+				fileread="socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento">
+		</div>
+
+
+
+	</div>
+		
+	<div class="control-group col-xs-12 col-sm-6">
+		<div class="controls">
+			<button ng-click="updateAmministrativa()" class="btn btn-small btn-success">{{ 'apply' | translate}}</button>
+		</div>
+	</div>
+</form>

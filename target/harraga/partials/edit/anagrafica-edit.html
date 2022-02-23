@@ -1,0 +1,581 @@
+<!-- <form novalidate="novalidate" class="form-horizontal"> -->
+<form name="ANAG_FORM" class="form-horizontal">
+
+	<div class="section">
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'nome' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.nome" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'cognome' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.cognome" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'othername' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.othername" />
+			</div>
+		</div>
+		<!-- JACOPO START -->
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'numeroDelega' | translate}}</label>
+
+			<div class="controls" >
+				<input ng-change="validateNumeroTutela()" type="text" class="form-control" ng-model="socialCard.anagrafica.numeroTutela" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'italiano' | translate}}</label>
+			<div class="controls">
+				<div ng-repeat="(key,val) in italOpzioni" class="col-xs-4 h-45">
+					<input type="radio" ng-model="$parent.socialCard.anagrafica.italiano" ng-value='val.code'> {{val.name}}
+				</div>
+			</div>
+		</div>
+		<!-- JACOPO END -->
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'alias' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.alias" />
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'sesso' | translate}}</label>
+			<div class="controls">
+				<div ng-repeat="(key,val) in sessoOpzioni" class="col-xs-4 h-45">
+					<input type="radio" ng-model="$parent.socialCard.anagrafica.sesso" ng-value='val.code'> {{val.name}}
+				</div>
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'luogoNascita' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.luogoNascita" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'paese' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.paese" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'cittadinanza' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.cittadinanza" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'dataNascitaDichiarata' | translate}}</label>
+
+			<div class="controls">
+				<md-datepicker ng-model="socialCard.anagrafica.dataNascitaDichiarata" md-placeholder="Enter date"></md-datepicker>
+				<!-- <input type="date" ng-model="socialCard.anagrafica.dataNascita"/> -->
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'dataNascitaCorretta' | translate}}</label>
+
+			<div class="controls">
+				<md-datepicker ng-model="socialCard.anagrafica.dataNascitaCorretta" md-placeholder="Enter date"></md-datepicker>
+				<!-- <input type="date" ng-model="socialCard.anagrafica.dataNascitaCorretta"/> -->
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'linguaMadre' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.linguaMadre" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'altreLingue' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.altreLingue" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'gruppoEtnico' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.gruppoEtnico" />
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'dataArrivo' | translate}}</label>
+
+			<div class="controls">
+				<md-datepicker ng-model="socialCard.anagrafica.dataArrivo" md-placeholder="Enter date"></md-datepicker>
+				<!-- 		                <input type="date" ng-model="socialCard.anagrafica.dataArrivo"/> -->
+			</div>
+			<!-- 		            {{socialCard.anagrafica.dataArrivo}} -->
+		</div>
+
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'luogoArrivo' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.luogoArrivo" />
+			</div>
+		</div>
+		</div>
+		<div class="section">
+		<h3>Contatti del minore</h3>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'email' | translate}}</label>
+	
+				<div class="controls">
+					<input type="email" class="form-control" ng-model="socialCard.anagrafica.email" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'telefono' |translate}}</label>
+	
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.anagrafica.telefono" />
+				</div>
+			</div>
+		</div>
+		<div class="section">
+		<h3>UO</h3>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'UONome' | translate}}</label>
+	
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="socialCard.anagrafica.UONome" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'UOData' | translate}}</label>
+	
+				<div class="controls">
+					<md-datepicker ng-model="socialCard.anagrafica.UOData" md-placeholder="Enter date"></md-datepicker>
+					<!--                 <input type="date" ng-model="socialCard.anagrafica.dataArrivo"/> -->
+				</div>
+			</div>
+		</div>
+
+
+
+	<br>
+	<div class="section">
+
+		<h3>{{ 'Mediatore' | translate}}</h3>
+		<label>SI: <input type="checkbox" ng-model="socialCard.anagrafica.medYes"></label><br /> 
+		<div ng-show="socialCard.anagrafica.medYes">
+
+			<div class="control-group col-xs-12 col-sm-6" >
+				<label class="control-label">{{ 'nome' | translate}}</label>
+
+				<div class="controls" ng-class="{'has-error': !socialCard.anagrafica.mediatore.nome }" >
+					<input type="text" class="form-control" ng-model="socialCard.anagrafica.mediatore.nome" ng-required="socialCard.anagrafica.medYes"    />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'cognome' | translate}}</label>
+
+				<div class="controls" ng-class="{'has-error': !socialCard.anagrafica.mediatore.cognome }">
+					<input type="text" class="form-control" ng-model="socialCard.anagrafica.mediatore.cognome" ng-required="socialCard.anagrafica.medYes" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'email' | translate}}</label>
+
+				<div class="controls" ng-class="{'has-error': !socialCard.anagrafica.mediatore.email }">
+					<input type="email" class="form-control" ng-model="socialCard.anagrafica.mediatore.email" ng-required="socialCard.anagrafica.medYes" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'telefono' | translate}}</label>
+
+				<div class="controls" ng-class="{'has-error': !socialCard.anagrafica.mediatore.telefono }">
+					<input type="text" class="form-control" ng-model="socialCard.anagrafica.mediatore.telefono" ng-required="socialCard.anagrafica.medYes" />
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<div class="section">
+		<h3>{{ 'ElencoDomicilio' | translate}}</h3>
+		<div ng-repeat="item in socialCard.anagrafica.domicilio" class="sub-section col-xs-12">
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipologia' | translate}}</label>
+
+				<div class="controls">
+					<select class="form-control" ng-model="item.tipo" ng-options="option for option in tipoDomicOp track by option">
+					</select>
+<!-- 					<input type="text" class="form-control" ng-model="item.tipo" /> -->
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nome' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.nome" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipoInserimento' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.tipoInserimento" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'responsabile' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.responsabile" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'email' | translate}}</label>
+
+				<div class="controls">
+					<input type="email" class="form-control" ng-model="item.email" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'telefono' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.telefono" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tempoPermanenza' | translate}}</label>
+
+				<div class="controls">
+				<md-datepicker ng-model="item.tempoPermanenza" md-placeholder="Enter date"></md-datepicker>
+	
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteDomicilio(item)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addDomicilio()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+
+
+	</div>
+
+	<div class="section">
+		<h3>{{ 'ElencoDocumenti' | translate}}</h3>
+		<div ng-repeat="documento in socialCard.anagrafica.documenti" class="sub-section col-xs-12">
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipologia' | translate}}</label>
+
+				<div class="controls">
+					<select class="form-control" ng-model="documento.tipologia" ng-options="option for option in documentoOp track by option">
+					</select>
+<!-- 					<input type="text" class="form-control" ng-model="item.tipo" /> -->
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'Descrizione' | translate}}</label>
+
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="documento.descrizione" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-12">
+				<label class="control-label">{{ 'Note' | translate}}</label>
+
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="documento.note" />
+				</div>
+			</div>
+			
+			<!-- 					<h3>{{ 'Allegato' | translate}}</h3> -->
+			<!-- 			         <div class="control-group col-xs-12 col-sm-6"> -->
+			<!-- 			            <label class="control-label" >{{ 'descrizione' | translate}}</label> -->
+
+			<!-- 			            <div class="controls"> -->
+			<!-- 			                <input type="text"  ng-model="documento.descrizione"/> -->
+			<!-- 			            </div> -->
+			<!-- 			        </div> -->
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+
+				<!-- 			        	 <input type="file" name="file"  fileread="documento.allegato"> -->
+
+				<!-- 							{{documento.allegato}} -->
+
+				<div ng-if="documento.allegato && !documento.allegato.isNew && documento.allegato.link!=''">
+					{{documento.allegato.nome}} - <a ng-click="getFile(documento.allegato.nome, documento.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="documento.allegato.isNew=true" ng-show="documento.allegato && !documento.allegato.isNew && documento.allegato.link!=''" /> <input
+					ng-show="!documento.allegato || documento.allegato.isNew || documento.allegato.link==''" type="file" name="file" fileread="documento.allegato">
+
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteDocumento(documento)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addDocumento()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+
+
+	</div>
+
+
+
+	<div class="section">
+		<h3>{{ 'AssistenteSociale' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'nome' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.assistenteSociale.nome" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'cognome' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.assistenteSociale.cognome" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'email' | translate}}</label>
+
+			<div class="controls">
+				<input type="email" class="form-control" ng-model="socialCard.anagrafica.assistenteSociale.email" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'telefono' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.assistenteSociale.telefono" />
+			</div>
+		</div>
+
+
+
+	</div>
+	<br>
+
+	<div class="section">
+		<h3>{{ 'Tutore' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'nome' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.tutore.contatto.nome" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'cognome' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.tutore.contatto.cognome" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'email' | translate}}</label>
+
+			<div class="controls">
+				<input type="email" class="form-control" ng-model="socialCard.anagrafica.tutore.contatto.email" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'telefono' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.tutore.contatto.telefono" />
+			</div>
+		</div>
+
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'numeroDelega' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.numeroTutela" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'dataAssegnazione' | translate}}</label>
+
+			<div class="controls">
+				<md-datepicker ng-model="socialCard.anagrafica.tutore.dataAssegnazione" md-placeholder="Enter date"></md-datepicker>
+
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'luogoAssegnazione' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.tutore.luogoAssegnazione" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'motivoTutela' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.tutore.motivoTutela" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'tribunaleMinori' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.tutore.tribunaleMinori" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'giudiceTutelare' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.tutore.giudiceTutelare" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'rettificaTutelare' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.tutore.rettificaTutelare" />
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'decretoTribunale' | translate}}</label>
+
+			<div ng-if="socialCard.anagrafica.tutore.decretoTribunale && !socialCard.anagrafica.tutore.decretoTribunale.isNew">
+				{{socialCard.anagrafica.tutore.decretoTribunale.nome}} - <a ng-click="getFile(socialCard.anagrafica.tutore.decretoTribunale.nome, socialCard.anagrafica.tutore.decretoTribunale.link)"> <i class="fa fa-file-pdf-o"
+					aria-hidden="true"></i>
+				</a>
+			</div>
+			<input type="button" value="Cambia" ng-click="socialCard.anagrafica.tutore.decretoTribunale.isNew=true" ng-show="socialCard.anagrafica.tutore.decretoTribunale && !socialCard.anagrafica.tutore.decretoTribunale.isNew" />
+			<input ng-show="!socialCard.anagrafica.tutore.decretoTribunale || socialCard.anagrafica.tutore.decretoTribunale.isNew" type="file" name="file" fileread="socialCard.anagrafica.tutore.decretoTribunale">
+
+			<!-- 		        	 <input type="file" name="file"  fileread="socialCard.anagrafica.tutore.decretoTribunale"> -->
+		</div>
+
+
+	</div>
+
+
+	<div class="section">
+		<h3>{{ 'Assicurazione' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'tipologia' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.assicurazione.tipo" />
+			</div>
+		</div>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'Numero' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.assicurazione.numero" />
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'dataInizio' | translate}}</label>
+
+			<div class="controls">
+				<!-- 		                <input type="text"  ng-model="socialCard.anagrafica.assicurazione.dataInizio"/> -->
+				<md-datepicker ng-model="socialCard.anagrafica.assicurazione.dataInizio" md-placeholder="Enter date"></md-datepicker>
+
+			</div>
+		</div>
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'dataFine' | translate}}</label>
+
+			<div class="controls">
+				<!-- 		                <input type="text"  ng-model="socialCard.anagrafica.assicurazione.dataFine"/> -->
+				<md-datepicker ng-model="socialCard.anagrafica.assicurazione.dataFine" md-placeholder="Enter date"></md-datepicker>
+
+			</div>
+		</div>
+
+		<!-- 		{{socialCard.anagrafica.assicurazione.allegato}} -->
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'allegato' | translate}}</label>
+
+
+			<div ng-if="socialCard.anagrafica.assicurazione.allegato && !socialCard.anagrafica.assicurazione.allegato.isNew">
+				{{socialCard.anagrafica.assicurazione.allegato.nome}} - <a ng-click="getFile(socialCard.anagrafica.assicurazione.allegato.nome, socialCard.anagrafica.assicurazione.allegato.link)"> <i class="fa fa-file-pdf-o"
+					aria-hidden="true"></i>
+				</a>
+			</div>
+			<input type="button" value="Cambia" ng-click="socialCard.anagrafica.assicurazione.allegato.isNew=true" ng-show="socialCard.anagrafica.assicurazione.allegato && !socialCard.anagrafica.assicurazione.allegato.isNew" />
+			<input ng-show="!socialCard.anagrafica.assicurazione.allegato || socialCard.anagrafica.assicurazione.allegato.isNew" type="file" name="file" fileread="socialCard.anagrafica.assicurazione.allegato">
+
+		</div>
+
+	</div>
+
+	<div class="section">
+		<h3>{{ 'documentiAllArrivo' | translate}}</h3>
+
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'tipologia' | translate}}</label>
+
+			<div class="controls">
+				<input type="text" class="form-control" ng-model="socialCard.anagrafica.documentiAllArrivo.tipologia" />
+			</div>
+		</div>
+
+
+		<!-- 		{{socialCard.anagrafica.assicurazione.allegato}} -->
+		<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'allegato' | translate}}</label>
+
+
+			<div ng-if="socialCard.anagrafica.assicurazione.allegato && !socialCard.anagrafica.assicurazione.allegato.isNew">
+				{{socialCard.anagrafica.documentiAllArrivo.allegato.nome}} - <a ng-click="getFile(socialCard.anagrafica.documentiAllArrivo.allegato.nome, socialCard.anagrafica.documentiAllArrivo.allegato.link)"> <i class="fa fa-file-pdf-o"
+																																																		aria-hidden="true"></i>
+			</a>
+			</div>
+			<input type="button" value="Cambia" ng-click="socialCard.anagrafica.documentiAllArrivo.allegato.isNew=true" ng-show="socialCard.anagrafica.documentiAllArrivo.allegato && !socialCard.anagrafica.documentiAllArrivo.allegato.isNew" />
+			<input ng-show="!socialCard.anagrafica.documentiAllArrivo.allegato || socialCard.anagrafica.documentiAllArrivo.allegato.isNew" type="file" name="file" fileread="socialCard.anagrafica.documentiAllArrivo.allegato">
+
+		</div>
+
+	</div>
+
+	<br>
+	<div class="control-group col-xs-12 col-sm-6">
+		<div class="controls">
+			<button ng-disabled="ANAG_FORM.$invalid" ng-click="updateAnagrafica()" class="btn btn-small btn-success">{{ 'apply' | translate}}</button>
+		</div>
+	</div>
+</form>

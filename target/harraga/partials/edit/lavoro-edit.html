@@ -1,0 +1,174 @@
+<!-- {{socialCard.lavoro}} -->
+
+
+<form novalidate="novalidate" class="form-horizontal">
+
+	<div class="section">
+	<h3>{{ 'EsperienzeLavorative' |translate}}</h3>
+		<!-- 		<h3>{{ 'lavoro' | translate}}</h3> -->
+		<div ng-repeat="item in socialCard.lavoro" class="sub-section col-xs-12">
+			<!-- 			{{item}} -->
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'stato' | translate}}</label>
+<!-- 				<div class="controls"> -->
+<!-- 					<input type="text" class="form-control" ng-model="item.stato" /> -->
+<!-- 				</div> -->
+
+
+				<div class="controls">
+					<select class="form-control" ng-model="item.stato" ng-options="option for option in statoLavoroOp track by option">
+					</select>
+				</div>
+
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+<!-- 				<div class="controls"> -->
+<!-- 					<input type="text" class="form-control" ng-model="item.tipo" /> -->
+<!-- 				</div> -->
+				<div class="controls">
+					<select class="form-control" ng-model="item.tipo" ng-options="option for option in formNoFormOp track by option">
+					</select>
+				</div>
+				
+			</div>
+			<div ng-show="item.stato=='In Corso'" class="control-group col-xs-12">
+				<label class="control-label">{{ 'orariGiorni' | translate}}</label>
+<!-- 				<div class="controls"> -->
+<!-- 					<input type="text" class="form-control" ng-model="item.tipo" /> -->
+<!-- 				</div> -->
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="item.orariGiorni" />
+				</div>
+				
+			</div>
+<!-- 			<div class="control-group col-xs-12 col-sm-6"> -->
+<!-- 				<label class="control-label">{{ 'tipologia' | translate}}</label> -->
+<!-- 				<div class="controls"> -->
+<!-- 					<input type="text" class="form-control" ng-model="item.tipologia" /> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'ambito' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.ambito" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'inquadramento' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.inquadramento" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataInizio' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.dataInizio" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataFine' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.dataFine" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'nomeAzienda' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.nomeAzienda" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'luogoAzienda' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.luogoAzienda" />
+				</div>
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'emailAzienda' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.emailAzienda" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'telefonoAzienda' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="item.telefonoAzienda" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12">
+				<label class="control-label">{{ 'competenzeAcquisite' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="item.competenzeAcquisite" />
+				</div>
+			</div>
+			
+			<div ng-show="item.stato=='Pregressa'">
+			<div class="col-xs-12">
+				<!-- 			{{item.certificazioni}} -->
+				<h3>{{ 'elencoCertificazioni' | translate}}</h3>
+				<div ng-repeat="cert in item.certificazioni" class="box col-xs-12">
+
+					<!-- 					{{cert}}  -->
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<label class="control-label">{{ 'descrizione' | translate}}</label>
+						<div class="controls">
+							<input type="text" class="form-control" ng-model="cert.descrizione" />
+						</div>
+					</div>
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<label class="control-label">{{ 'allegato' | translate}}</label>
+
+						<div ng-if="cert.allegato && !cert.allegato.isNew && cert.allegato.link!=''">
+							{{cert.allegato.nome}} - <a ng-click="getFile(cert.allegato.nome, cert.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							</a>
+						</div>
+						<input type="button" value="Cambia" ng-click="cert.allegato.isNew=true" ng-show="cert.allegato && !cert.allegato.isNew && cert.allegato.link!=''" /> <input
+							ng-show="!cert.allegato || cert.allegato.isNew || cert.allegato.link==''" type="file" name="file" fileread="cert.allegato">
+
+					</div>
+
+					<!-- 					<input type="text" class="form-control" ng<-model="cert.nome" /> -->
+
+					<div class="control-group col-xs-12 col-sm-6">
+						<a ng-click="deleteCertificazione(item, cert)" class="btn btn-small btn-danger top10">{{ 'eliminaCertificazione' | translate}}</a>
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<a ng-click="addCertificazione(item)" class="btn btn-small btn-info">{{ 'aggiungiCertificazione' | translate}}</a>
+				</div>
+			</div>
+			</div>
+
+
+
+			<div class="control-group col-xs-12">
+				<a ng-click="deleteEsperienza(item)" class="btn btn-small btn-danger top10">{{ 'eliminaEsperienzaLavorativa' | translate}}</a>
+			</div>
+		</div>
+		<br> <br>
+		<div class="col-xs-12">
+			<a ng-click="addEsperienza()" class="btn btn-small btn-info">{{ 'aggiungiEsperienzaLavorativa' | translate}}</a>
+		</div>
+
+
+
+		<br> <br>
+		<div class="control-group col-xs-12 col-sm-6">
+			<div class="controls">
+				<a ng-click="updateLavoro()" class="btn btn-small btn-success">{{ 'apply' | translate}}</a>
+			</div>
+		</div>
+	</div>
+</form>

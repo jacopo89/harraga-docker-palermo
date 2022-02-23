@@ -1,0 +1,237 @@
+<div class="section-wrapper" id="sanitaria">
+	<!-- 		{{socialCard.sanitaria}} -->
+	<div ng-show="canRead('DISABILITA')">
+		<div class="section">
+	
+			<h3>{{ 'specificheDisabilita' | translate}}</h3>
+			<div ng-repeat="item in socialCard.sanitaria.specificheDisabilita" class="sub-section">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="col-sm-6">{{ 'nome' | translate}}</th>
+							<td class="col-sm-6">{{item.nome}}</td>
+						</tr>
+						<tr>
+							<th>{{ 'allegato' | translate}}</th>
+							<td>{{item.allegato.nome}}</td>
+							<td><a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							</a></td>
+						</tr>
+	
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+
+		<div class="section">
+	
+			<h3>{{ 'patologieAllergiche' | translate}}</h3>
+			<div ng-repeat="item in socialCard.sanitaria.patologieAllergiche" class="sub-section">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="col-sm-6">{{ 'nome' | translate}}</th>
+							<td class="col-sm-6">{{item.nome}}</td>
+						</tr>
+						<tr>
+							<th>{{ 'allegato' | translate}}</th>
+							<td>{{item.allegato.nome}}</td>
+							<td>
+							<a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<div ng-if="canRead('SANITARIA')">
+		<div class="section">
+
+			<h3>{{ 'medicoCurante' | translate}}</h3>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'nome' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.sanitaria.medicoCurante.contatto.nome}}</td>
+					
+						<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.sanitaria.medicoCurante.contatto.cognome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'email' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.sanitaria.medicoCurante.contatto.email}}</td>
+					
+						<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.sanitaria.medicoCurante.contatto.telefono}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{socialCard.sanitaria.medicoCurante.allegato.nome}}</td>
+						<td><a ng-if="socialCard.sanitaria.medicoCurante.allegato.link" ng-click="getFile(socialCard.sanitaria.medicoCurante.allegato.nome, socialCard.sanitaria.medicoCurante.allegato.link)"> <i
+								class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="section">
+
+			<h3>{{ 'presoInCarico' | translate}}</h3>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'nome' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.sanitaria.presoInCarico.contatto.nome}}</td>
+					
+						<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.sanitaria.presoInCarico.contatto.cognome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'email' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.sanitaria.presoInCarico.contatto.email}}</td>
+					
+						<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.sanitaria.presoInCarico.contatto.telefono}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{socialCard.sanitaria.presoInCarico.allegato.nome}}</td>
+						<td><a ng-if="socialCard.sanitaria.presoInCarico.allegato.link" ng-click="getFile(socialCard.sanitaria.presoInCarico.allegato.nome, socialCard.sanitaria.presoInCarico.allegato.link)"> <i
+								class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+
+		<div class="section">
+
+			<h3>{{ 'vaccini' | translate}}</h3>
+			<div ng-repeat="vacc in socialCard.sanitaria.vaccini" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-6">{{ 'vaccini' | translate}}</th>
+						<td class="col-sm-6">{{vacc.vaccino}}</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+
+
+
+
+		<div class="section">
+
+			<h3>{{ 'eventiMedici' | translate}}</h3>
+			<div ng-repeat="item in socialCard.sanitaria.eventiMedici" class="sub-section">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="col-sm-3">{{ 'tipo' | translate}}</th>
+							<td class="col-sm-3">{{item.tipo}}</td>
+						
+							<th class="col-sm-3">{{ 'data' | translate}}</th>
+							<td class="col-sm-3">{{item.data | date:'dd-MM-yyyy'}}</td>
+						</tr>
+						<tr>
+							<th class="col-sm-3">{{ 'presidioOspedaliero' | translate}}</th>
+							<td class="col-sm-3">{{item.presidioOspedaliero}}</td>
+						
+							<th class="col-sm-3">{{ 'unitaOperativa' | translate}}</th>
+							<td class="col-sm-3">{{item.unitaOperativa}}</td>
+						</tr>
+
+
+
+						<tr>
+							<th>{{ 'allegato' | translate}}</th>
+							<td>{{item.allegato.nome}}</td>
+							<td><a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<h3>{{ 'medicoRiferimento' | translate}}</h3>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th class="col-sm-3">{{ 'nome' | translate}}</th>
+							<td class="col-sm-3">{{item.medicoRiferimento.nome}}</td>
+						
+							<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+							<td class="col-sm-3">{{item.medicoRiferimento.cognome}}</td>
+						</tr>
+						<tr>
+							<th class="col-sm-3">{{ 'email' | translate}}</th>
+							<td class="col-sm-3">{{item.medicoRiferimento.email}}</td>
+						
+							<th class="col-sm-3">{{ 'telefono' | translate}}</th>
+							<td class="col-sm-3">{{item.medicoRiferimento.telefono}}</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+	<div class="section" ng-if="!sanHistInfo">
+		<!-- 		<a ng-click="exportJson(socialCard.sanitaria, 'sanitaria.json' )">{{ 'export' | translate}}</a>  -->
+		<button class="btn btn-primary" onclick="generatePDF('#sanitaria', 'sanitaria')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+		<button class="btn btn-primary" ng-click="downloadFolder('sanitaria' )">
+			<i class="fa fa-save"></i>{{ 'exportFolder' | translate}}
+		</button>
+	</div>
+
+	<div class="section" ng-if="sanHistInfo">
+		<div class="col-xs-12">
+			{{ 'HISTORY_DATE' | translate}} {{sanHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{sanHistInfo.username}} | <a ng-click="showSanitariaCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.sanitariaHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}}</th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}}</th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getSanitariaHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>

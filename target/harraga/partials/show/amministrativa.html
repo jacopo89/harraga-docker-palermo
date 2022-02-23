@@ -1,0 +1,507 @@
+<div class="section-wrapper" id="amministrativa">
+
+	<!-- 		{{socialCard.amministrativa.permessoSoggiorno}} -->
+	<div ng-show="canRead('PERMESSO_SOGGIORNO')" >
+	<div class="section">
+
+		<h3>{{ 'permessoSoggiorno' | translate}}</h3>
+		<div  ng-repeat="item in socialCard.amministrativa.permessoSoggiorno" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'stato' | translate}}</th>
+						<td>{{item.stato}}</td>
+					</tr>
+					<tr ng-show="item.stato=='Altro'">
+						<th>{{ 'altro' | translate}}</th>
+						<td>{{item.altroStato}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataRichiesta' | translate}}</th>
+						<td>{{item.dataRichiesta | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataRilascio' | translate}}</th>
+						<td>{{item.dataRilascio | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'rilasciatoDa' | translate}}</th>
+						<td>{{item.rilasciatoDa}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'dataScadenza' | translate}}</th>
+						<td>{{item.dataScadenza | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'tipologia' | translate}}</th>
+						<td>{{item.tipologia}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{item.allegato.nome}}</td>
+						<td><a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</div>
+
+	<!-- 	{{socialCard.amministrativa.procedureLegali}} -->
+	<div ng-show="canRead('AMMINISTRATIVA')">
+	<div class="section" >
+		<h3>{{ 'procedureLegali' | translate}}</h3>
+		<div ng-repeat="item in socialCard.amministrativa.procedureLegali" class="sub-section">
+			<table class="table">
+			<h4>{{'Dublino'|translate}}</h4>
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'Da quale paese' | translate}}</th>
+						<td class="col-sm-3">{{item.dublino.paesefrom}}</td>
+						<th class="col-sm-3">{{ 'Verso quale paese' | translate}}</th>
+						<td class="col-sm-3">{{item.dublino.paeseto}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'data' | translate}}</th>
+						<td class="col-sm-3">{{item.dublino.data |  date:'dd-MM-yyyy'}}</td>
+						<th class="col-sm-3">{{ 'statoProcedura' | translate}}</th>
+						<td class="col-sm-3">{{item.dublino.statoProcedura}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{item.dublino.allegato.nome}}</td>
+						<td><a ng-if="item.dublino.allegato.link" ng-click="getFile(item.dublino.allegato.nome, item.dublino.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h4>{{ 'appuntamenti' | translate}}</h4>
+
+			<div ng-repeat="appunt in item.appuntamenti">
+				<table class="table box">
+					<tbody>
+						<tr>
+							<th class="col-sm-3">{{ 'luogo' | translate}}</th>
+							<td class="col-sm-3">{{appunt.luogo}}</td>
+							<th class="col-sm-3">{{ 'data' | translate}}</th>
+							<td class="col-sm-3">{{appunt.data | date:'dd-MM-yyyy'}}</td>
+						</tr>
+						<tr>
+							<th class="col-sm-3">{{ 'motivo' | translate}}</th>
+							<td class="col-sm-3">{{appunt.motivo}}</td>
+							<th class="col-sm-3">{{ 'esito' | translate}}</th>
+							<td class="col-sm-3">{{appunt.esito}}</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<div ng-repeat="allegatoAppunt in appunt.allegati">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>{{ 'allegato' | translate}}</th>
+								<td>{{allegatoAppunt.allegato.nome}}</td>
+								<td><a ng-if="allegatoAppunt.allegato.link" ng-click="getFile(allegatoAppunt.allegato.nome, allegatoAppunt.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+								</a></td>
+							</tr>
+
+						</tbody>
+					</table>
+
+
+				</div>
+
+			</div>
+
+
+			<h4>{{ 'ricorsiAmministrativi' | translate}}</h4>
+
+			<div ng-repeat="ricorso in item.ricorsiAmministrativi">
+				<table class="table box">
+					<tbody>
+						<tr>
+							<th class="col-sm-3">{{ 'dataRicorsi' | translate}}</th>
+							<td class="col-sm-3">{{ricorso.data | date:'dd-MM-yyyy' }}</td>
+							<th class="col-sm-3">{{ 'avvocato' | translate}}</th>
+							<td class="col-sm-3">{{ricorso.avvocato}}</td>
+						</tr>
+						<tr>
+							<th class="col-sm-3">{{ 'gratuito' | translate}}</th>
+							<td class="col-sm-3">{{ricorso.gratuito}}</td>
+							<th class="col-sm-3">{{ 'note' | translate}}</th>
+							<td class="col-sm-3">{{ricorso.note}}</td>
+						</tr>
+						<tr ng-repeat="udienza in ricorso.udienze" >
+							<th>{{ 'udienze' | translate}}</th>
+							<td>{{udienza.dataUdienza | date:'dd-MM-yyyy'}}</td>
+						</tr>
+
+						<tr ng-repeat="allegatoRicorso in ricorso.allegati">
+							<th>{{ 'allegato' | translate}}</th>
+							<td>{{allegatoRicorso.allegato.nome}}</td>
+							<td><a ng-if="allegatoRicorso.allegato.link" ng-click="getFile(allegatoRicorso.allegato.nome, allegatoRicorso.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 		{{socialCard.amministrativa.provvedimentiGiudiziari}} -->
+
+	<div class="section" ng-show="canRead('AMMINISTRATIVA')">
+		<h3>{{ 'provvedimentiGiudiziari' | translate}}</h3>
+		<div ng-repeat="provv in socialCard.amministrativa.provvedimentiGiudiziari" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'data' | translate}}</th>
+						<td class="col-sm-3">{{provv.data | date:'dd-MM-yyyy'}}</td>
+						<th class="col-sm-3">{{ 'tipo' | translate}}</th>
+						<td class="col-sm-3">{{provv.tipo}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'istituzioneEmittente' | translate}}</th>
+						<td class="col-sm-3">{{provv.istituzioneEmittente}}</td>
+						<th class="col-sm-3">{{ 'avvocato' | translate}}</th>
+						<td class="col-sm-3">{{provv.avvocato}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{provv.allegato.nome}}</td>
+						<td><a ng-if="provv.allegato.link" ng-click="getFile(provv.allegato.nome, provv.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<!-- 	{{socialCard.amministrativa.riferimentoLegale}} -->
+
+	<div class="section" ng-show="canRead('AMMINISTRATIVA')">
+		<h3>{{ 'riferimentoLegale' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+
+					<tr>
+						<th class="col-sm-3">{{ 'tipo' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.riferimentoLegale.tipo}}</td>
+						<th class="col-sm-3">{{ 'nome' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.riferimentoLegale.contatto.nome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'cognome' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.riferimentoLegale.contatto.cognome}}</td>
+						<th class="col-sm-3">{{ 'email' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.riferimentoLegale.contatto.email}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'telefono' | translate}}</th>
+						<td>{{socialCard.amministrativa.riferimentoLegale.contatto.telefono}}</td>
+					</tr>
+
+
+
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+	<!-- 	{{socialCard.amministrativa.delegaAmministrativa}} -->
+
+	<div class="section">
+		<h3>{{ 'delegaAmministrativa' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+
+					<tr>
+						<th class="col-sm-3">{{ 'data' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.delegaAmministrativa.data | date:'dd-MM-yyyy'}}</td>
+						<th class="col-sm-3">{{ 'protocollo' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.delegaAmministrativa.protocollo}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'richiestaUONI' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.delegaAmministrativa.richiestaUONI}}</td>
+						<th class="col-sm-3">{{ 'altro' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.riferimentoLegale.altro}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<div ng-repeat="allegatoDelega in socialCard.amministrativa.delegaAmministrativa.allegati" class="sub-section">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>{{ 'allegato' | translate}}</th>
+							<td>{{allegatoDelega.allegato.nome}}</td>
+							<td><a ng-if="allegatoDelega.allegato.link" ng-click="getFile(allegatoDelega.allegato.nome, allegatoDelega.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- 	{{socialCard.amministrativa.revocaTutela}} -->
+
+	<div class="section">
+		<h3>{{ 'revocaTutela' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+
+					<tr>
+						<th>{{ 'motivazione' | translate}}</th>
+						<td>{{socialCard.amministrativa.revocaTutela.motivazione}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{socialCard.amministrativa.revocaTutela.provvedimento.nome}}</td>
+						<td><a ng-if="socialCard.amministrativa.revocaTutela.provvedimento.link" ng-click="getFile(socialCard.amministrativa.revocaTutela.provvedimento.nome, socialCard.amministrativa.revocaTutela.provvedimento.link)">
+								<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<!-- 	{{socialCard.amministrativa.pattoAccoglienza}} -->
+
+	<div class="section">
+		<h3>{{ 'pattoAccoglienza' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+
+				<tr>
+					<th>{{ 'allegato' | translate}}</th>
+					<td>{{socialCard.amministrativa.pattoAccoglienza.patto.nome}}</td>
+					<td><a ng-if="socialCard.amministrativa.pattoAccoglienza.patto.link" ng-click="getFile(socialCard.amministrativa.pattoAccoglienza.patto.nome, socialCard.amministrativa.pattoAccoglienza.patto.link)">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<!-- 	{{socialCard.amministrativa.STP}} -->
+
+	<div class="section">
+		<h3>{{ 'STP' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+
+				<tr>
+					<th>{{ 'allegato' | translate}}</th>
+					<td>{{socialCard.amministrativa.stp.allegato.nome}}</td>
+					<td><a ng-if="socialCard.amministrativa.stp.allegato.link" ng-click="getFile(socialCard.amministrativa.stp.allegato.nome, socialCard.amministrativa.stp.allegato.link)">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<!-- 	{{socialCard.amministrativa.codiceFiscale}} -->
+
+	<div class="section">
+		<h3>{{ 'codiceFiscale' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+
+				<tr>
+					<th>{{ 'codiceFiscale' | translate}}</th>
+					<td>{{socialCard.amministrativa.codiceFiscale.allegato.nome}}</td>
+					<td><a ng-if="socialCard.amministrativa.codiceFiscale.allegato.link" ng-click="getFile(socialCard.amministrativa.codiceFiscale.allegato.nome, socialCard.amministrativa.codiceFiscale.allegato.link)">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<!-- 	{{socialCard.amministrativa.tesseraSanitaria}} -->
+
+	<div class="section">
+		<h3>{{ 'tesseraSanitaria' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+
+				<tr>
+					<th>{{ 'tesseraSanitaria' | translate}}</th>
+					<td>{{socialCard.amministrativa.tesseraSanitaria.allegato.nome}}</td>
+					<td><a ng-if="socialCard.amministrativa.tesseraSanitaria.allegato.link" ng-click="getFile(socialCard.amministrativa.tesseraSanitaria.allegato.nome, socialCard.amministrativa.tesseraSanitaria.allegato.link)">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+
+	<!-- 	{{socialCard.amministrativa.proseguo21}} -->
+
+	<div class="section">
+		<h3>{{ 'proseguo21' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'dataAttribuzione' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.proseguo21.dataAttribuzione | date:'dd-MM-yyyy'}}</td>
+						<th class="col-sm-3">{{ 'dataFinale' | translate}}</th>
+						<td class="col-sm-3">{{socialCard.amministrativa.proseguo21.dataFinale | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'note' | translate}}</th>
+						<td>{{socialCard.amministrativa.proseguo21.note}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{socialCard.amministrativa.proseguo21.provvedimento.nome}}</td>
+						<td><a ng-if="socialCard.amministrativa.proseguo21.provvedimento.link" ng-click="getFile(socialCard.amministrativa.proseguo21.provvedimento.nome, socialCard.amministrativa.proseguo21.provvedimento.link)">
+								<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'documentiIdentita' | translate}}</h3>
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="documento in socialCard.amministrativa.documentiIdentita" >
+					<th>{{ 'allegato' | translate}}</th>
+					<td>{{socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.nome}}</td>
+					<td><a ng-if="documento.allegato.link" ng-click="getFile(documento.allegato.nome, documento.allegato.link)">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<div class="section">
+		<h3>{{ 'affidoAmministrativo' | translate}}</h3>
+		<div class="sub-section">
+			<table class="table">
+				<tbody>
+				<tr>
+					<th class="col-sm-3">{{ 'dataVerbaleAffidamento' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.amministrativa.affidoAmministrativo.dataVerbaleAffidamento | date:'dd-MM-yyyy'}}</td>
+					<th class="col-sm-3">{{ 'enteVerbaleAffidamento' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.amministrativa.affidoAmministrativo.enteVerbaleAffidamento}}</td>
+				</tr>
+				<tr>
+					<th>{{ 'allegato' | translate}}</th>
+					<td>{{socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.nome}}</td>
+					<td><a ng-if="socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.link" ng-click="getFile(socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.nome, socialCard.amministrativa.affidoAmministrativo.verbaleAffidamento.link)">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+
+				<tr>
+					<th class="col-sm-3">{{ 'dataProvvedimentoAffidamento' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.amministrativa.affidoAmministrativo.dataProvvedimentoAffidamento | date:'dd-MM-yyyy'}}</td>
+					<th class="col-sm-3">{{ 'enteProvvedimentoAffidamento' | translate}}</th>
+					<td class="col-sm-3">{{socialCard.amministrativa.affidoAmministrativo.enteProvvedimentoAffidamento}}</td>
+				</tr>
+				<tr>
+					<th>{{ 'allegato' | translate}}</th>
+					<td>{{socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.nome}}</td>
+					<td><a ng-if="socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.link" ng-click="getFile(socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.nome, socialCard.amministrativa.affidoAmministrativo.provvedimentoAffidamento.link)">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<div class="section" ng-if="!ammHistInfo">
+		<!-- 		<a ng-click="exportJson(socialCard.amministrativa, 'amministrativa.json' )">{{ 'export' | translate}}</a> -->
+		<button class="btn btn-primary" onclick="generatePDF('#amministrativa', 'amministrativa')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+		<button class="btn btn-primary" ng-click="downloadFolder('amministrativa' )">
+			<i class="fa fa-save"></i>{{ 'exportFolder' | translate}}
+		</button>
+	</div>
+
+	<div class="section" ng-if="ammHistInfo">
+		<div class="col-xs-12">
+			<!-- 	{{desHistInfo}} -->
+			{{ 'HISTORY_DATE' | translate}} {{ammHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{ammHistInfo.username}} | <a ng-click="showAmministrativaCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+</div>
+	<div class="section" ng-show="canRead('PERMESSO_SOGGIORNO')|| canRead('AMMINISTRATIVA')">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<!-- 		{{socialCard.desideriHist}}		 -->
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.amministrativaHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}}</th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}}</th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getAmministrativaHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
+
+
+</div>
+
+
+

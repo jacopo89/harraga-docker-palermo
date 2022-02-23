@@ -1,0 +1,179 @@
+<div class="section-wrapper" id="istruzione">
+	<!-- 	{{socialCard.istruzione}} -->
+
+	<div class="section">
+		<h3>{{ 'istruzioneOrigine' | translate}}</h3>
+		<div ng-repeat="item in socialCard.istruzione.istruzioneOrigine" class="sub-section">
+			<!-- 			{{item}}		 -->
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'saScrivere' | translate}}</th>
+						<td class="col-sm-3">{{item.saScrivere}}</td>
+					
+						<th class="col-sm-3">{{ 'saLeggere' | translate}}</th>
+						<td class="col-sm-3"> {{item.saLeggere}}</td>
+					</tr>
+					<tr>
+						<th >{{ 'Tipologia Istruzione' | translate}}</th>
+						<td >{{item.tipo}}</td>
+					</tr>
+					<tr ng-if="item.tipo=='Formale'">
+						<th >{{ 'anni' | translate}}</th>
+						<td >{{item.anni}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'descrizione' | translate}}</th>
+						<td class="col-sm-3">{{item.descrizione}}</td>
+						<th class="col-sm-3">{{ 'riconosciuto' | translate}}</th>
+						<td class="col-sm-3">{{item.riconosciuto}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{item.allegato.nome}}</td>
+						<td><a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="section">
+		<h3>{{ 'istruzioneItaliaConculsi' | translate}}</h3>
+		<div ng-repeat="item in socialCard.istruzione.istruzioneItaliaConculsi" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'Tipologia Istruzione' | translate}}</th>
+						<td class="col-sm-3">{{item.tipo}}</td>
+					
+						<th class="col-sm-3">{{ 'quale' | translate}}</th>
+						<td class="col-sm-3">{{item.quale}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'dataInizio' | translate}}</th>
+						<td class="col-sm-3">{{item.inizio | date:'dd-MM-yyyy'}}</td>
+					
+						<th class="col-sm-3">{{ 'dataFine' | translate}}</th>
+						<td class="col-sm-3">{{item.fine| date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'istituto' | translate}}</th>
+						<td>{{item.istituto}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{item.allegato.nome}}</td>
+						<td><a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<h3>{{ 'istruzioneItaliainCorso' | translate}}</h3>
+		<div ng-repeat="item in socialCard.istruzione.istruzioneItaliainCorso" class="sub-section">
+			<!-- 		{{item}} -->
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-3">{{ 'Tipologia Istruzione' | translate}}</th>
+						<td class="col-sm-3">{{item.tipo}}</td>
+					
+						<th class="col-sm-3">{{ 'nome' | translate}}</th>
+						<td class="col-sm-3">{{item.nome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-3">{{ 'dataInizio' | translate}}</th>
+						<td class="col-sm-3">{{item.inizio | date:'dd-MM-yyyy'}}</td>
+					
+						<th class="col-sm-3">{{ 'Data fine prevista' | translate}}</th>
+						<td class="col-sm-3">{{item.fine | date:'dd-MM-yyyy'}}</td>
+					</tr>
+
+
+					<tr>
+						<th class="col-sm-3">{{ 'classeGruppo' | translate}}</th>
+						<td class="col-sm-3">{{item.classeGruppo}}</td>
+					
+						<th class="col-sm-3">{{ 'orariGiorni' | translate}}</th>
+						<td class="col-sm-3">{{item.orariGiorni}}</td>
+					</tr>
+
+
+					<tr>
+						<th class="col-sm-3">{{ 'istituto' | translate}}</th>
+						<td class="col-sm-3">{{item.istituto}}</td>
+					
+						<th class="col-sm-3">{{ 'luogo' | translate}}</th>
+						<td class="col-sm-3">{{item.luogo}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'istituto' | translate}}</th>
+						<td>{{item.istituto}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'pianoCPIA' | translate}}</th>
+						<td>{{item.pianoCPIA.nome}}</td>
+						<td><a ng-if="item.pianoCPIA.link" ng-click="getFile(item.pianoCPIA.nome, item.pianoCPIA.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+					<tr>
+						<th>{{ 'pattoCPIA' | translate}}</th>
+						<td>{{item.pattoCPIA.nome}}</td>
+						<td><a ng-if="item.pattoCPIA.link" ng-click="getFile(item.pattoCPIA.nome, item.pattoCPIA.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+					<tr>
+						<th>{{ 'bilancioCompetenze' | translate}}</th>
+						<td>{{item.progettoFormativo.nome}}</td>
+						<td><a ng-if="item.progettoFormativo.link" ng-click="getFile(item.progettoFormativo.nome, item.progettoFormativo.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<div class="section" ng-if="!istHistInfo">
+		<!-- 		<a ng-click="exportJson(socialCard.istruzione, 'istruzione.json' )">{{ 'export' | translate}}</a> -->
+		<button class="btn btn-primary" onclick="generatePDF('#istruzione', 'istruzione')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+		<button class="btn btn-primary" ng-click="downloadFolder('istruzione' )">
+			<i class="fa fa-save"></i>{{ 'exportFolder' | translate}}
+		</button>
+	</div>
+
+
+
+	<div class="section" ng-if="istHistInfo">
+		<div class="col-xs-12">
+			{{ 'HISTORY_DATE' | translate}} {{istHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{istHistInfo.username}} | <a ng-click="showIstruzioneCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.istruzioneHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}}</th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}}</th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getIstruzioneHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>

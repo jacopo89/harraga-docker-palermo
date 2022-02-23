@@ -1,0 +1,63 @@
+<div class="section-wrapper" id="desideri">
+
+	<div class="section">
+
+
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>{{ 'aspirazioniProfessionali' | translate}}</th>
+					<td>{{socialCard.desideri.aspirazioniProfessionali}}</td>
+				</tr>
+				<tr>
+					<th>{{ 'altreAspettative' | translate}}</th>
+					<td>{{socialCard.desideri.altreAspettative}}</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+	</div>
+
+<!--	 LA SEZIONE DESIDERI NON HA ALLEGATI 	-->
+<!-- 	<div class="section" ng-if="!desHistInfo"> -->
+<!-- 		<a ng-click="exportJson(socialCard.desideri, 'desideri.json' )">{{ 'export' | translate}}</a> <a ng-click="downloadFolder('desideri' )">{{ 'exportFolder' | translate}}</a> -->
+		<button class="btn btn-primary" onclick="generatePDF('#desideri', 'desideri')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+<!-- 	</div> -->
+
+
+
+
+	<div class="section" ng-if="desHistInfo">
+
+		<div class="col-xs-12">
+			<!-- 	{{desHistInfo}} -->
+			{{ 'HISTORY_DATE' | translate}} {{desHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{desHistInfo.username}} | <a ng-click="showDesideriCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<!-- 		{{socialCard.desideriHist}}		 -->
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.desideriHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}}</th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}}</th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getDesideriHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+</div>

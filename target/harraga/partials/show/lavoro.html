@@ -1,0 +1,125 @@
+<div class="section-wrapper" id="lavoro">
+
+	<!-- 	{{socialCard.lavoro}} -->
+
+	<div class="section">
+		<h3>{{ 'lavoro' | translate}}</h3>
+		<div ng-repeat="item in socialCard.lavoro" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'tipo' | translate}}</th>
+						<td>{{item.tipo}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'stato' | translate}}</th>
+						<td>{{item.stato}}</td>
+					</tr>
+					<!-- 						<tr> -->
+					<!-- 							<th>{{ 'tipologia' | translate}}</th> -->
+					<!-- 							<td>{{item.tipologia}}</td> -->
+					<!-- 						</tr> -->
+					<tr>
+						<th>{{ 'ambito' | translate}}</th>
+						<td>{{item.ambito}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'inquadramento' | translate}}</th>
+						<td>{{item.inquadramento}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataInizio' | translate}}</th>
+						<td>{{item.dataInizio | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataFine' | translate}}</th>
+						<td>{{item.dataFine | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'nomeAzienda' | translate}}</th>
+						<td>{{item.nomeAzienda}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'luogoAzienda' | translate}}</th>
+						<td>{{item.luogoAzienda}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'emailAzienda' | translate}}</th>
+						<td>{{item.emailAzienda}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'telefonoAzienda' | translate}}</th>
+						<td>{{item.telefonoAzienda}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'competenzeAcquisite' | translate}}</th>
+						<td>{{item.competenzeAcquisite}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+			<h3>{{ 'certificazioni' | translate}}</h3>
+			<div ng-repeat="cert in item.certificazioni">
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>{{ 'descrizione' | translate}}</th>
+							<td>{{cert.descrizione}}</td>
+						</tr>
+						<tr>
+							<th>{{ 'allegato' | translate}}</th>
+							<td>{{cert.allegato.nome}}</td>
+							<td><a ng-if="cert.allegato.link" ng-click="getFile(cert.allegato.nome, cert.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+							</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+
+
+		</div>
+	</div>
+
+
+	<div class="section" ng-if="!lavHistInfo">
+		<!-- 		<a ng-click="exportJson(socialCard.lavoro, 'lavoro.json' )">{{ 'export' | translate}}</a> -->
+
+		<button class="btn btn-primary" onclick="generatePDF('#lavoro', 'lavoro')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+		<button class="btn btn-primary" ng-click="downloadFolder('lavoro' )">
+			<i class="fa fa-save"></i>{{ 'exportFolder' | translate}}
+		</button>
+	</div>
+
+
+	<div class="section" ng-if="lavHistInfo">
+		<div class="col-xs-12">
+			{{ 'HISTORY_DATE' | translate}} {{lavHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{lavHistInfo.username}} | <a ng-click="showLavoroCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.lavoroHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}}</th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}}</th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getLavoroHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</div>

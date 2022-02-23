@@ -1,0 +1,213 @@
+<div class="section-wrapper" id="competenze">
+
+
+
+	<!-- 		{{socialCard.competenze}} -->
+
+
+
+	<div class="section">
+
+		<h3>{{ 'lingueDichiarate' | translate}}</h3>
+		<div ng-repeat="item in socialCard.competenze.lingueDichiarate" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-6">{{ 'nome' | translate}}</th>
+						<td class="col-sm-6">{{item.nome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'livelloScritto' | translate}}</th>
+						<td class="col-sm-6">{{item.livelloScritto}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'livelloOrale' | translate}}</th>
+						<td class="col-sm-6">{{item.livelloOrale}}</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="section">
+
+		<h3>{{ 'lingueAttestate' | translate}}</h3>
+		<div ng-repeat="item in socialCard.competenze.lingueAttestate" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-6">{{ 'nome' | translate}}</th>
+						<td class="col-sm-6">{{item.nome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'livelloScritto' | translate}}</th>
+						<td class="col-sm-6">{{item.livelloScritto}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'livelloOrale' | translate}}</th>
+						<td class="col-sm-6">{{item.livelloOrale}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="section">
+
+		<h3>{{ 'lingueCertificate' | translate}}</h3>
+		<div ng-repeat="item in socialCard.competenze.lingueCertificate" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-6">{{ 'nome' | translate}}</th>
+						<td class="col-sm-6">{{item.nome}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'livelloScritto' | translate}}</th>
+						<td class="col-sm-6">{{item.livelloScritto}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'livelloOrale' | translate}}</th>
+						<td class="col-sm-6">{{item.livelloOrale}}</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="section">
+
+		<h3>{{ 'competenzeDigitali' | translate}}</h3>
+		<div ng-repeat="item in socialCard.competenze.competenzeDigitali" class="sub-section">
+			<!-- 			{{item}} -->
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-6">{{ 'tipo' | translate}}</th>
+						<td class="col-sm-6">{{item.tipo}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'descrizione' | translate}}</th>
+						<td class="col-sm-6">{{item.descrizione}}</td>
+					</tr>
+				
+					<tr>
+						<th class="col-sm-6">{{ 'livello' | translate}}</th>
+						<td class="col-sm-6">{{item.livello}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'certificazione' | translate}}</th>
+						<td>{{item.certificazione.nome}}</td>
+						<td><a ng-if="item.certificazione.link" ng-click="getFile(item.certificazione.nome, item.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="section">
+
+		<h3>{{ 'altreCompetenze' | translate}}</h3>
+		<div ng-repeat="item in socialCard.competenze.altreCompetenze" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th class="col-sm-6">{{ 'tipo' | translate}}</th>
+						<td class="col-sm-6">{{item.tipo}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'descrizione' | translate}}</th>
+						<td class="col-sm-6">{{item.descrizione}}</td>
+					</tr>
+					<tr>
+						<th class="col-sm-6">{{ 'livello' | translate}}</th>
+						<td class="col-sm-6">{{item.livello}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'certificazione' | translate}}</th>
+						<td>{{item.certificazione.nome}}</td>
+						<td><a ng-if="item.certificazione.link" ng-click="getFile(item.certificazione.nome, item.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+					<!-- 						<tr> -->
+					<!-- 							<th>{{ 'certificazione' | translate}}</th> -->
+					<!-- 							<td>{{item.certificazione}}</td> -->
+					<!-- 						</tr>			 -->
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="section">
+
+		<h3>{{ 'patenti' | translate}}</h3>
+		<div ng-repeat="item in socialCard.competenze.patenti" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'descrizione' | translate}}</th>
+						<td>{{item.descrizione}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'allegato' | translate}}</th>
+						<td>{{item.allegato.nome}}</td>
+						<td><a ng-if="item.allegato.link" ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+
+
+	<div class="section" ng-if="!comHistInfo">
+		<!-- 		<a ng-click="exportJson(socialCard.competenze, 'competenze.json' )">{{ 'export' | translate}}</a> -->
+		<button class="btn btn-primary" onclick="generatePDF('#competenze', 'competenze')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+		<button class="btn btn-primary" ng-click="downloadFolder('competenze' )">
+			<i class="fa fa-save"></i>{{ 'exportFolder' | translate}}
+		</button>
+	</div>
+
+
+
+	<div class="section" ng-if="comHistInfo">
+		<div class="col-xs-12">
+			{{ 'HISTORY_DATE' | translate}} {{comHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{comHistInfo.username}} | <a ng-click="showCompetenzeCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.competenzeHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}}</th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}}</th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getCompetenzeHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+
+
+
+</div>
