@@ -9,26 +9,22 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: testdb1
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
     expose:
       - 3306
-    networks:
-      harraga_net:
-        ipv4_address: 30.10.203.8
+    ports:
+      - "3306:3306"
   phpmyadmin:
     links:
       - db
     image: phpmyadmin/phpmyadmin
     expose:
-      - '80'
+      - '8081'
+    ports:
+      - "8081:8081"
     environment:
       PMA_HOST: db
       VIRTUAL_HOST: phpmyadmin.harraga.local
       MYSQL_ROOT_PASSWORD: root
-    networks:
-      harraga_net:
-        ipv4_address: 30.10.203.2
   web:
     container_name: harraga_web
     build:
@@ -40,20 +36,12 @@ services:
       - ./target/harraga.war:/usr/local/tomcat/webapps/harraga.war
     expose:
       - '8080'
+    ports:
+      - "8080:8080"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: testdb1
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-    networks:
-      harraga_net:
-        ipv4_address: 30.10.203.5
 volumes:
   db_vol:
-networks:
-  harraga_net:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 30.10.203.0/24
