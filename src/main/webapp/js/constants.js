@@ -44,7 +44,7 @@ var statoLavoroOp = ['In Corso','Pregressa'];
 
 // JACOPO : Inserimento var DocumentoOp
 var documentoOp = ['Estratto di nascita','Carta di identità', 'Codice Fiscale', 'Altro'];
-var luogoOp =["Questura","Commissione","Anagrafe","Tribunale","Comune di Palermo", "Altro"];
+var luogoOp =["Questura","Commissione","Anagrafe","Tribunale","Comune di Marsala", "Altro"];
 var secAccOp = ["Sprar", "Comunità alloggio", "Altro"];
 var booleanOp = ["Sì", "No"];
 var motivazioneOp = ["Comune","Maggiore età", "Calcolo maggiore età", "altro"];
