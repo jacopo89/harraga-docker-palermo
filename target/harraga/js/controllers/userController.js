@@ -55,7 +55,7 @@ app.controller('LoginCtrl', [
 					if(temp.status==401){
 						textContent = "Verifica username e password"
 					}else if(temp.status==451){
-						textContent = "Utente non abilitato, rivolgersi al Comune di Marsala"
+						textContent = "Utente non abilitato, rivolgersi al Comune di Agrigento"
 					}
 
 					$mdDialog.show(
@@ -130,7 +130,7 @@ app.controller('LoginCtrl', [
 						        .parent(angular.element(document.querySelector('#popupContainer')))
 						        .clickOutsideToClose(true)
 						        .title('Registrazione avvenuta con successo')
-						        .textContent("Per poter utilizzare il tuo account è necessaria l'attivazione da parte del Comune di Marsala")
+						        .textContent("Per poter utilizzare il tuo account è necessaria l'attivazione da parte del Comune di Agrigento")
 						        .ariaLabel('Alert Dialog Demo')
 						        .ok('OK!')
 						        .targetEvent(ev)

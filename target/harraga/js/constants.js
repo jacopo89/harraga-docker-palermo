@@ -44,7 +44,7 @@ var statoLavoroOp = ['In Corso','Pregressa'];
 
 // JACOPO : Inserimento var DocumentoOp
 var documentoOp = ['Estratto di nascita','Carta di identità', 'Codice Fiscale', 'Altro'];
-var luogoOp =["Questura","Commissione","Anagrafe","Tribunale","Comune di Marsala", "Altro"];
+var luogoOp =["Questura","Commissione","Anagrafe","Tribunale","Comune di Agrigento", "Altro"];
 var secAccOp = ["Sprar", "Comunità alloggio", "Altro"];
 var booleanOp = ["Sì", "No"];
 var motivazioneOp = ["Comune","Maggiore età", "Calcolo maggiore età", "altro"];
@@ -55,13 +55,13 @@ var tipologiaAdozioneOp = ["Affido","Adozione"];
 
 
 
-var ruoli = [ 'CPA', 'RESP_SEC_ACC', 'TUTORE', 'COMUNE_MARSALA', 'REF_LEGALE',
+var ruoli = [ 'CPA', 'RESP_SEC_ACC', 'TUTORE', 'COMUNE_AGRIGENTO', 'REF_LEGALE',
 		'ASP', 'CPIA', 'AGENZIA_LAVORO', 'ASSOCIAZIONI', 'USSM', 'ITASTRA', 'GARANTE', 'MINORE', 'TRIBUNALE'];
 
 // JACOPO : ELIMINAZIONE DEI RUOLI CPA E RESP_SEC_ACC DA CREATOR_ROLE
-var CREATOR_ROLE = ['COMUNE_MARSALA' ];
+var CREATOR_ROLE = ['COMUNE_AGRIGENTO' ];
 // JACOPO : ELIMINAZIONE DEI RUOLI CPA E RESP_SEC_ACC DA INSTITUTIONAL_ROLE
-var INSTITUTIONAL_ROLE = ['COMUNE_MARSALA', 'ASP',  'ITASTRA', 'CPIA', 'USSM', 'GARANTE' ];
+var INSTITUTIONAL_ROLE = ['COMUNE_AGRIGENTO', 'ASP',  'ITASTRA', 'CPIA', 'USSM', 'GARANTE' ];
 
 var PERMISSION_F = [
 
@@ -90,10 +90,10 @@ var PERMISSION_F = [
 			"write" : [ "SOCIALE","COMPETENZE", "DESIDERI" ]
 		},
 	
-		// COMUNE_MARSALA
+		// COMUNE_AGRIGENTO
 		,
 		{
-			"userType" : "COMUNE_MARSALA",
+			"userType" : "COMUNE_AGRIGENTO",
 			"read" : [ "ANAGRAFICA", "AMMINISTRATIVA","PERMESSO_SOGGIORNO", "STORIA", "ISTRUZIONE",
 					"SANITARIA", "DISABILITA", "LAVORO", "SOCIALE", "COMPETENZE", "PENALE", "DESIDERI" ],
 			"write" : [ "ANAGRAFICA", "AMMINISTRATIVA", "STORIA", "SANITARIA", "DISABILITA" ]
@@ -278,12 +278,12 @@ var PERMISSION = [ {
 },
 // ComunePalermo
 {
-	"userType" : "COMUNE_MARSALA",
+	"userType" : "COMUNE_AGRIGENTO",
 	"section" : "ANAGRAFICA",
 	"read" : [ "ANAGRAFICA" ],
 	"write" : [ "" ]
 }, {
-	"userType" : "COMUNE_MARSALA",
+	"userType" : "COMUNE_AGRIGENTO",
 	"section" : "AMMINISTRATIVA",
 	"read" : [ "AMMINISTRATIVA" ],
 	"write" : [ "" ]
