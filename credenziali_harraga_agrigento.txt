@@ -1,0 +1,13 @@
+Istruzioni
+
+Deployare l'applicativo Harraga.war su un application server Tomcat, possibilmente versione 9.0.48, con la quale è garantito il corretto funzionamento.
+L'applicativo è predisposto per dialogare con un database Mysql 5.7, servito su localhost:3306
+
+Per la creazione del database, è sufficiente utilizzare il file DUMP_DB.sql allegato o tramite riga di comando o qualunque programma che permetta di eseguire query SQL, phpmyadmin, heidisql, etc
+Il file DUMP_DB.sql esegue le seguenti operazioni in automatico:
+- creazione del database HARRAGA_AGRIGENTO
+- creazione delle tabelle necessarie
+- creazione superutente dell'applicativo con le seguenti credenziali
+
+Username: Comune
+Password: ComuneAgrigento2022!!
