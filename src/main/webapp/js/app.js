@@ -350,7 +350,7 @@ config(['$routeProvider', function ($routeProvider) {
 
 }).constant('SERVER_INFO', {
 
-	base_url: 'http://127.0.0.1:8080/harraga/',
+	base_url: 'http://127.0.0.1/harraga/',
 
 
 //	SOCIAL CARD
