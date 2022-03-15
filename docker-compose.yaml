@@ -33,7 +33,7 @@ services:
       - db
     image: tomcat:9.0.48
     volumes:
-      - ./target/harraga.war:/usr/local/tomcat/webapps/harraga.war
+      - ./target/ROOT.war:/usr/local/tomcat/webapps/ROOT.war
     expose:
       - '8080'
     ports:
