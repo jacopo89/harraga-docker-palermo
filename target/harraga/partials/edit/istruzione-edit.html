@@ -1,0 +1,323 @@
+<!-- {{socialCard.istruzione}} -->
+
+
+<form novalidate="novalidate" class="form-horizontal">
+
+
+
+	<div class="section">
+		<h3>{{ 'istruzioneOrigine' | translate}}</h3>
+		<div ng-repeat="item in socialCard.istruzione.istruzioneOrigine" class="sub-section col-xs-12">
+			<!-- 			{{item}}						 -->
+			
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'saLeggere' | translate}}</label>
+					<div class="controls">
+						<select class="form-control" ng-model="item.saLeggere" ng-options="option for option in readWriteOp track by option">
+						</select>
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'saScrivere' | translate}}</label>
+					<div class="controls">
+						<select class="form-control" ng-model="item.saScrivere" ng-options="option for option in readWriteOp track by option">
+						</select>
+					</div>
+				</div>
+	
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'tipologiaIstruzione' | translate}}</label>
+					<div class="controls">
+						<select class="form-control" ng-model="item.tipo" ng-options="option for option in formInformOp track by option">
+						</select>
+					</div>
+				</div>
+	
+				<!-- 			{{item.tipo=='Formale'}} -->
+				<div ng-show="item.tipo=='Formale'" class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'anni' | translate}}</label>
+					<div class="controls">
+						<select class="form-control" ng-model="item.anni" ng-options="option for option in istrOrgAnniOp track by option">
+						</select>
+					</div>
+				</div>
+				
+				<div ng-show="item.tipo=='Formale'" class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'riconosciuto' | translate}}</label>
+					<div class="controls">
+						<select class="form-control" ng-model="item.riconosciuto" ng-options="option for option in corsoRiconosciutoOp track by option">
+						</select>
+					</div>
+				</div>
+				<div ng-show="item.tipo=='Informale'" class="control-group col-xs-12 col-sm-12">
+					<div class="control-group col-xs-12">
+						<label class="control-label">{{ 'descrizione' | translate}}</label>
+						<div class="controls">
+							<textarea class="form-control" rows="5" ng-model="item.descrizione" />
+						</div>
+					</div>
+				</div>
+	
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'allegato' | translate}}</label>
+					<div ng-if="item.allegato && !item.allegato.isNew && item.allegato.link!=''">
+						{{item.allegato.nome}} - <a ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a>
+					</div>
+					<input type="button" value="Cambia" ng-click="item.allegato.isNew=true" ng-show="item.allegato && !item.allegato.isNew && item.allegato.link!=''" /> <input
+						ng-show="!item.allegato || item.allegato.isNew || item.allegato.link==''" type="file" name="file" fileread="item.allegato">
+				</div>
+	
+	
+				<div class="control-group col-xs-12 col-sm-6">
+					<a ng-click="deleteIstrOrg(item)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+				</div>
+			</div>
+		
+		<div class="col-xs-12">
+			<a ng-click="addIstrOrg()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<h3>{{ 'istruzioneItaliaConculsi' | translate}}</h3>
+
+		<div ng-repeat="item in socialCard.istruzione.istruzioneItaliaConculsi" class="sub-section col-xs-12">
+			<!-- 			{{item}}						 -->
+			<div class="control-group col-xs-12 col-sm-12">
+				<label class="control-label">{{ 'tipologiaIstruzione' | translate}}</label>
+				<div class="controls">
+					<select class="form-control" ng-model="item.tipo" ng-options="option for option in formNoFormOp track by option">
+					</select>
+				</div>
+			</div>
+			<div ng-show="item.tipo=='Formale'">
+				<div class="control-group col-xs-12 col-sm-12"">
+					<label class="control-label">{{ 'Istruzione' | translate}}</label>
+					<div class="controls">
+					<select class="form-control" ng-model="item.quale" ng-options="option for option in istruzioneOp track by option">
+							</select>
+					</div>
+				</div>
+			</div>
+			<div ng-show="item.tipo=='Informale'">
+				<div class="control-group col-xs-12 col-sm-12"">
+					<label class="control-label">{{ 'Istruzione' | translate}}</label>
+					<div class="controls">
+					<input class="form-control" type="text" ng-model="item.quale" />
+		
+					</div>
+				</div>
+			</div>		
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataInizio' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.inizio" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataFine' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.fine" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6"">
+				<label class="control-label">{{ 'Istituto' | translate}}</label>
+				<div class="controls">
+					<input class="form-control" type="text" ng-model="item.istituto" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+				<div ng-if="item.allegato && !item.allegato.isNew && item.allegato.link!=''">
+					{{item.allegato.nome}} - <a ng-click="getFile(item.allegato.nome, item.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="item.allegato.isNew=true" ng-show="item.allegato && !item.allegato.isNew && item.allegato.link!=''" /> <input
+					ng-show="!item.allegato || item.allegato.isNew || item.allegato.link==''" type="file" name="file" fileread="item.allegato">
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteIstItaCon(item)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addIstItaCon()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+
+
+
+
+
+<div class="section">
+		<h3>{{ 'istruzioneItaliainCorso' | translate}}</h3>
+
+		<div ng-repeat="item in socialCard.istruzione.istruzioneItaliainCorso" class="sub-section col-xs-12">
+			<!-- 			{{item}}						 -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipologiaIstruzione' | translate}}</label>
+				<div class="controls">
+					<select class="form-control" ng-model="item.tipo" ng-options="option for option in formNoFormOp track by option">
+					</select>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6"">
+				<label class="control-label">{{ 'indirizzoStudi' | translate}}</label>
+				<div class="controls">
+					<input class="form-control" type="text" ng-model="item.nome" />
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataInizio' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.inizio" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'Data fine prevista' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="item.fine" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6"">
+				<label class="control-label">{{ 'classeGruppo' | translate}}</label>
+				<div class="controls">
+					<input class="form-control" type="text" ng-model="item.classeGruppo" />
+				</div>
+			</div>
+			
+
+			<div class="control-group col-xs-12 col-sm-6"">
+				<label class="control-label">{{ 'istituto' | translate}}</label>
+				<div class="controls">
+					<input class="form-control" type="text" ng-model="item.istituto" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6"">
+				<label class="control-label">{{ 'luogo' | translate}}</label>
+				<div class="controls">
+					<input class="form-control" type="text" ng-model="item.luogo" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'orariGiorni' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control"  ng-model="item.orariGiorni" />
+				</div>
+			</div> 
+			
+			<!-- PIANO CPIA -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'pianoCPIA' | translate}}</label>
+			
+				<div ng-if="item.pianoCPIA && !item.pianoCPIA.isNew && item.pianoCPIA.link!=''">
+					{{item.pianoCPIA.nome}} - <a ng-click="getFile(item.pianoCPIA.nome, item.pianoCPIA.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="item.pianoCPIA.isNew=true" ng-show="item.pianoCPIA && !item.pianoCPIA.isNew && item.pianoCPIA.link!=''" /> <input
+					ng-show="!item.pianoCPIA || item.pianoCPIA.isNew || item.pianoCPIA.link==''" type="file" name="file" fileread="item.pianoCPIA">
+			</div>
+			
+				<!-- PATTO CPIA -->
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'pattoCPIA' | translate}}</label>
+				<div ng-if="item.pattoCPIA && !item.pattoCPIA.isNew && item.pattoCPIA.link!=''">
+					{{item.pattoCPIA.nome}} - <a ng-click="getFile(item.pattoCPIA.nome, item.pattoCPIA.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="item.pattoCPIA.isNew=true" ng-show="item.pattoCPIA && !item.pattoCPIA.isNew && item.pattoCPIA.link!=''" /> <input
+					ng-show="!item.pattoCPIA || item.pattoCPIA.isNew || item.pattoCPIA.link==''" type="file" name="file" fileread="item.pattoCPIA">
+			</div>
+			
+			
+				<!-- BILANCIO CPIA -->
+			<div class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'bilancioCompetenze' | translate}}</label>
+			
+				
+				<div ng-if="item.progettoFormativo && !item.progettoFormativo.isNew && item.progettoFormativo.link!=''">
+					{{item.progettoFormativo.nome}} - <a ng-click="getFile(item.progettoFormativo.nome, item.progettoFormativo.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="item.progettoFormativo.isNew=true" ng-show="item.progettoFormativo && !item.progettoFormativo.isNew && item.progettoFormativo.link!=''" /> 
+				<input ng-show="!item.progettoFormativo || item.progettoFormativo.isNew || item.progettoFormativo.link==''" type="file" name="file" fileread="item.progettoFormativo">
+			</div>
+			
+			
+			
+			<!--  VALUTAZIONI -->
+			
+			<div class="control-group col-xs-12">
+			<div ng-repeat="valutazione in item.valutazioni" class="control-group col-xs-12">
+			
+			
+			
+				<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'valutazione' | translate}}</label>
+			
+				
+				<div ng-if="valutazione && !valutazione.isNew && valutazione.link!=''">
+					{{valutazione.nome}} - <a ng-click="getFile(valutazione.nome, valutazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="valutazione.isNew=true" ng-show="valutazione && !valutazione.isNew && valutazione.link!=''" /> 
+				<input ng-show="!valutazione || valutazione.isNew || valutazione.link==''" type="file" name="file" fileread="valutazione">
+			</div>
+				
+				
+			<!-- DELETE BUTTON VALUTAZIONI -->
+				<div class="control-group col-xs-12 col-sm-6 ">
+					<a ng-click="deleteValutazione(item,valutazione)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+				</div>
+			</div>
+			</div>
+			<!--  ADD BUTTON VALUTAZIONI -->
+			<div class="col-xs-12">
+				<a ng-click="addValutazione(item)" class="btn btn-small btn-info">{{ 'aggiungiUnaValutazione' | translate}}</a>
+			</div>
+
+
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteIstItaInCorso(item)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addIstItaInCorso()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<br>
+	<div class="control-group col-xs-12 col-sm-6">
+		<div class="controls">
+			<a ng-click="updateIstruzione()" class="btn btn-small btn-success">{{ 'apply' | translate}}</a>
+		</div>
+	</div>
+</form>

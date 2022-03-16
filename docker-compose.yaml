@@ -30,7 +30,7 @@ services:
       harraga_net:
         ipv4_address: 30.10.203.2
   web:
-    container_name: harraga_web
+    container_name: harraga_webharraga
     links:
       - db
     image: tomcat:9.0.48
@@ -38,6 +38,8 @@ services:
       - ./target/ROOT.war:/usr/local/tomcat/webapps/ROOT.war
     expose:
       - '8080'
+    ports:
+      - "8080:8080"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: testdb1

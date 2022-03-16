@@ -1,0 +1,384 @@
+<form novalidate="novalidate" class="form-horizontal">
+
+	<div class="section">
+		<!-- 		{{socialCard.sociale.volontariato}} -->
+		<h3>{{ 'EsperienzeVolontariato' | translate}}</h3>
+		<label>SI: <input type="checkbox" ng-model="socialCard.sociale.volontariatoYes"></label><br /> 
+		<div ng-show="socialCard.sociale.volontariatoYes">
+
+		<div ng-repeat="volont in socialCard.sociale.volontariato" class="sub-section col-xs-12">
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'Stato' | translate}}</label>
+				<div class="controls">
+					<!-- 					<input type="email" class="form-control" ng-model="volont.pregressa" /> -->
+					<select class="form-control" ng-model="volont.pregressa" ng-options="option for option in statoLavoroOp track by option"></select> 
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="volont.tipo" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataInizio' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="volont.dataInizio" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataFine' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="volont.dataFine" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div ng-show="volont.pregressa=='In Corso'" class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'giorniOrari' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="volont.giorniOrari" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'competenzeAcquisite' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="volont.competenzeAcquisite" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'certificazione' | translate}}</label>
+				<div ng-if="volont.certificazione && !volont.certificazione.isNew && volont.certificazione.link!=''">
+					{{volont.certificazione.nome}} - <a ng-click="getFile(volont.certificazione.nome, volont.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="volont.certificazione.isNew=true" ng-show="volont.certificazione && !volont.certificazione.isNew && volont.certificazione.link!=''" /> <input
+					ng-show="!volont.certificazione || volont.certificazione.isNew || volont.certificazione.link==''" type="file" name="file" fileread="volont.certificazione">
+			</div>
+			<div class="col-xs-12 box">
+				<h3>{{ 'Referente' | translate}}</h3>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'nome' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="volont.referente.nome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'cognome' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="volont.referente.cognome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'email' | translate}}</label>
+					<div class="controls">
+						<input type="email" class="form-control" ng-model="volont.referente.email" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'telefono' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="volont.referente.telefono" />
+					</div>
+				</div>
+
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteVolont(volont)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addVolont()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+	</div>
+	
+	<div class="section">
+		<!-- 		{{socialCard.sociale.laboratori}} -->
+		<h3>{{ 'EsperienzeLaboratori' | translate}}</h3>
+		<label>SI: <input type="checkbox" ng-model="socialCard.sociale.laboratoriYes"></label><br /> 
+		<div ng-show="socialCard.sociale.laboratoriYes">
+		
+
+		<div ng-repeat="laboratorio in socialCard.sociale.laboratori" class="sub-section col-xs-12">
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'pregressa' | translate}}</label>
+				<div class="controls">
+					<!-- 					<input type="text" class="form-control" ng-model="laboratorio.pregressa" /> -->
+					
+					<select class="form-control" ng-model="laboratorio.pregressa" ng-options="option for option in statoLavoroOp track by option"></select>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="laboratorio.tipo" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataInizio' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="laboratorio.dataInizio" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataFine' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="laboratorio.dataFine" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div ng-show="laboratorio.pregressa=='In Corso'" class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'giorniOrari' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="laboratorio.giorniOrari" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="laboratorio.competenzeAcquisite" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'certificazione' | translate}}</label>
+				<div ng-if="laboratorio.certificazione && !laboratorio.certificazione.isNew && laboratorio.certificazione.link!=''">
+					{{laboratorio.certificazione.nome}} - <a ng-click="getFile(laboratorio.certificazione.nome, laboratorio.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="laboratorio.certificazione.isNew=true" ng-show="laboratorio.certificazione && !laboratorio.certificazione.isNew && laboratorio.certificazione.link!=''" /> <input
+					ng-show="!laboratorio.certificazione || laboratorio.certificazione.isNew || laboratorio.certificazione.link==''" type="file" name="file" fileread="laboratorio.certificazione">
+			</div>
+			<div class="col-xs-12 box">
+				<h3>{{ 'Referente' | translate}}</h3>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'nome' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="laboratorio.referente.nome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'cognome' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="laboratorio.referente.cognome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'email' | translate}}</label>
+					<div class="controls">
+						<input type="email" class="form-control" ng-model="laboratorio.referente.email" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'telefono' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="laboratorio.referente.telefono" />
+					</div>
+				</div>
+
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteLab(laboratorio)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addLab()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+	</div>
+
+	<div class="section">
+		<!-- 		{{socialCard.sociale.sport}} -->
+		<h3>{{ 'EsperienzeSport' | translate}}</h3>
+		<label>SI: <input type="checkbox" ng-model="socialCard.sociale.sportYes"></label><br /> 
+		<div ng-show="socialCard.sociale.sportYes">
+		
+
+		<div ng-repeat="sportItem in socialCard.sociale.sport" class="sub-section col-xs-12">
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'pregressa' | translate}}</label>
+				<div class="controls">
+					<!-- 					<input type="text" class="form-control" ng-model="sportItem.pregressa" /> -->
+					<select class="form-control" ng-model="sportItem.pregressa" ng-options="option for option in statoLavoroOp track by option"></select>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="sportItem.tipo" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataInizio' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="sportItem.dataInizio" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataFine' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="sportItem.dataFine" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div ng-show="sportItem.pregressa=='In Corso'" class="control-group col-xs-12">
+				<label class="control-label">{{ 'giorniOrari' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="sportItem.giorniOrari" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="sportItem.competenzeAcquisite" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'certificazione' | translate}}</label>
+				<div ng-if="sportItem.certificazione && !sportItem.certificazione.isNew && sportItem.certificazione.link!=''">
+					{{sportItem.certificazione.nome}} - <a ng-click="getFile(sportItem.certificazione.nome, sportItem.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="sportItem.certificazione.isNew=true" ng-show="sportItem.certificazione && !sportItem.certificazione.isNew && sportItem.certificazione.link!=''" /> <input
+					ng-show="!sportItem.certificazione || sportItem.certificazione.isNew || sportItem.certificazione.link==''" type="file" name="file" fileread="sportItem.certificazione">
+			</div>
+			<div class="col-xs-12 box">
+				<h3>{{ 'Referente' | translate}}</h3>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'nome' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="sportItem.referente.nome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'cognome' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="sportItem.referente.cognome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'email' | translate}}</label>
+					<div class="controls">
+						<input type="email" class="form-control" ng-model="sportItem.referente.email" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'telefono' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="sportItem.referente.telefono" />
+					</div>
+				</div>
+
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteSport(sportItem)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addSport()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+	</div>
+
+
+
+	<div class="section">
+		<!-- 		{{socialCard.sociale.gruppiAss}} -->
+		<h3>{{ 'Gruppi' | translate}}</h3>
+		<label>SI: <input type="checkbox" ng-model="socialCard.sociale.gruppiYes"></label><br /> 
+		<div ng-show="socialCard.sociale.gruppiYes">
+		
+		<div ng-repeat="gruppiAssItem in socialCard.sociale.gruppiAss" class="sub-section col-xs-12">
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'pregressa' | translate}}</label>
+				<div class="controls">
+					<!-- 					<input type="text" class="form-control" ng-model="gruppiAssItem.pregressa" /> -->
+					<select class="form-control" ng-model="gruppiAssItem.pregressa" ng-options="option for option in statoLavoroOp track by option"></select>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="gruppiAssItem.tipo" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataInizio' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="gruppiAssItem.dataInizio" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'dataFine' | translate}}</label>
+				<div class="controls">
+					<md-datepicker ng-model="gruppiAssItem.dataFine" md-placeholder="Enter date"></md-datepicker>
+				</div>
+			</div>
+			<div ng-show="gruppiAssItem.pregressa=='In Corso'" class="control-group col-xs-12 ">
+				<label class="control-label">{{ 'giorniOrari' | translate}}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="5" ng-model="gruppiAssItem.giorniOrari" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'tipo' | translate}}</label>
+				<div class="controls">
+					<input type="text" class="form-control" ng-model="gruppiAssItem.competenzeAcquisite" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'certificazione' | translate}}</label>
+				<div ng-if="gruppiAssItem.certificazione && !gruppiAssItem.certificazione.isNew && gruppiAssItem.certificazione.link!=''">
+					{{gruppiAssItem.certificazione.nome}} - <a ng-click="getFile(gruppiAssItem.certificazione.nome, gruppiAssItem.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="gruppiAssItem.certificazione.isNew=true" ng-show="gruppiAssItem.certificazione && !gruppiAssItem.certificazione.isNew && gruppiAssItem.certificazione.link!=''" /> <input
+					ng-show="!gruppiAssItem.certificazione || gruppiAssItem.certificazione.isNew || gruppiAssItem.certificazione.link==''" type="file" name="file" fileread="gruppiAssItem.certificazione">
+			</div>
+			<div class="col-xs-12 box">
+				<h3>{{ 'Referente' | translate}}</h3>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'nome' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="gruppiAssItem.referente.nome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'cognome' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="gruppiAssItem.referente.cognome" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'email' | translate}}</label>
+					<div class="controls">
+						<input type="email" class="form-control" ng-model="gruppiAssItem.referente.email" />
+					</div>
+				</div>
+				<div class="control-group col-xs-12 col-sm-6">
+					<label class="control-label">{{ 'telefono' | translate}}</label>
+					<div class="controls">
+						<input type="text" class="form-control" ng-model="gruppiAssItem.referente.telefono" />
+					</div>
+				</div>
+
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteGruppiAss(gruppiAssItem)" class="btn btn-small btn-danger top10">{{ 'elimina' | translate}}</a>
+			</div>
+		</div>
+
+		<div class="col-xs-12">
+			<a ng-click="addGruppiAss()" class="btn btn-small btn-info">{{ 'aggiungi' | translate}}</a>
+		</div>
+	</div>
+	</div>
+	
+
+
+	<br>
+	<div class="control-group col-xs-12">
+		<div class="controls">
+			<a ng-click="updateSociale()" class="btn btn-small btn-success">{{ 'apply' | translate}}</a>
+		</div>
+	</div>
+</form>

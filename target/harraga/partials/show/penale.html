@@ -1,0 +1,99 @@
+<div class="section-wrapper" id="penale">
+<!-- {{socialCard.penale}}  -->
+		
+
+	<div class="section">
+	<div ng-repeat="proc in socialCard.penale.procedimentiPenali" class="">
+		<h3>{{ 'Procedimento Penale' | translate}}</h3>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>{{ 'statoProcedimento' | translate}}</th>
+					<td>{{proc.statoProcedimento}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<h3>{{ 'Assistente Sociale' | translate}}</h3>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>{{ 'nomeAssistenteSociale' | translate}}</th>
+					<td>{{proc.assistenteSociale.nome}}</td>
+				</tr>
+				<tr>
+					<th>{{ 'cognomeAssistenteSociale' | translate}}</th>
+					<td>{{proc.assistenteSociale.cognome}}</td>
+				</tr>
+				<tr>
+					<th>{{ 'emailAssistenteSociale' | translate}}</th>
+					<td>{{proc.assistenteSociale.email}}</td>
+				</tr>
+				<tr>
+					<th>{{ 'telefonoAssistenteSociale' | translate}}</th>
+					<td>{{proc.assistenteSociale.telefono}}</td>
+				</tr>
+				</tbody>
+		</table>
+		<h3>{{ 'Progetto Educativo Individualizzato' | translate}}</h3>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>{{ 'descrizionePei' | translate}}</th>
+					<td>{{proc.pei.descrizione}}</td>
+				</tr>
+				
+				
+				<tr>
+					<th>{{ 'allegatoPei' | translate}}</th>
+					<td>{{proc.pei.allegato.nome}}</td>
+					<td><a ng-if="proc.pei.allegato.link" ng-click="getFile(proc.pei.allegato.nome, proc.pei.allegato.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+					</a></td>
+				</tr>
+
+			</tbody>
+		</table>
+		</div>
+	</div>
+	
+	
+	
+	
+	<div class="section" ng-if="!penHistInfo">
+<!-- 		<a ng-click="exportJson(socialCard.penale, 'penale.json' )">{{ 'export' | translate}}</a> -->
+		<button class="btn btn-primary" onclick="generatePDF('#penale', 'penale')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+		<button class="btn btn-primary" ng-click="downloadFolder('penale' )">
+			<i class="fa fa-save"></i>{{ 'exportFolder' | translate}}
+		</button>
+	</div>
+	
+	
+	<div class="section" ng-if="penHistInfo">
+		<div class="col-xs-12">
+			{{ 'HISTORY_DATE' | translate}} {{penHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{penHistInfo.username}} | <a ng-click="showPenaleCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.penaleHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}} </th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}} </th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getPenaleHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	
+
+
+</div>

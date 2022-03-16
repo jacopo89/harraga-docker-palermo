@@ -30,7 +30,7 @@ public class UserList extends ActionSupport {
 		ArrayList<User> userList = new ArrayList<User>();
 		
 		if(user!=null) {
-			if(user.getType() == User.Ruolo.COMUNE_PALERMO) {				
+			if(user.getType() == User.Ruolo.COMUNE_MARSALA) {
 				 userList = UserDAO.getInstance().getUserList();
 				 for(User userItem : userList) {
 					 userItem.setPassword("");

@@ -20,7 +20,7 @@ public class DummyLoginDAO {
 		User user1 = new User("CPA", "CPA", null, 0, User.Ruolo.CPA, 1, " ", " ", " ", " ", "", null, 0);
 		User user2 = new User("SecondaAccoglienza", "SecondaAccoglienza", null, 0, User.Ruolo.RESP_SEC_ACC, 1, " ", " ", " ", " ", "", null, 0);
 		User user3 = new User("Tutore", "Tutore", null, 0, User.Ruolo.TUTORE, 1, " ", " ", " ", " ", "", null, 0);
-		User user4 = new User("ComunePalermo", "ComunePalermo", null, 0, User.Ruolo.COMUNE_PALERMO, 1, " ", " ", " ", " ", "", null, 0);
+		User user4 = new User("ComuneMarsala", "ComuneMarsala", null, 0, User.Ruolo.COMUNE_MARSALA, 1, " ", " ", " ", " ", "", null, 0);
 		User user5 = new User("ReferenteLegale", "ReferenteLegale", null, 0, User.Ruolo.REF_LEGALE, 1, " ", " ", " ", " ", "", null, 0);
 		User user6 = new User("ASP", "ASP", null, 0, User.Ruolo.ASP, 0, "nomeA", " ", " ", " ", "", null, 0);
 		User user7 = new User("CPIA", "CPIA", null, 0, User.Ruolo.CPIA, 2, " ", " ", " ", " ", "", null, 0);

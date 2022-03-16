@@ -1,0 +1,93 @@
+<!-- {{socialCard.penale}} -->
+
+
+<form novalidate="novalidate" class="form-horizontal">
+
+	<div class="section">
+		<h3>{{ 'Procedimento penale' | translate}}</h3>
+		<div ng-repeat="item in socialCard.penale.procedimentiPenali" class="sub-section col-xs-12">
+		
+			<div class="control-group col-xs-12 col-sm-12">
+			<label class="control-label">{{ 'statoProcedimento' | translate}}</label>
+
+				<div class="controls">
+					<select class="form-control" ng-model="item.statoProcedimento" ng-options="option for option in penaleOp track by option">
+					</select>
+				</div>
+			</div>
+			
+			<h3>{{ 'Assistente Sociale' | translate}}</h3>
+			<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'nome' | translate}}</label>
+
+				<div class="controls">
+					<input type="text"  class="form-control" ng-model="item.assistenteSociale.nome" />
+				</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'cognome' | translate}}</label>
+	
+				<div class="controls">
+					<input type="text"  class="form-control" ng-model="item.assistenteSociale.cognome" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+			<label class="control-label">{{ 'email' | translate}}</label>
+
+			<div class="controls">
+				<input type="email"  class="form-control" ng-model="item.assistenteSociale.email" />
+			</div>
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'telefono' | translate}}</label>
+	
+				<div class="controls">
+					<input type="text"  class="form-control" ng-model="item.assistenteSociale.telefono" />
+				</div>
+			</div>
+			
+			<div class="col-xs-12">
+			<h3>{{ 'Progetto Educativo Individualizzato' | translate}}</h3>
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'Attivita' | translate}}</label>
+	
+				<div class="controls">
+					<textarea  class="form-control" rows="5" ng-model="item.pei.descrizione" />
+				</div>
+			</div>
+			
+			<div class="control-group col-xs-12 col-sm-6">
+				<label class="control-label">{{ 'allegato' | translate}}</label>
+	
+				<div ng-if="item.pei.allegato && !item.pei.allegato.isNew && item.pei.allegato.link!=''">
+					{{item.pei.allegato.nome}} - <a ng-click="getFile(item.pei.allegato.nome, item.pei.allegato.link)"> <i class="fa fa-file-pdf-o"
+						aria-hidden="true"></i>
+					</a>
+				</div>
+				<input type="button" value="Cambia" ng-click="item.pei.allegato.isNew=true" ng-show="item.pei.allegato && !item.pei.allegato.isNew && item.pei.allegato.link!=''" /> 
+				<input ng-show="!item.pei.allegato || item.pei.allegato.isNew || item.pei.allegato.link==''" type="file" name="file" fileread="item.pei.allegato">
+	
+			</div>
+
+			</div>
+			<div class="control-group col-xs-12 col-sm-6">
+				<a ng-click="deleteProcPenale(item)" class="btn btn-small btn-danger top10">{{ 'eliminaProcedura' | translate}}</a>
+			</div>
+			<!--  FINE REPEAT -->
+		</div>
+		<div class="col-xs-12">
+			<a ng-click="addProcPenale()" class="btn btn-small btn-info">{{ 'aggiungiProceduraPenale' | translate}}</a>
+		</div>
+
+		
+
+	</div>
+
+	<br>
+	<div class="control-group col-xs-12 col-sm-6">
+		<div class="controls">
+			<a ng-click="updatePenale()" class="btn btn-small btn-success">{{ 'apply' | translate}}</a>
+		</div>
+	</div>
+</form>

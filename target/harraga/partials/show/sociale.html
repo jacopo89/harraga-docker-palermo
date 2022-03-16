@@ -1,0 +1,329 @@
+<div class="section-wrapper" id="sociale">
+	<!-- 	{{socialCard.sociale}}		 -->
+
+	<div class="section">
+		<h3>{{ 'EsperienzeVolontariato' | translate}}</h3>
+
+		<div ng-repeat="item in socialCard.sociale.volontariato" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'pregressa' | translate}}</th>
+						<td>{{item.pregressa}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'tipoEsperienza' | translate}}</th>
+						<td>{{item.tipo}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataInizio' | translate}}</th>
+						<td>{{item.dataInizio | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataFine' | translate}}</th>
+						<td>{{item.dataFine | date:'dd-MM-yyyy' }}</td>
+					</tr>
+					<tr>
+						<th>{{ 'giorniOrari' | translate}}</th>
+						<td>{{item.giorniOrari}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'competenzeAcquisite' | translate}}</th>
+						<td>{{item.competenzeAcquisite}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'certificazione' | translate}}</th>
+						<td>{{item.certificazione.nome}}</td>
+						<td><a ng-if="item.certificazione.link" ng-click="getFile(item.certificazione.nome, item.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			<h4>{{ 'referente' | translate}}</h4>
+
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'nome' | translate}}</th>
+						<td>{{item.referente.nome}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'cognome' | translate}}</th>
+						<td>{{item.referente.cognome}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'email' | translate}}</th>
+						<td>{{item.referente.email}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'telefono' | translate}}</th>
+						<td>{{item.referente.telefono}}</td>
+					</tr>
+
+
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+
+	<div class="section">
+		<h3>{{ 'EsperienzeLaboratori' | translate}}</h3>
+
+		<div ng-repeat="item in socialCard.sociale.laboratori" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'pregressa' | translate}}</th>
+						<td>{{item.pregressa}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'tipoEsperienza' | translate}}</th>
+						<td>{{item.tipo}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataInizio' | translate}}</th>
+						<td>{{item.dataInizio | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataFine' | translate}}</th>
+						<td>{{item.dataFine | date:'dd-MM-yyyy' }}</td>
+					</tr>
+					<tr>
+						<th>{{ 'giorniOrari' | translate}}</th>
+						<td>{{item.giorniOrari}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'competenzeAcquisite' | translate}}</th>
+						<td>{{item.competenzeAcquisite}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'certificazione' | translate}}</th>
+						<td>{{item.certificazione.nome}}</td>
+						<td><a ng-if="item.certificazione.link" ng-click="getFile(item.certificazione.nome, item.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			<h4>{{ 'referente' | translate}}</h4>
+
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'nome' | translate}}</th>
+						<td>{{item.referente.nome}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'cognome' | translate}}</th>
+						<td>{{item.referente.cognome}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'email' | translate}}</th>
+						<td>{{item.referente.email}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'telefono' | translate}}</th>
+						<td>{{item.referente.telefono}}</td>
+					</tr>
+
+
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+
+
+	<div class="section">
+		<h3>{{ 'EsperienzeSport' | translate}}</h3>
+
+		<div ng-repeat="item in socialCard.sociale.sport" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'pregressa' | translate}}</th>
+						<td>{{item.pregressa}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'tipoEsperienza' | translate}}</th>
+						<td>{{item.tipo}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataInizio' | translate}}</th>
+						<td>{{item.dataInizio | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataFine' | translate}}</th>
+						<td>{{item.dataFine | date:'dd-MM-yyyy' }}</td>
+					</tr>
+					<tr>
+						<th>{{ 'giorniOrari' | translate}}</th>
+						<td>{{item.giorniOrari}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'competenzeAcquisite' | translate}}</th>
+						<td>{{item.competenzeAcquisite}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'certificazione' | translate}}</th>
+						<td>{{item.certificazione.nome}}</td>
+						<td><a ng-if="item.certificazione.link" ng-click="getFile(item.certificazione.nome, item.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			<h4>{{ 'referente' | translate}}</h4>
+
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'nome' | translate}}</th>
+						<td>{{item.referente.nome}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'cognome' | translate}}</th>
+						<td>{{item.referente.cognome}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'email' | translate}}</th>
+						<td>{{item.referente.email}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'telefono' | translate}}</th>
+						<td>{{item.referente.telefono}}</td>
+					</tr>
+
+
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+
+
+	<div class="section">
+		<h3>{{ 'Gruppi' | translate}}</h3>
+
+		<div ng-repeat="item in socialCard.sociale.gruppiAss" class="sub-section">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'pregressa' | translate}}</th>
+						<td>{{item.pregressa}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'tipoEsperienza' | translate}}</th>
+						<td>{{item.tipo}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataInizio' | translate}}</th>
+						<td>{{item.dataInizio | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'dataFine' | translate}}</th>
+						<td>{{item.dataFine | date:'dd-MM-yyyy'}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'giorniOrari' | translate}}</th>
+						<td>{{item.giorniOrari}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'competenzeAcquisite' | translate}}</th>
+						<td>{{item.competenzeAcquisite}}</td>
+					</tr>
+
+					<tr>
+						<th>{{ 'certificazione' | translate}}</th>
+						<td>{{item.certificazione.nome}}</td>
+						<td><a ng-if="item.certificazione.link" ng-click="getFile(item.certificazione.nome, item.certificazione.link)"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+						</a></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+
+			<h4>{{ 'referente' | translate}}</h4>
+
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>{{ 'nome' | translate}}</th>
+						<td>{{item.referente.nome}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'cognome' | translate}}</th>
+						<td>{{item.referente.cognome}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'email' | translate}}</th>
+						<td>{{item.referente.email}}</td>
+					</tr>
+					<tr>
+						<th>{{ 'telefono' | translate}}</th>
+						<td>{{item.referente.telefono}}</td>
+					</tr>
+
+
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+
+
+
+	<div class="section" ng-if="!socHistInfo">
+		<!-- 		<a ng-click="exportJson(socialCard.sociale, 'sociale.json' )">{{ 'export' | translate}}</a>  -->
+		<button class="btn btn-primary" onclick="generatePDF('#sociale', 'sociale')">
+			<i class="fa fa-save"></i> {{ 'exportPDF' | translate}}
+		</button>
+
+		<button class="btn btn-primary" ng-click="downloadFolder('sociale' )">
+			<i class="fa fa-save"></i>{{ 'exportFolder' | translate}}
+		</button>
+	</div>
+
+	<div class="section" ng-if="socHistInfo">
+		<div class="col-xs-12">
+			<!-- 	{{desHistInfo}} -->
+			{{ 'HISTORY_DATE' | translate}} {{socHistInfo.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}, {{ 'HISTORY_USER' | translate}} {{socHistInfo.username}} | <a ng-click="showSocialeCurrent()"> {{ 'SHOW_CURRENT' |
+				translate}}</a>
+		</div>
+	</div>
+	<div class="section">
+
+
+		<H3>{{ 'SAVE_HISTORY' | translate}}</H3>
+		<!-- 		{{socialCard.desideriHist}}		 -->
+		<table class="table">
+			<tbody>
+				<tr ng-repeat="item in socialCard.socialeHist">
+					<th ng-if="!$last">{{ 'SAVE_ITEM' | translate}}</th>
+					<th ng-if="$last">{{ 'CURRENT_ITEM' | translate}}</th>
+					<td>{{item.username}}</td>
+					<td>{{item.timestamp | date:'dd-MM-yyyy HH:mm:ss' }}</td>
+					<td ng-if="!$last"><a ng-click="getSocialeHistory(item)">{{ 'Show' | translate}}</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</div>
