@@ -111,7 +111,7 @@ config(['$routeProvider', function ($routeProvider) {
 	password : 'Scegli una password',
 
 	// BUTTONS & PAGE_LABEL
-	welcome_message: "Ragazzi Harraga",
+	welcome_message: "Cartella Sociale",
 	login_message: "Accedi",
 	register_message: "Registrati",
 	show: "Mostra",
@@ -350,7 +350,7 @@ config(['$routeProvider', function ($routeProvider) {
 
 }).constant('SERVER_INFO', {
 
-	base_url: '/',
+	base_url: '/harraga/',
 
 
 //	SOCIAL CARD
