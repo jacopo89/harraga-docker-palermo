@@ -31,13 +31,11 @@ services:
         ipv4_address: 30.10.203.2
   web:
     container_name: harraga_web
-    build:
-      context: .
     links:
       - db
-    image: tomcat
+    image: tomcat:9.0.48
     volumes:
-      - ./target/harraga.war:/usr/local/tomcat/webapps/harraga.war
+      - ./target/ROOT.war:/usr/local/tomcat/webapps/ROOT.war
     expose:
       - '8080'
     environment:
