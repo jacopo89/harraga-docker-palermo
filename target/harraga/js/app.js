@@ -111,7 +111,7 @@ config(['$routeProvider', function ($routeProvider) {
 	password : 'Scegli una password',
 
 	// BUTTONS & PAGE_LABEL
-	welcome_message: "Ragazzi Harraga",
+	welcome_message: "Cartella sociale",
 	login_message: "Accedi",
 	register_message: "Registrati",
 	show: "Mostra",
