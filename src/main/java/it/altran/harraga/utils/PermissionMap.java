@@ -247,7 +247,7 @@ public class PermissionMap {
 		permissonMap.put(Ruolo.USSM, permessi);
 
 
-		// ITASTRA
+		// SCUOLA_ITALIANO
 		read = new ArrayList<Permission.sezioni>();
 		read.add(Permission.sezioni.ANAGRAFICA);
 		read.add(Permission.sezioni.ISTRUZIONE);
@@ -259,7 +259,7 @@ public class PermissionMap {
 		write.add(Permission.sezioni.COMPETENZE);
 
 		permessi = new Permission(read, write);
-		permissonMap.put(Ruolo.ITASTRA, permessi);
+		permissonMap.put(Ruolo.SCUOLA_ITALIANO, permessi);
 
 
 		// GARANTE
@@ -327,12 +327,12 @@ public class PermissionMap {
 	public boolean isIstitutional(Ruolo ruolo) {
 	    /*
 		if (ruolo == User.Ruolo.COMUNE_MARSALA || ruolo == User.Ruolo.CPA || ruolo == User.Ruolo.RESP_SEC_ACC || ruolo == User.Ruolo.ASP || ruolo == User.Ruolo.CPIA || ruolo == User.Ruolo.USSM
-				|| ruolo == User.Ruolo.GARANTE || ruolo == User.Ruolo.ITASTRA)
+				|| ruolo == User.Ruolo.GARANTE || ruolo == User.Ruolo.SCUOLA_ITALIANO)
 			return true;
 		return false;
 		*/
         if (ruolo == Ruolo.COMUNE_MARSALA  || ruolo == Ruolo.ASP || ruolo == Ruolo.CPIA || ruolo == Ruolo.USSM
-            || ruolo == Ruolo.GARANTE || ruolo == Ruolo.ITASTRA)
+            || ruolo == Ruolo.GARANTE || ruolo == Ruolo.SCUOLA_ITALIANO)
             return true;
         return false;
 	}

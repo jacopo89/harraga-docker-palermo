@@ -27,7 +27,7 @@ public class DummyLoginDAO {
 		User user8 = new User("AgenziaLavoro", "AgenziaLavoro", null, 0, User.Ruolo.AGENZIA_LAVORO, 0, "nomeAgl", "CognomeAgl", "email@ag.lav", "443282288282", "", cartAss, 0);
 		User user9 = new User("Associazioni", "Associazioni", null, 0, User.Ruolo.ASSOCIAZIONI, 1, " ", " ", " ", " ", "", null, 0);
 		User user10 = new User("USSM", "USSM", null, 0, User.Ruolo.USSM, 1, " ", " ", " ", " ", "", null, 0);
-		User user11 = new User("ITASTRA", "ITASTRA", null, 0, User.Ruolo.ITASTRA, 1, " ", " ", " ", " ", "", null, 0);
+		User user11 = new User("SCUOLA_ITALIANO", "SCUOLA_ITALIANO", null, 0, User.Ruolo.SCUOLA_ITALIANO, 1, " ", " ", " ", " ", "", null, 0);
 
 		ArrayList<User> userList = new ArrayList<User>();
 		userList.add(user1);
