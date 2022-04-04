@@ -43,7 +43,7 @@ public class GetUser extends ActionSupport {
 		if(username!=null && !username.equals("")) {
 		
 			if(userRequest!=null) {
-				if(userRequest.getType() == User.Ruolo.COMUNE_MARSALA || userRequest.getUsername().equals(username)) {
+				if(userRequest.getType() == User.Ruolo.COMUNE_AGRIGENTO || userRequest.getUsername().equals(username)) {
 					user = UserDAO.getInstance().getUser(username);
 					user.setPassword("");
 				}				

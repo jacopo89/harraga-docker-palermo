@@ -100,7 +100,7 @@ public class PermissionMap {
 		permessi = new Permission(read, write);
 		permissonMap.put(Ruolo.TUTORE, permessi);
 
-		// COMUNE_MARSALA
+		// COMUNE_AGRIGENTO
 		read = new ArrayList<Permission.sezioni>();
 		read.add(Permission.sezioni.ANAGRAFICA);
 		read.add(Permission.sezioni.AMMINISTRATIVA);
@@ -120,7 +120,7 @@ public class PermissionMap {
 		write.add(Permission.sezioni.SANITARIA);
 
 		permessi = new Permission(read, write);
-		permissonMap.put(Ruolo.COMUNE_MARSALA, permessi);
+		permissonMap.put(Ruolo.COMUNE_AGRIGENTO, permessi);
 
 		// REF_LEGALE
 		read = new ArrayList<Permission.sezioni>();
@@ -326,12 +326,12 @@ public class PermissionMap {
 	 */
 	public boolean isIstitutional(Ruolo ruolo) {
 	    /*
-		if (ruolo == User.Ruolo.COMUNE_MARSALA || ruolo == User.Ruolo.CPA || ruolo == User.Ruolo.RESP_SEC_ACC || ruolo == User.Ruolo.ASP || ruolo == User.Ruolo.CPIA || ruolo == User.Ruolo.USSM
+		if (ruolo == User.Ruolo.COMUNE_AGRIGENTO || ruolo == User.Ruolo.CPA || ruolo == User.Ruolo.RESP_SEC_ACC || ruolo == User.Ruolo.ASP || ruolo == User.Ruolo.CPIA || ruolo == User.Ruolo.USSM
 				|| ruolo == User.Ruolo.GARANTE || ruolo == User.Ruolo.SCUOLA_ITALIANO)
 			return true;
 		return false;
 		*/
-        if (ruolo == Ruolo.COMUNE_MARSALA  || ruolo == Ruolo.ASP || ruolo == Ruolo.CPIA || ruolo == Ruolo.USSM
+        if (ruolo == Ruolo.COMUNE_AGRIGENTO  || ruolo == Ruolo.ASP || ruolo == Ruolo.CPIA || ruolo == Ruolo.USSM
             || ruolo == Ruolo.GARANTE || ruolo == Ruolo.SCUOLA_ITALIANO)
             return true;
         return false;
@@ -341,7 +341,7 @@ public class PermissionMap {
 	 * inserire tutti i ruoli che possono creare le cartelle sociali
 	 */
 	public boolean canCreate(Ruolo ruolo) {
-		if (ruolo == Ruolo.CPA || ruolo == Ruolo.RESP_SEC_ACC || ruolo == Ruolo.COMUNE_MARSALA)
+		if (ruolo == Ruolo.CPA || ruolo == Ruolo.RESP_SEC_ACC || ruolo == Ruolo.COMUNE_AGRIGENTO)
 			return true;
 		return false;
 	}
